@@ -1,9 +1,15 @@
-// import * as S from "./main.styles"
+import * as S from './main.styles';
 
 export const Main = () => {
   return (
-  <>
-		<div>Hello world</div>
-  </>
+    <>
+      <S.Container>
+        <S.HeaderContainer>
+          <S.HeaderNav>
+				<S.ButtonNav>Вход в личный кабинет</S.ButtonNav>
+			 </S.HeaderNav>
+        </S.HeaderContainer>
+      </S.Container>
+    </>
   );
 };

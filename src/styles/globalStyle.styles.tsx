@@ -1,15 +1,12 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import {
-	$mainFont,
-	$mainFontColor
-} from "./variables"
+import { $mainFont, $mainFontColor } from './variables';
 
 export const GlobalStyle = createGlobalStyle`
 	
 @font-face {
 	font-family: 'Roboto';
   src: local('Roboto'),
-    url('./fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+    url('./fonts/Roboto/Roboto-Regular.ttf') format('ttf');
   font-weight: 400;
 }
 
@@ -46,3 +43,4 @@ export const Wrapper = styled.div`
   min-height: 100%;
   background-color: #fff;
 `;
+
