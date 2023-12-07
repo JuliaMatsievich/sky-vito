@@ -1,3 +1,9 @@
+// import * as S from "./main.styles"
+
 export const Main = () => {
-  return <></>;
+  return (
+  <>
+		<div>Hello world</div>
+  </>
+  );
 };

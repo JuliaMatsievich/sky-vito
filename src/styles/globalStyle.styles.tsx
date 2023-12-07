@@ -1,4 +1,8 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import {
+	$mainFont,
+	$mainFontColor
+} from "./variables"
 
 export const GlobalStyle = createGlobalStyle`
 	
@@ -28,8 +32,8 @@ html,
 body {
   width: 100%;
   height: 100%;
-  font-family: "Roboto", sans-serif;
-  color: #000;
+  font-family: ${$mainFont};
+  color: ${$mainFontColor};
 }
 
 button {
@@ -40,6 +44,5 @@ button {
 export const Wrapper = styled.div`
   width: 100%;
   min-height: 100%;
-  overflow: hidden;
   background-color: #fff;
 `;
