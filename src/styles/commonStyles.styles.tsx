@@ -19,6 +19,6 @@ export const buttonInHeader = css`
   background-color: transparent;
 
   &:hover {
-	background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.15);
   }
 `;
