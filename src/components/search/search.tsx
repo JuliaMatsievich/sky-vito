@@ -5,9 +5,8 @@ export const Search = () => {
     <>
       <S.SearchMain>
         <S.SearchLogoLink>
-          <S.SearchLogoImg src='/img/logo.png' />
+          <S.SearchLogoImg src="/img/logo.png" />
         </S.SearchLogoLink>
-		  
       </S.SearchMain>
     </>
   );

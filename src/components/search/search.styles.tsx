@@ -19,15 +19,11 @@ export const SearchLogoImg = styled.img`
 `;
 
 export const SearchForm = styled.form`
-	display: flex;
-	justify-content: space-around;
-	gap: 10px;
-`
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+`;
 
-export const SearchInput = styled.input`
-	
-`
+export const SearchInput = styled.input``;
 
-export const SearchBtn = styled.button`
-	
-`
+export const SearchBtn = styled.button``;

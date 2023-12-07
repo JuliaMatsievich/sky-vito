@@ -7,7 +7,7 @@ export const Main = () => {
     <>
       <S.Container>
         <Header />
-		  <Search/>
+        <Search />
       </S.Container>
     </>
   );
