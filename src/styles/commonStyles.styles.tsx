@@ -1,5 +1,10 @@
 import styled, { css } from 'styled-components';
-import { $buttonColor, $buttonColorHover, $phoneWidth, $tabletWidth } from './variables';
+import {
+  $buttonColor,
+  $buttonColorHover,
+  $phoneWidth,
+  $tabletWidth,
+} from './variables';
 
 export const centralContainer = css`
   padding-left: 140px;
@@ -58,4 +63,22 @@ export const buttonColor = css`
 export const Container = styled.div`
   max-width: 1440px;
   margin: 0 auto;
+`;
+
+export const title = css`
+  color: #000;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 220%; /* 88px */
+  @media (max-width: ${$tabletWidth}) {
+    font-size: 30px;
+    margin-bottom: 8px;
+  }
+  @media (max-width: ${$phoneWidth}) {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%; /* 28.8px */
+  }
 `;
