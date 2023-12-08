@@ -8,9 +8,9 @@ export const Main = () => {
     <>
       {/* <Header /> */}
       {/* <CM.Container> */}
-        <Search />
-        <S.MainTitle>Объявления</S.MainTitle>
-        <ProductList />
+      <Search />
+      <S.MainTitle>Объявления</S.MainTitle>
+      <ProductList />
       {/* </CM.Container> */}
     </>
   );

@@ -5,8 +5,8 @@ function App() {
   return (
     <>
       <S.GlobalStyle />
-      <AppRoutes/>
-   </>
+      <AppRoutes />
+    </>
   );
 }
 
