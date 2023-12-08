@@ -1,4 +1,4 @@
-import * as S from './iconSvg.styles'
+import * as S from './iconSvg.styles';
 
 export const HomeIconSvg = () => {
   return (
