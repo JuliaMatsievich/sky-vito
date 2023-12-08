@@ -1,9 +1,19 @@
 import styled, { css } from 'styled-components';
-import { $buttonColor, $buttonColorHover } from './variables';
+import { $buttonColor, $buttonColorHover, $phoneWidth, $tabletWidth } from './variables';
 
 export const centralContainer = css`
   padding-left: 140px;
   padding-right: 140px;
+
+  @media (max-width: ${$tabletWidth}) {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  @media (max-width: ${$phoneWidth}) {
+    padding-left: 17px;
+    padding-right: 17px;
+  }
 `;
 
 export const buttonInHeader = css`

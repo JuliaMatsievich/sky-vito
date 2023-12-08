@@ -3,7 +3,7 @@ import {
   buttonInHeader,
   centralContainer,
 } from '../../styles/commonStyles.styles';
-import { $mainColor, SCREEN_SM } from '../../styles/variables';
+import { $mainColor, $tabletWidth } from '../../styles/variables';
 
 export const HeaderContainer = styled.div`
   ${centralContainer}
@@ -12,7 +12,7 @@ export const HeaderContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
 
-  @media(max-width: ${SCREEN_SM}){
+  @media (max-width: ${$tabletWidth}) {
     display: none;
   }
 `;
@@ -20,7 +20,7 @@ export const HeaderContainer = styled.div`
 export const HeaderHeader = styled.header`
   background-color: ${$mainColor};
   width: 100%;
-`
+`;
 
 export const HeaderNav = styled.div`
   display: flex;
