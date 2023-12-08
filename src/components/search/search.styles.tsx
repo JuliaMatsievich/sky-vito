@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { centralContainer } from '../../styles/commonStyles.styles';
+import { buttonColor, centralContainer } from '../../styles/commonStyles.styles';
 
 export const SearchMain = styled.div`
   display: flex;
@@ -24,6 +24,27 @@ export const SearchForm = styled.form`
   gap: 10px;
 `;
 
-export const SearchInput = styled.input``;
+export const SearchInput = styled.input`
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: #fff;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 19px;
+  max-width: 876px;
+  height: 50px;
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+  }
+`;
 
-export const SearchBtn = styled.button``;
+export const SearchBtn = styled.button`
+padding: 13px 55px;
+${buttonColor}
+`;
+

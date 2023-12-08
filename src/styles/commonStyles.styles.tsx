@@ -1,4 +1,5 @@
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
+import { $buttonColor, $buttonColorHover } from './variables';
 
 export const centralContainer = css`
   padding-left: 140px;
@@ -17,8 +18,34 @@ export const buttonInHeader = css`
   border-radius: 6px;
   border: 1px solid #fff;
   background-color: transparent;
+  transition: all 0.3s ease 0s;
 
   &:hover {
     background: rgba(255, 255, 255, 0.15);
   }
+`;
+
+export const buttonColor = css`
+  border-radius: 6px;
+  border: 1px solid ${$buttonColor};
+  background: ${$buttonColor};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  padding: 13px 37px;
+  transition: all 0.3s ease 0s;
+
+  &:hover {
+    background: ${$buttonColorHover};
+  }
+`;
+
+export const Container = styled.div`
+  max-width: 1440px;
+  margin: 0 auto;
 `;
