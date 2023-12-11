@@ -16,3 +16,5 @@ export const $buttonColor = '#009ee4';
 export const $buttonColorHover = '#0080c1';
 export const $buttonColorDisabled = '#D9D9D9';
 export const $mainColor = '#009ee4';
+export const $sceletonColor = '#F0F0F0'
+export const $greyColor = '#5f5f5f'
