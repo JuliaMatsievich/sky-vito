@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { $sceletonColor } from '../../../styles/variables';
 
-
 export const AdvertGalleryContainer = styled.div`
   display: flex;
   flex-direction: column;

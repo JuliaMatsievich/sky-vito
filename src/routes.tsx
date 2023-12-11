@@ -20,7 +20,6 @@ export const AppRoutes = () => {
         <Route index element={<MainPage />} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="advert" element={<AdvertPage />} />
-
       </Route>
       {/* </Route> */}
       {/* <Route path="*" element={<NotFound />} /> */}
