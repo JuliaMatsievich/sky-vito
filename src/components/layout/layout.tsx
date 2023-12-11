@@ -8,7 +8,7 @@ export const Layout = () => {
     <>
       <Header />
       <CM.Container>
-          <Outlet />
+        <Outlet />
       </CM.Container>
       <Footer />
     </>

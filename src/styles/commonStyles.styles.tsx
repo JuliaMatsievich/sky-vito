@@ -89,7 +89,7 @@ export const subtitle = css`
   font-weight: 500;
   line-height: 220%; /* 70.4px */
   padding-bottom: 20px;
-  
+
   @media (max-width: ${$phoneWidth}) {
     font-size: 18px;
     line-height: 100%; /* 18px */

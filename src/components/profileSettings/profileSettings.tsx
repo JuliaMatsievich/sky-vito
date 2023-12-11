@@ -14,7 +14,7 @@ export const ProfileSettings = () => {
           </S.SettingsLeft>
 
           <S.SettingsRight>
-            <S.SettingsForm action=''>
+            <S.SettingsForm action="">
               <S.SettingsFormItem>
                 <S.SettingsNameInput
                   id="name"
@@ -48,13 +48,18 @@ export const ProfileSettings = () => {
               </S.SettingsFormItem>
 
               <S.SettingsFormItem>
-                <S.SettingsPhoneInput id="phone" name="phone" type="tel" placeholder=' ' />
+                <S.SettingsPhoneInput
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder=" "
+                />
                 <S.SettingsPhoneLabel htmlFor="phone">
                   Телефон
                 </S.SettingsPhoneLabel>
               </S.SettingsFormItem>
 
-				  <S.FormButton>Сохранить</S.FormButton>
+              <S.FormButton>Сохранить</S.FormButton>
             </S.SettingsForm>
           </S.SettingsRight>
         </S.Settings>

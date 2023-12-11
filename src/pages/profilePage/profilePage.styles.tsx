@@ -1,4 +1,8 @@
-import { centralContainer, subtitle, title } from '../../styles/commonStyles.styles';
+import {
+  centralContainer,
+  subtitle,
+  title,
+} from '../../styles/commonStyles.styles';
 import styled from 'styled-components';
 import { $tabletWidth } from '../../styles/variables';
 
@@ -15,8 +19,8 @@ export const ProfileProductsTitle = styled.h2`
   @media (max-width: ${$tabletWidth}) {
     margin-top: 40px;
   }
-`
+`;
 
 export const ProfileContainer = styled.div`
   ${centralContainer}
-`
+`;

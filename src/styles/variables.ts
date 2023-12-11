@@ -16,4 +16,3 @@ export const $buttonColor = '#009ee4';
 export const $buttonColorHover = '#0080c1';
 export const $buttonColorDisabled = '#D9D9D9';
 export const $mainColor = '#009ee4';
-
