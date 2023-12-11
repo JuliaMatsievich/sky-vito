@@ -14,4 +14,6 @@ export const $mainFont = 'Roboto, sans-serif';
 export const $mainFontColor = '#000';
 export const $buttonColor = '#009ee4';
 export const $buttonColorHover = '#0080c1';
+export const $buttonColorDisabled = '#D9D9D9';
 export const $mainColor = '#009ee4';
+

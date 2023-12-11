@@ -1,9 +1,15 @@
-import { Main } from '../../components/main/main';
+import { ProductList } from '../../components/productsList/productList';
+import { Search } from '../../components/search/search';
+import * as S from './mainPage.styles';
 
 export const MainPage = () => {
   return (
     <>
-      <Main />
+      <Search />
+      <S.MainContainer>
+        <S.MainTitle>Объявления</S.MainTitle>
+        <ProductList />
+      </S.MainContainer>
     </>
   );
 };

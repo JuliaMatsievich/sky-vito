@@ -3,7 +3,7 @@ import { centralContainer } from '../../styles/commonStyles.styles';
 import { $mediumWidth, $phoneWidth } from '../../styles/variables';
 
 export const ProductContainer = styled.div`
-  ${centralContainer};
+  /* ${centralContainer}; */
   margin-bottom: 30px;
 `;
 export const ProductItems = styled.div`

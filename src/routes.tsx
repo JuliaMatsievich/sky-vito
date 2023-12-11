@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './components/layout/layout';
 import { MainPage } from './pages/mainPage';
+import { ProfilePage } from './pages/profilePage';
 
 export const AppRoutes = () => {
   return (
@@ -16,6 +17,7 @@ export const AppRoutes = () => {
       {/* <Route element={<ProtectedRoute />}> */}
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />} />
+        <Route path="profile" element={<ProfilePage/>}/>
       </Route>
       {/* </Route> */}
       {/* <Route path="*" element={<NotFound />} /> */}

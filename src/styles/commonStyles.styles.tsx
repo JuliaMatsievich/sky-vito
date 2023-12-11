@@ -82,3 +82,16 @@ export const title = css`
     line-height: 120%; /* 28.8px */
   }
 `;
+
+export const subtitle = css`
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 220%; /* 70.4px */
+  padding-bottom: 20px;
+  
+  @media (max-width: ${$phoneWidth}) {
+    font-size: 18px;
+    line-height: 100%; /* 18px */
+  }
+`;
