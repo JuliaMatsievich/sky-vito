@@ -1,6 +1,18 @@
 import styled from 'styled-components';
 import { buttonColor, subtitle } from '../../../styles/commonStyles.styles';
-import { $greyColor, $sceletonColor } from '../../../styles/variables';
+import {
+  $greyColor,
+  $mainColor,
+  $sceletonColor,
+} from '../../../styles/variables';
+
+export const ModalBlock = styled.div`
+  position: absolute;
+  z-index: 5;
+  left: calc(50% - (800px / 2));
+  top: 60px;
+  opacity: 1;
+`;
 
 export const MReviewsContainer = styled.div`
   border-radius: 12px;
@@ -11,8 +23,12 @@ export const MReviewsContainer = styled.div`
   top: 60px;
   opacity: 1;
   border: 1px solid red;
-  padding: 20px 98px 57px 50px;
+  padding: 20px 12px 57px 50px;
   width: 800px;
+  height: auto;
+  position: relative;
+
+  /* overflow-y: scroll; */
 `;
 
 export const MReviewsTitle = styled.h2`
@@ -36,6 +52,22 @@ export const MReviewsForm = styled.form`
 export const MReviewsTextarea = styled.textarea`
   width: 100%;
   margin-bottom: 14px;
+  padding: 10px 19px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: #fff;
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+  }
+  &:focus {
+    border: 2px solid ${$mainColor};
+    outline: none;
+  }
 `;
 
 export const MReviewsBtn = styled.button`
@@ -97,3 +129,25 @@ export const ReviewText = styled.p`
   font-weight: 400;
   line-height: 150%; /* 24px */
 `;
+
+export const MReviewsScroll = styled.div`
+  overflow-y: auto;
+  width: 100%;
+  max-height: 900px;
+  scrollbar-width: thin;
+  scrollbar-color: #d9d9d9 #ffffff;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 6px;
+    background-color: #ffffff;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #d9d9d9;
+    border-radius: 6px;
+  }
+`;
+
+export const MReviewContent = styled.div`
+	padding-right: 80px;
+`
