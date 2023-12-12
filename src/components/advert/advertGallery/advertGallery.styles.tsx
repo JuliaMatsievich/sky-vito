@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { $sceletonColor } from '../../../styles/variables';
+import { $phoneWidth, $sceletonColor } from '../../../styles/variables';
 
 export const AdvertGalleryContainer = styled.div`
   display: flex;
@@ -17,6 +17,9 @@ export const GalleryImageBar = styled.div`
   display: flex;
   gap: 10px;
   margin-bottom: 60px;
+  @media (max-width: ${$phoneWidth}) {
+    margin-bottom: 20px;
+  }
 `;
 export const GalleryImageBarItem = styled.div`
   width: 88px;

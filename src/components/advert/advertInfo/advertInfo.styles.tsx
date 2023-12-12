@@ -2,11 +2,13 @@ import styled from 'styled-components';
 import {
   $greyColor,
   $mainColor,
+  $phoneWidth,
   $sceletonColor,
 } from '../../../styles/variables';
 import { buttonColor } from '../../../styles/commonStyles.styles';
 
-export const AdvertInfoContainer = styled.div``;
+export const AdvertInfoContainer = styled.div`
+`;
 
 export const InfoTitle = styled.h2`
   color: #000;
@@ -15,6 +17,9 @@ export const InfoTitle = styled.h2`
   font-weight: 700;
   line-height: 140%; /* 44.8px */
   margin-bottom: 10px;
+  @media (max-width: ${$phoneWidth}) {
+    font-size: 18px;
+  }
 `;
 export const InfoCreated = styled.p`
   color: ${$greyColor};
@@ -23,6 +28,10 @@ export const InfoCreated = styled.p`
   font-weight: 400;
   line-height: 130%; /* 20.8px */
   margin-bottom: 4px;
+  @media (max-width: ${$phoneWidth}) {
+    font-size: 14px;
+    line-height: 120%;
+  }
 `;
 
 export const InfoCity = styled.p`
@@ -32,6 +41,10 @@ export const InfoCity = styled.p`
   font-weight: 400;
   line-height: 130%; /* 20.8px */
   margin-bottom: 4px;
+  @media (max-width: ${$phoneWidth}) {
+    font-size: 14px;
+    line-height: 120%;
+  }
 `;
 export const InfoReviews = styled.a`
   color: ${$mainColor};
@@ -41,6 +54,11 @@ export const InfoReviews = styled.a`
   line-height: 130%; /* 20.8px */
   margin-bottom: 34px;
   display: inline-block;
+  @media (max-width: ${$phoneWidth}) {
+    font-size: 14px;
+    line-height: normal;
+    margin-bottom: 20px;
+  }
 `;
 
 export const InfoPrice = styled.p`
@@ -49,6 +67,9 @@ export const InfoPrice = styled.p`
   font-weight: 700;
   line-height: 140%; /* 39.2px */
   margin-bottom: 20px;
+  @media (max-width: ${$phoneWidth}) {
+    font-size: 18px;
+  }
 `;
 export const InfoBtn = styled.button`
   ${buttonColor}
@@ -58,6 +79,10 @@ export const InfoBtn = styled.button`
   font-size: 14px;
   width: 214px;
   height: 62px;
+  @media (max-width: ${$phoneWidth}) {
+    width: 100%;
+    margin-bottom: 30px;
+  }
 `;
 export const InfoProfileContainer = styled.div`
   display: flex;
@@ -68,6 +93,11 @@ export const InfoProfileImage = styled.div`
   height: 40px;
   border-radius: 50%;
   background-color: ${$sceletonColor};
+  flex: 0 0 auto;
+  @media (max-width: ${$phoneWidth}) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 export const InfoProfileImg = styled.img``;
@@ -80,6 +110,9 @@ export const InfoProfileName = styled.p`
   font-style: normal;
   font-weight: 600;
   line-height: 130%; /* 26px */
+  @media (max-width: ${$phoneWidth}) {
+    font-size: 18px;
+  }
 `;
 
 export const InfoProfileSinceSale = styled.p`
@@ -88,4 +121,7 @@ export const InfoProfileSinceSale = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: 200%; /* 32px */
+  @media (max-width: ${$phoneWidth}) {
+    font-size: 14px;
+  }
 `;

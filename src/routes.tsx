@@ -3,6 +3,7 @@ import { Layout } from './components/layout/layout';
 import { MainPage } from './pages/mainPage';
 import { ProfilePage } from './pages/profilePage';
 import { AdvertPage } from './pages/advertPage';
+import { ModalReviews } from './components/modal/modalReviews/modalReviews';
 
 export const AppRoutes = () => {
   return (
@@ -16,6 +17,7 @@ export const AppRoutes = () => {
 			element={<AuthPage isLoginMode={false}></AuthPage>}
 		 ></Route> */}
       {/* <Route element={<ProtectedRoute />}> */}
+      <Route path="/modalReviews" element={<ModalReviews />} />
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />} />
         <Route path="profile" element={<ProfilePage />} />
