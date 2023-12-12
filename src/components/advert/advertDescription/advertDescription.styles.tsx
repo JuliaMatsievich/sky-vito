@@ -9,7 +9,7 @@ export const AdvertDescriptionContainer = styled.div`
   width: 792px;
   margin-bottom: 30px;
 
-  @media(max-width: ${$mediumWidth}){
+  @media (max-width: ${$mediumWidth}) {
     width: 100%;
   }
 `;

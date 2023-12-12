@@ -44,9 +44,9 @@ export const MReviewsBtn = styled.button`
 `;
 
 export const MReviewsReview = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 `;
 
 export const ReviewItem = styled.div`

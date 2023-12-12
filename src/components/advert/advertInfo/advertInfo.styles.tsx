@@ -7,8 +7,7 @@ import {
 } from '../../../styles/variables';
 import { buttonColor } from '../../../styles/commonStyles.styles';
 
-export const AdvertInfoContainer = styled.div`
-`;
+export const AdvertInfoContainer = styled.div``;
 
 export const InfoTitle = styled.h2`
   color: #000;

@@ -17,6 +17,6 @@ export const FooterContainer = styled.footer`
     left: 0;
     z-index: 3;
     width: 100%;
-    background: #FFF;
+    background: #fff;
   }
 `;

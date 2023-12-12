@@ -9,7 +9,7 @@ export const AdvertContent = styled.div`
   display: flex;
   gap: 59px;
 
-  @media(max-width: ${$mediumWidth}){
+  @media (max-width: ${$mediumWidth}) {
     flex-direction: column;
     align-items: center;
     justify-content: center;

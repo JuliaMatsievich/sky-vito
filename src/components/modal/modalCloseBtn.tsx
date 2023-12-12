@@ -1,4 +1,4 @@
-import * as S from './modalClsoseBtn.styles'
+import * as S from './modalClsoseBtn.styles';
 
 export const ModalCloseBtn = () => {
   return (

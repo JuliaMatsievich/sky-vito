@@ -5,7 +5,7 @@ export const ModalReviews = () => {
   return (
     <>
       <S.MReviewsContainer>
-			<ModalCloseBtn/>
+        <ModalCloseBtn />
         <S.MReviewsTitle>Отзывы о товаре</S.MReviewsTitle>
         <S.MReviewsAdd className="mreviews__add">Добавить отзыв</S.MReviewsAdd>
         <S.MReviewsForm>
