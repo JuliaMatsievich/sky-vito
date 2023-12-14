@@ -95,4 +95,3 @@ export const subtitle = css`
     line-height: 100%; /* 18px */
   }
 `;
-

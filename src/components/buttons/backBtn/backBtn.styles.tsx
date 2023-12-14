@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { $phoneWidth } from '../../../styles/variables';
 
-
 export const BackBtnContainer = styled.div`
   display: none;
 

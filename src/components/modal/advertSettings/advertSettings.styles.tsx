@@ -105,7 +105,7 @@ export const FormItemInputPrice = styled(FormItemInput)`
   width: 200px;
   @media (max-width: ${$phoneWidth}) {
     width: 100%;
-    }
+  }
 `;
 
 export const FormItemPriceCover = styled.div`
@@ -113,7 +113,6 @@ export const FormItemPriceCover = styled.div`
   display: flex;
   flex-direction: column-reverse;
   z-index: 0;
-  
 
   &:after {
     content: '₽';
@@ -190,5 +189,5 @@ export const AdvSettingsBtn = styled.button`
   width: 181px;
   @media (max-width: ${$phoneWidth}) {
     width: 100%;
-    }
+  }
 `;
