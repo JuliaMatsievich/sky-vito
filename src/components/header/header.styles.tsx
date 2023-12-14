@@ -3,14 +3,23 @@ import {
   buttonInHeader,
   centralContainer,
 } from '../../styles/commonStyles.styles';
+import { $mainColor, $tabletWidth } from '../../styles/variables';
 
 export const HeaderContainer = styled.div`
-  background-color: #009ee4;
   ${centralContainer}
   height: 79px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  @media (max-width: ${$tabletWidth}) {
+    display: none;
+  }
+`;
+
+export const HeaderHeader = styled.header`
+  background-color: ${$mainColor};
+  width: 100%;
 `;
 
 export const HeaderNav = styled.div`
