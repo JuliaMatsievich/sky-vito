@@ -4,6 +4,7 @@ import { MainPage } from './pages/mainPage';
 import { ProfilePage } from './pages/profilePage';
 import { AdvertPage } from './pages/advertPage';
 import { ModalReviews } from './components/modal/modalReviews/modalReviews';
+import { AdvertSettings } from './components/modal/advertSettings/advertSettings';
 
 export const AppRoutes = () => {
   return (
@@ -18,6 +19,7 @@ export const AppRoutes = () => {
 		 ></Route> */}
       {/* <Route element={<ProtectedRoute />}> */}
       <Route path="/modalReviews" element={<ModalReviews />} />
+      <Route path="/advertSettings" element={<AdvertSettings />} />
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />} />
         <Route path="profile" element={<ProfilePage />} />

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { $phoneWidth } from '../../../styles/variables';
 
 export const ModalCloseBtnContainer = styled.div`
   width: 23px;
@@ -8,6 +9,9 @@ export const ModalCloseBtnContainer = styled.div`
   right: 50px;
   z-index: 3;
   cursor: pointer;
+  @media (max-width: ${$phoneWidth}) {
+    display: none;
+  }
 `;
 
 export const ModalCloseBtnLine = styled.div`
