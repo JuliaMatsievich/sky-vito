@@ -4,8 +4,8 @@ import {
   $mainColor,
   $phoneWidth,
   $sceletonColor,
-} from '../../../styles/variables';
-import { buttonColor } from '../../../styles/commonStyles.styles';
+} from '../../../../styles/variables';
+import { buttonColor } from '../../../../styles/commonStyles.styles';
 
 export const AdvertInfoContainer = styled.div``;
 

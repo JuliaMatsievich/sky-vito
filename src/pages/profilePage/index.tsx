@@ -1,4 +1,4 @@
-import { ProductList } from '../../components/productsList/productList';
+import { AdvertList } from '../../components/adverts/advertList/advertList';
 import { ProfileSettings } from '../../components/profileSettings/profileSettings';
 import { Search } from '../../components/search/search';
 import * as S from './profilePage.styles';
@@ -10,8 +10,8 @@ export const ProfilePage = () => {
       <S.ProfileContainer>
         <S.ProfileTitle>Здравствуйте, Антон!</S.ProfileTitle>
         <ProfileSettings />
-        <S.ProfileProductsTitle>Мои товары</S.ProfileProductsTitle>
-        <ProductList />
+        <S.ProfileAdvertsTitle>Мои товары</S.ProfileAdvertsTitle>
+        <AdvertList />
       </S.ProfileContainer>
     </>
   );

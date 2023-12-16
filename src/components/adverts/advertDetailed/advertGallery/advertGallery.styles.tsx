@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { $phoneWidth, $sceletonColor } from '../../../styles/variables';
+import { $phoneWidth, $sceletonColor } from '../../../../styles/variables';
 
 export const AdvertGalleryContainer = styled.div`
   display: flex;

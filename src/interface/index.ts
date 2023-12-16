@@ -16,7 +16,6 @@ export interface IImage {
   url: string;
 }
 
-
 export interface IAdvert {
   title: string;
   description: string;

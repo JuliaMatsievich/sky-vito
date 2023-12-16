@@ -1,6 +1,6 @@
-import { AdvertDescription } from '../../components/advert/advertDescription/advertDescription';
-import { AdvertGallery } from '../../components/advert/advertGallery/advertGallery';
-import { AdvertInfo } from '../../components/advert/advertInfo/advertInfo';
+import { AdvertDescription } from '../../components/adverts/advertDetailed/advertDescription/advertDescription';
+import { AdvertGallery } from '../../components/adverts/advertDetailed/advertGallery/advertGallery';
+import { AdvertInfo } from '../../components/adverts/advertDetailed/advertInfo/advertInfo';
 import { Search } from '../../components/search/search';
 import * as S from './advertPage.styles';
 

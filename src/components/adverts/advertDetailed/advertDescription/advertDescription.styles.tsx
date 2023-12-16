@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { $mediumWidth } from '../../../styles/variables';
+import { $mediumWidth } from '../../../../styles/variables';
 
 export const AdvertDescriptionContainer = styled.div`
   font-size: 16px;

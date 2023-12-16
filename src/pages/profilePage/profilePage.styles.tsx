@@ -12,7 +12,7 @@ export const ProfileTitle = styled.h1`
   padding-bottom: 10px;
 `;
 
-export const ProfileProductsTitle = styled.h2`
+export const ProfileAdvertsTitle = styled.h2`
   ${subtitle}
   margin-top: 70px;
 

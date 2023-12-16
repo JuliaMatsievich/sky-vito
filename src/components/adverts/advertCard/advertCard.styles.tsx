@@ -4,9 +4,9 @@ import {
   $phoneWidth,
   $sceletonColor,
   $tabletWidth,
-} from '../../styles/variables';
+} from '../../../styles/variables';
 
-export const ProductItem = styled.div`
+export const AdvertItem = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -17,7 +17,7 @@ export const ProductItem = styled.div`
   }
 `;
 
-export const ProductImage = styled.div`
+export const AdvertImage = styled.div`
   height: 270px;
   position: relative;
   padding: 0px 0px 90% 0px;
@@ -32,7 +32,7 @@ export const ProductImage = styled.div`
   }
 `;
 
-export const ProductImg = styled.img`
+export const AdvertImg = styled.img`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -46,13 +46,13 @@ export const ProductImg = styled.img`
   }
 `;
 
-export const ProductText = styled.div`
+export const AdvertText = styled.div`
   @media (max-width: ${$phoneWidth}) {
     padding: 0px 10px 10px 20px;
   }
 `;
 
-export const ProductTitle = styled.div`
+export const AdvertTitle = styled.div`
   color: ${$mainColor};
   font-size: 22px;
   font-style: normal;
@@ -76,7 +76,7 @@ export const ProductTitle = styled.div`
   }
 `;
 
-export const ProductPrice = styled.div`
+export const AdvertPrice = styled.div`
   font-size: 22px;
   font-style: normal;
   font-weight: 500;
@@ -92,7 +92,7 @@ export const ProductPrice = styled.div`
   }
 `;
 
-export const ProductCity = styled.div`
+export const AdvertCity = styled.div`
   color: #5f5f5f;
   font-size: 16px;
   font-style: normal;
@@ -106,11 +106,10 @@ export const ProductCity = styled.div`
   }
   @media (max-width: ${$phoneWidth}) {
     font-size: 12px;
-    
   }
 `;
 
-export const ProductCreated = styled(ProductCity)`
+export const AdvertCreated = styled(AdvertCity)`
   margin-bottom: 0px;
   overflow: hidden;
 `;
