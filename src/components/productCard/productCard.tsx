@@ -1,19 +1,30 @@
+import { IAdvert } from '../../interface';
 import * as S from './productCard.styles';
 
-export const Product = () => {
+interface ProductProps {
+  product: IAdvert
+}
+
+export const Product = ({ product }: ProductProps) => {
+
+
   return (
     <>
       <S.ProductItem>
         <S.ProductImage>
-          <S.ProductImg src="./img/pic5.jpg" />
+          {product.images.length !== 0 ? 
+            <S.ProductImg src={`http://localhost:8090/` + product?.images[0]?.url} />
+          : 
+            null}
+          
         </S.ProductImage>
         <S.ProductText>
           <S.ProductTitle>
-            Ракетка для большого тенниса Triumph Pro ST...
+            {product.title}
           </S.ProductTitle>
-          <S.ProductPrice>2 200 P</S.ProductPrice>
-          <S.ProductCity>Санкт-Петербург</S.ProductCity>
-          <S.ProductCreated>Сегодня в 10.45</S.ProductCreated>
+          <S.ProductPrice>{product.price} ₽</S.ProductPrice>
+          <S.ProductCity>{product.user.city}</S.ProductCity>
+          <S.ProductCreated>{product.created_on}</S.ProductCreated>
         </S.ProductText>
       </S.ProductItem>
     </>
