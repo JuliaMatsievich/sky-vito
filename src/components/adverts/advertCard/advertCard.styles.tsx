@@ -33,7 +33,7 @@ export const AdvertImage = styled.div`
   }
 `;
 
-export const AdvertLink = styled(Link)``
+export const AdvertLink = styled(Link)``;
 
 export const AdvertImg = styled.img`
   width: 100%;
@@ -55,8 +55,6 @@ export const AdvertText = styled.div`
     padding: 0px 10px 10px 20px;
   }
 `;
-
-
 
 export const AdvertTitle = styled.div`
   color: ${$mainColor};

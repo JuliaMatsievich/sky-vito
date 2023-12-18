@@ -14,12 +14,12 @@ export const AddIconSvg = () => {
         <path
           d="M20.4751 11.55V29.4001"
           stroke="#009EE4"
-          stroke-linecap="round"
+          strokeLinecap="round"
         />
         <path
           d="M29.4001 20.475L11.5501 20.475"
           stroke="#009EE4"
-          stroke-linecap="round"
+          strokeLinecap="round"
         />
       </S.Svg>
     </>

@@ -1,8 +1,9 @@
 import * as S from './advertList.styles';
 import { Advert } from '../advertCard/advertCard';
 import { useGetAdvertsQuery } from '../../../services/advApi';
+import { FC } from 'react';
 
-export const AdvertList = () => {
+export const AdvertList: FC = () => {
   const { data: adverts, isLoading } = useGetAdvertsQuery(null);
 
   return (

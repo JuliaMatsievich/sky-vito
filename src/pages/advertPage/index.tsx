@@ -10,10 +10,10 @@ import { FC } from 'react';
 export const AdvertPage: FC = () => {
   const params = useParams();
   const advertId = Number(params.id);
-  const {data: advert, isLoading } = useGetAdvertsByIdQuery(advertId);
+  const { data: advert, isLoading } = useGetAdvertsByIdQuery(advertId);
 
   if (advert == undefined) {
-    return <div>Ошибка</div>
+    return <div>Ошибка</div>;
   }
 
   return (
@@ -25,10 +25,10 @@ export const AdvertPage: FC = () => {
         <S.AdvertContainer>
           <S.AdvertContent>
             <S.AdvertLeft>
-              <AdvertGallery images={advert?.images}/>
+              <AdvertGallery images={advert?.images} />
             </S.AdvertLeft>
             <S.AdvertRight>
-              <AdvertInfo 
+              <AdvertInfo
                 id={advertId}
                 title={advert.title}
                 created_on={advert.created_on}
@@ -39,10 +39,7 @@ export const AdvertPage: FC = () => {
           </S.AdvertContent>
           <S.AdvertDescription>
             <S.AdvertDescriptionTitle>Описание товара</S.AdvertDescriptionTitle>
-            <AdvertDescription 
-              id={advertId}
-              description={advert.description}
-            />
+            <AdvertDescription id={advertId} description={advert.description} />
           </S.AdvertDescription>
         </S.AdvertContainer>
       )}

@@ -4,7 +4,6 @@ import { Search } from '../../components/search/search';
 import * as S from './mainPage.styles';
 
 export const MainPage = () => {
-
   return (
     <>
       <Search />

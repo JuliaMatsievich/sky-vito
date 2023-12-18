@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import { AppRoutes } from './routes';
 import * as S from './styles/globalStyle.styles';
 
-function App() {
+const App: FC = () => {
   return (
     <>
       <S.GlobalStyle />

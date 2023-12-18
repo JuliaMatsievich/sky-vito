@@ -1,16 +1,20 @@
 import { FC } from 'react';
 import * as S from './advertDescription.styles';
 
-interface IAdvertDescriptionProps  {
-  id: number,
-  description: string
+interface IAdvertDescriptionProps {
+  id: number;
+  description: string;
 }
 
-export const AdvertDescription: FC<IAdvertDescriptionProps> = (advertDescription) => {
+export const AdvertDescription: FC<IAdvertDescriptionProps> = (
+  advertDescription,
+) => {
   return (
     <>
       <S.AdvertDescriptionContainer>
-        {advertDescription.description ? advertDescription.description : 'Нет описания'}
+        {advertDescription.description
+          ? advertDescription.description
+          : 'Нет описания'}
       </S.AdvertDescriptionContainer>
     </>
   );

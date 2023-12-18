@@ -7,10 +7,9 @@ interface AdvertProps {
 }
 
 export const Advert = ({ advert }: AdvertProps) => {
-
   const handleClickAdvert = (id: number) => {
     console.log('id', id);
-  }
+  };
 
   return (
     <>
@@ -18,10 +17,10 @@ export const Advert = ({ advert }: AdvertProps) => {
         <S.AdvertImage>
           {advert.images.length !== 0 ? (
             <S.AdvertLink to={`advert/${advert.id}`}>
-            <S.AdvertImg
-              src={`${SERVER_URL}/` + advert?.images[0]?.url}
-              onClick={() => handleClickAdvert(advert.id)}
-            />
+              <S.AdvertImg
+                src={`${SERVER_URL}/` + advert?.images[0]?.url}
+                onClick={() => handleClickAdvert(advert.id)}
+              />
             </S.AdvertLink>
           ) : null}
         </S.AdvertImage>

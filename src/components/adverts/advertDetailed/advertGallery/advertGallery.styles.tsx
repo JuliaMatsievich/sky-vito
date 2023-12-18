@@ -19,8 +19,7 @@ export const GalleryImageImg = styled.img`
   position: absolute;
   object-fit: cover;
   top: 0;
-  left: 0
-
+  left: 0;
 `;
 export const GalleryImageBar = styled.div`
   display: flex;
@@ -38,12 +37,10 @@ export const GalleryImageBarItem = styled.div`
 `;
 
 export const GalleryImageBarImg = styled.img`
-
   width: 100%;
   height: 100%;
   position: absolute;
   object-fit: cover;
   top: 0;
-  left: 0
+  left: 0;
 `;
-
