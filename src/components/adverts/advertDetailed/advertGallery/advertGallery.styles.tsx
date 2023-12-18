@@ -11,8 +11,17 @@ export const GalleryImage = styled.div`
   height: 480px;
   background-color: ${$sceletonColor};
   margin-bottom: 30px;
+  position: relative;
 `;
-export const GalleryImageImg = styled.img``;
+export const GalleryImageImg = styled.img`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  left: 0
+
+`;
 export const GalleryImageBar = styled.div`
   display: flex;
   gap: 10px;
@@ -25,6 +34,16 @@ export const GalleryImageBarItem = styled.div`
   width: 88px;
   height: 88px;
   background-color: ${$sceletonColor};
+  position: relative;
 `;
 
-export const GalleryImageBarImg = styled.img``;
+export const GalleryImageBarImg = styled.img`
+
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  left: 0
+`;
+

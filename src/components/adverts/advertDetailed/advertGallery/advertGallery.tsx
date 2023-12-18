@@ -1,28 +1,27 @@
 import * as S from './advertGallery.styles';
+import { IImage } from '../../../../interface';
+import { FC } from 'react';
+import { SERVER_URL } from '../../../../constants/url';
 
-export const AdvertGallery = () => {
+type ImageProps = {
+  images: IImage[];
+};
+
+export const AdvertGallery: FC<ImageProps> = (props) => {
+  const { images } = props;
+
   return (
     <>
       <S.AdvertGalleryContainer>
         <S.GalleryImage>
-          <S.GalleryImageImg />
+          <S.GalleryImageImg src={`${SERVER_URL}/` + images[0]?.url} />
         </S.GalleryImage>
         <S.GalleryImageBar>
-          <S.GalleryImageBarItem>
-            <S.GalleryImageBarImg />
-          </S.GalleryImageBarItem>
-          <S.GalleryImageBarItem>
-            <S.GalleryImageBarImg />
-          </S.GalleryImageBarItem>
-          <S.GalleryImageBarItem>
-            <S.GalleryImageBarImg />
-          </S.GalleryImageBarItem>
-          <S.GalleryImageBarItem>
-            <S.GalleryImageBarImg />
-          </S.GalleryImageBarItem>
-          <S.GalleryImageBarItem>
-            <S.GalleryImageBarImg />
-          </S.GalleryImageBarItem>
+          {images.map((image) => (
+            <S.GalleryImageBarItem key={image.id}>
+              <S.GalleryImageBarImg src={`${SERVER_URL}/` + image.url} />
+            </S.GalleryImageBarItem>
+          ))}
         </S.GalleryImageBar>
       </S.AdvertGalleryContainer>
     </>

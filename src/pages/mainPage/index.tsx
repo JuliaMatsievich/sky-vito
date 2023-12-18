@@ -1,12 +1,9 @@
 import { AdvertList } from '../../components/adverts/advertList/advertList';
 import { Search } from '../../components/search/search';
-import { useGetAdvertsQuery } from '../../services/advApi';
+// import { useGetAdvertsQuery } from '../../services/advApi';
 import * as S from './mainPage.styles';
 
 export const MainPage = () => {
-  const { data } = useGetAdvertsQuery(null);
-
-  console.log('data', data);
 
   return (
     <>

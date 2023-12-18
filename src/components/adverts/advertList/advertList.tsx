@@ -10,9 +10,7 @@ export const AdvertList = () => {
       {isLoading && <div>Загрузка.....</div>}
       <S.AdvertContainer>
         <S.AdvertItems>
-          {adverts?.map((advert) => (
-            <Advert advert={advert} key={advert.id} />
-          ))}
+          {adverts?.map((advert) => <Advert advert={advert} key={advert.id} />)}
         </S.AdvertItems>
       </S.AdvertContainer>
     </>

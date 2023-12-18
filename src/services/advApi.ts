@@ -6,12 +6,22 @@ export const advApi = createApi({
   reducerPath: 'advApi',
   baseQuery: fetchBaseQuery({ baseUrl: SERVER_URL }),
   tagTypes: ['Advert'],
+  
   endpoints: (builder) => ({
     getAdverts: builder.query<IAdvert[], null>({
-      query: () => ({ url: `/ads` }),
-      providesTags: () => [{ type: 'Advert' }],
+      query: () => ({url: `/ads`,
+      method: 'GET',
+      headers: { 'content-type': 'application/json' } }),
+      providesTags: () => [{ type: 'Advert', id: 'LIST' }],
+    }),
+    getAdvertsById: builder.query<IAdvert, number>({
+      query: (id) => ({
+        url: `/ads/${id}`,
+        method: 'GET',
+        headers: { 'content-type': 'application/json' } }),
+      providesTags: () => [{ type: 'Advert', id: 'ID' }],
     }),
   }),
 });
 
-export const { useGetAdvertsQuery } = advApi;
+export const { useGetAdvertsQuery, useGetAdvertsByIdQuery} = advApi;

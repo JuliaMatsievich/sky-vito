@@ -5,6 +5,7 @@ import {
   $sceletonColor,
   $tabletWidth,
 } from '../../../styles/variables';
+import { Link } from 'react-router-dom';
 
 export const AdvertItem = styled.div`
   display: flex;
@@ -32,6 +33,8 @@ export const AdvertImage = styled.div`
   }
 `;
 
+export const AdvertLink = styled(Link)``
+
 export const AdvertImg = styled.img`
   width: 100%;
   height: 100%;
@@ -39,6 +42,7 @@ export const AdvertImg = styled.img`
   top: 0;
   left: 0;
   object-fit: cover;
+  cursor: pointer;
 
   @media (max-width: ${$phoneWidth}) {
     border-top-right-radius: 6px;
@@ -51,6 +55,8 @@ export const AdvertText = styled.div`
     padding: 0px 10px 10px 20px;
   }
 `;
+
+
 
 export const AdvertTitle = styled.div`
   color: ${$mainColor};

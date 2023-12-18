@@ -1,27 +1,38 @@
+import { FC } from 'react';
+import { IUser } from '../../../../interface';
 import * as S from './advertInfo.styles';
 
-export const AdvertInfo = () => {
+interface IAdvertInfoProps {
+  id: number,
+  title: string,
+  created_on: string,
+  price: number,
+  user: IUser
+}
+
+export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
+
   return (
     <>
       <S.AdvertInfoContainer>
         <S.InfoTitle>
-          Ракетка для большого тенниса Triumph Pro STС Б/У
+          {advertInfo.title}
         </S.InfoTitle>
-        <S.InfoCreated>Сегодня в 10:45</S.InfoCreated>
-        <S.InfoCity>Санкт-Петербург</S.InfoCity>
+        <S.InfoCreated>{advertInfo.created_on}</S.InfoCreated>
+        <S.InfoCity>{advertInfo.user.city}</S.InfoCity>
         <S.InfoReviews>23 отзыва</S.InfoReviews>
-        <S.InfoPrice>2 200 ₽</S.InfoPrice>
+        <S.InfoPrice>{advertInfo.price} ₽</S.InfoPrice>
         <S.InfoBtn>
-          Показать телефон <br />8 905 ХХХ ХХ ХХ
+          Показать телефон <br />{advertInfo.user.phone}
         </S.InfoBtn>
         <S.InfoProfileContainer>
           <S.InfoProfileImage>
             <S.InfoProfileImg />
           </S.InfoProfileImage>
           <S.InfoProfileText>
-            <S.InfoProfileName>Кирилл</S.InfoProfileName>
+            <S.InfoProfileName>{advertInfo.user.name}</S.InfoProfileName>
             <S.InfoProfileSinceSale>
-              Продает товары с августа 2021
+              {advertInfo.user.sells_from}
             </S.InfoProfileSinceSale>
           </S.InfoProfileText>
         </S.InfoProfileContainer>

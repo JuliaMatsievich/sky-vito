@@ -1,3 +1,4 @@
+import { SERVER_URL } from '../../../constants/url';
 import { IAdvert } from '../../../interface';
 import * as S from './advertCard.styles';
 
@@ -6,14 +7,22 @@ interface AdvertProps {
 }
 
 export const Advert = ({ advert }: AdvertProps) => {
+
+  const handleClickAdvert = (id: number) => {
+    console.log('id', id);
+  }
+
   return (
     <>
       <S.AdvertItem>
         <S.AdvertImage>
           {advert.images.length !== 0 ? (
+            <S.AdvertLink to={`advert/${advert.id}`}>
             <S.AdvertImg
-              src={`http://localhost:8090/` + advert?.images[0]?.url}
+              src={`${SERVER_URL}/` + advert?.images[0]?.url}
+              onClick={() => handleClickAdvert(advert.id)}
             />
+            </S.AdvertLink>
           ) : null}
         </S.AdvertImage>
         <S.AdvertText>
