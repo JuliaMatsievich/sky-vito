@@ -9,7 +9,7 @@ export const BackBtnContainer = styled.div`
     width: 12px;
     height: 12px;
     position: absolute;
-    top: 2px;
+    top: 8px;
     left: 20px;
     z-index: 3;
     cursor: pointer;

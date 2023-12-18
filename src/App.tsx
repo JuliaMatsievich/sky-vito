@@ -9,6 +9,6 @@ const App: FC = () => {
       <AppRoutes />
     </>
   );
-}
+};
 
 export default App;

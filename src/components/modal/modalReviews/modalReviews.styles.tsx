@@ -87,6 +87,7 @@ export const MReviewsTitle = styled.h2`
   margin-bottom: 20px;
   @media (max-width: ${$phoneWidth}) {
     margin-left: 30px;
+    padding-top: 5px;
   }
 `;
 export const MReviewsAdd = styled.h3`

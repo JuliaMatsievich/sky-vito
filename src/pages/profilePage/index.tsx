@@ -4,6 +4,7 @@ import { Search } from '../../components/search/search';
 import * as S from './profilePage.styles';
 
 export const ProfilePage = () => {
+
   return (
     <>
       <Search />

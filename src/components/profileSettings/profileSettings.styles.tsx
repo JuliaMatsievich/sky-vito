@@ -13,6 +13,10 @@ import {
 
 export const SettingsContainer = styled.div`
   /* ${centralContainer}; */
+  margin-bottom: 70px;
+    @media (max-width: ${$tabletWidth}) {
+    margin-bottom: 40px;
+  }
 `;
 
 export const SettingsTitle = styled.h2`
