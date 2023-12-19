@@ -2,11 +2,11 @@ import { SERVER_URL } from '../../../constants/url';
 import { IAdvert } from '../../../interface';
 import * as S from './advertCard.styles';
 
-interface AdvertProps {
+interface IAdvertProps {
   advert: IAdvert;
 }
 
-export const Advert = ({ advert }: AdvertProps) => {
+export const Advert = ({ advert }: IAdvertProps) => {
   const handleClickAdvert = (id: number) => {
     console.log('id', id);
   };

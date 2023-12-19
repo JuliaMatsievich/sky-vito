@@ -10,7 +10,7 @@ export const ProfileTitle = styled.h1`
   ${title};
   /* ${centralContainer}; */
   padding-bottom: 10px;
-    @media (max-width: ${$phoneWidth}) {
+  @media (max-width: ${$phoneWidth}) {
     margin-left: 30px;
   }
 `;

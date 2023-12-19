@@ -13,19 +13,18 @@ export const SellerInfo = styled.div`
   }
 
   @media (max-width: ${$phoneWidth}) {
-	grid-template-columns: 1fr;
-	grid-template-rows: repeat(3,auto);
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
   }
 `;
 
 export const SellerInfoText = styled.div`
   grid-area: 1 / 2 / 2 / 3;
   @media (max-width: ${$phoneWidth}) {
-	grid-area: 1 / 1 ;
-	justify-self: flex-start;
+    grid-area: 1 / 1;
+    justify-self: flex-start;
   }
 `;
-
 
 export const SellerInfoFoto = styled.div`
   width: 170px;
@@ -35,8 +34,8 @@ export const SellerInfoFoto = styled.div`
   margin-bottom: 10px;
   grid-area: 1 / 1 / 3 / 2;
   @media (max-width: ${$phoneWidth}) {
-	grid-area: 2 / 1  ;
-	margin-bottom: 30px;
+    grid-area: 2 / 1;
+    margin-bottom: 30px;
   }
 `;
 export const SellerInfoImg = styled.div``;
@@ -69,6 +68,6 @@ export const SellerInfoPhoneBtn = styled.button`
   @media (max-width: ${$phoneWidth}) {
     width: 100%;
     margin-bottom: 30px;
-	 grid-area: 3 / 1 ;
+    grid-area: 3 / 1;
   }
 `;

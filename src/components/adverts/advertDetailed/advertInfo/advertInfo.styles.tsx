@@ -5,7 +5,8 @@ import {
   $phoneWidth,
   $sceletonColor,
 } from '../../../../styles/variables';
-import { buttonColor } from '../../../../styles/commonStyles.styles';
+import { buttonColor, link } from '../../../../styles/commonStyles.styles';
+import { Link } from 'react-router-dom';
 
 export const AdvertInfoContainer = styled.div``;
 
@@ -102,6 +103,10 @@ export const InfoProfileImage = styled.div`
 export const InfoProfileImg = styled.img``;
 
 export const InfoProfileText = styled.div``;
+
+export const InfoProfileLink = styled(Link)`
+  ${link}
+`;
 
 export const InfoProfileName = styled.p`
   color: ${$mainColor};

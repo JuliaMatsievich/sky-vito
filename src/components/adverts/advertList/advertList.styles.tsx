@@ -10,7 +10,7 @@ export const AdvertItems = styled.div`
   display: grid;
   column-gap: 26px;
   row-gap: 40px;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 3fr));
+  grid-template-columns: repeat(4, minmax(270px, 3fr));
 
   @media (max-width: ${$mediumWidth}) {
     grid-template-columns: repeat(2, 1fr);

@@ -95,3 +95,8 @@ export const subtitle = css`
     line-height: 100%; /* 18px */
   }
 `;
+
+export const link = css`
+  text-decoration: none;
+  cursor: pointer;
+`

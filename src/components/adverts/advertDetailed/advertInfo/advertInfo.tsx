@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { IUser } from '../../../../interface';
 import * as S from './advertInfo.styles';
 
+
 interface IAdvertInfoProps {
   id: number;
   title: string;
@@ -11,6 +12,7 @@ interface IAdvertInfoProps {
 }
 
 export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
+
   return (
     <>
       <S.AdvertInfoContainer>
@@ -28,7 +30,9 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
             <S.InfoProfileImg />
           </S.InfoProfileImage>
           <S.InfoProfileText>
+            <S.InfoProfileLink to={'/sellerProfile/' + `${advertInfo.user.id}`}>
             <S.InfoProfileName>{advertInfo.user.name}</S.InfoProfileName>
+            </S.InfoProfileLink>
             <S.InfoProfileSinceSale>
               {advertInfo.user.sells_from}
             </S.InfoProfileSinceSale>

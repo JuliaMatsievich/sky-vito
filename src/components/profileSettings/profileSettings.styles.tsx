@@ -14,7 +14,7 @@ import {
 export const SettingsContainer = styled.div`
   /* ${centralContainer}; */
   margin-bottom: 70px;
-    @media (max-width: ${$tabletWidth}) {
+  @media (max-width: ${$tabletWidth}) {
     margin-bottom: 40px;
   }
 `;
