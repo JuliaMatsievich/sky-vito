@@ -1,17 +1,17 @@
 import { useGetWindowSize } from '../../../hooks/useGetWindowSize';
-import { Search } from '../../search/search';
 import { ModalCloseBtn } from '../../buttons/modalCloseBtn/modalCloseBtn';
 import * as S from './advertSettings.styles';
 import { PHONE_WIDTH } from '../../../constants/breakpoints';
 import { BackBtn } from '../../buttons/backBtn/backBtn';
 import { Footer } from '../../Footer/footer';
+import { Menu } from '../../menu/menu';
 
 export const AdvertSettings = () => {
   const { windowWidth } = useGetWindowSize();
   return (
     <>
       {windowWidth !== undefined && windowWidth < PHONE_WIDTH ? (
-        <Search />
+        <Menu />
       ) : null}
       <S.ModalBlock>
         <S.AdvSettingsContainer>

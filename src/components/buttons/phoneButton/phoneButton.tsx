@@ -1,24 +1,25 @@
 import { useState } from 'react';
-import * as S from './phoneButton.styles'
+import * as S from './phoneButton.styles';
 
 interface IUserPhone {
-	phone: string
+  phone: string | null;
 }
 
-export const PhoneButton = ({phone} : IUserPhone) => {
+export const PhoneButton = ({ phone }: IUserPhone) => {
+  const [isShow, setIsShow] = useState(false);
 
-	const [isShow, setIsShow] = useState(false)
-	
-	const handleShowPhone = () => {
-		setIsShow(!isShow)
-	}
+  const handleShowPhone = () => {
+    setIsShow(!isShow);
+  };
 
-	return (
-		<>
-		<S.PhoneBtn onClick={handleShowPhone}>
-			Телефон <br/>
-			{isShow ? `${phone}`: `${phone.slice(0,5)} ХХХ ХХ ХХ` }
-		</S.PhoneBtn>
-		</>
-	)
-}
+  return (
+    <>
+      <S.PhoneBtn onClick={handleShowPhone}>
+        Телефон <br />
+        {phone != null ? 
+        isShow ? `${phone}` : `${phone?.slice(0, 5)} ХХХ ХХ ХХ`        
+        : 'Неизвестен'}
+      </S.PhoneBtn>
+    </>
+  );
+};

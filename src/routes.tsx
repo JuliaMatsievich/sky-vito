@@ -5,14 +5,15 @@ import { ProfilePage } from './pages/profilePage';
 import { AdvertPage } from './pages/advertPage';
 import { ModalReviews } from './components/modal/modalReviews/modalReviews';
 import { AdvertSettings } from './components/modal/advertSettings/advertSettings';
-import { AuthPage } from './pages/authPage';
 import { SellerProfilePage } from './pages/sellerProfilePage';
+import { AuthPageSignIn } from './pages/authPageSignIn';
+import { AuthPageSignUp } from './pages/authPageSignUp';
 
 export const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/login" element={<AuthPage />}></Route>
-      <Route path="/register" element={<AuthPage />}></Route>
+      <Route path="/signin" element={<AuthPageSignIn />}></Route>
+      <Route path="/signup" element={<AuthPageSignUp />}></Route>
       {/* <Route element={<ProtectedRoute />}> */}
       <Route path="/modalReviews" element={<ModalReviews />} />
       <Route path="/advertSettings" element={<AdvertSettings />} />

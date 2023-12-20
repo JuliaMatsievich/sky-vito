@@ -7,22 +7,17 @@ interface IAdvertProps {
 }
 
 export const Advert = ({ advert }: IAdvertProps) => {
-  const handleClickAdvert = (id: number) => {
-    console.log('id', id);
-  };
-
   return (
     <>
       <S.AdvertItem>
         <S.AdvertImage>
-          {advert.images.length !== 0 ? (
-            <S.AdvertLink to={`advert/${advert.id}`}>
-              <S.AdvertImg
-                src={`${SERVER_URL}/` + advert?.images[0]?.url}
-                onClick={() => handleClickAdvert(advert.id)}
-              />
-            </S.AdvertLink>
-          ) : null}
+          <S.AdvertLink to={`/advert/${advert.id}`}>
+            {advert.images.length !== 0 ? (
+              <S.AdvertImg src={`${SERVER_URL}/` + advert?.images[0]?.url} />
+            ) : (
+              <S.AdvertImg src="/img/no-foto.png" />
+            )}
+          </S.AdvertLink>
         </S.AdvertImage>
         <S.AdvertText>
           <S.AdvertTitle>{advert.title}</S.AdvertTitle>

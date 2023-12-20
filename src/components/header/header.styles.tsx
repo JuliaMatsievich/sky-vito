@@ -2,8 +2,10 @@ import styled from 'styled-components';
 import {
   buttonInHeader,
   centralContainer,
+  link,
 } from '../../styles/commonStyles.styles';
 import { $mainColor, $tabletWidth } from '../../styles/variables';
+import { Link } from 'react-router-dom';
 
 export const HeaderContainer = styled.div`
   ${centralContainer}
@@ -28,3 +30,7 @@ export const HeaderNav = styled.div`
 export const ButtonNav = styled.button`
   ${buttonInHeader}
 `;
+
+export const HeaderLink = styled(Link)`
+  ${link}
+`

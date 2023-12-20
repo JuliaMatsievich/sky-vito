@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { AdvertList } from '../../components/adverts/advertList/advertList';
 import { BackBtn } from '../../components/buttons/backBtn/backBtn';
-import { Search } from '../../components/search/search';
 import { SellerProfileInfo } from '../../components/sellerProfileInfo/sellerProfileInfo';
 import * as S from '../profilePage/profilePage.styles';
 import {
@@ -9,6 +8,7 @@ import {
   useGetUsersAllQuery,
 } from '../../services/advApi';
 import { IUser } from '../../interface';
+import { Menu } from '../../components/menu/menu';
 
 export const SellerProfilePage = () => {
   const params = useParams();
@@ -27,7 +27,7 @@ export const SellerProfilePage = () => {
 
   return (
     <>
-      <Search />
+      <Menu/>
       <S.ProfileContainer>
         <BackBtn />
         <S.ProfileTitle>Профиль продавца</S.ProfileTitle>

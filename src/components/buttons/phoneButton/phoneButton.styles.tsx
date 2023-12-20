@@ -1,7 +1,6 @@
-import styled from "styled-components";
-import { buttonColor } from "../../../styles/commonStyles.styles";
-import { $phoneWidth } from "../../../styles/variables";
-
+import styled from 'styled-components';
+import { buttonColor } from '../../../styles/commonStyles.styles';
+import { $phoneWidth } from '../../../styles/variables';
 
 export const PhoneBtn = styled.button`
   ${buttonColor}

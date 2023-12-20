@@ -1,6 +1,6 @@
 import { AdvertList } from '../../components/adverts/advertList/advertList';
+import { Menu } from '../../components/menu/menu';
 import { ProfileSettings } from '../../components/profileSettings/profileSettings';
-import { Search } from '../../components/search/search';
 import { useGetAdvertsQuery } from '../../services/advApi';
 import * as S from './profilePage.styles';
 
@@ -13,7 +13,7 @@ export const ProfilePage = () => {
 
   return (
     <>
-      <Search />
+      <Menu />
       <S.ProfileContainer>
         <S.ProfileTitle>Здравствуйте, Антон!</S.ProfileTitle>
         <ProfileSettings />

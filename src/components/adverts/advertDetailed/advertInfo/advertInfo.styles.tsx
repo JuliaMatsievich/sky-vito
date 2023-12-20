@@ -5,7 +5,7 @@ import {
   $phoneWidth,
   $sceletonColor,
 } from '../../../../styles/variables';
-import { buttonColor, link } from '../../../../styles/commonStyles.styles';
+import { img, link } from '../../../../styles/commonStyles.styles';
 import { Link } from 'react-router-dom';
 
 export const AdvertInfoContainer = styled.div``;
@@ -71,19 +71,7 @@ export const InfoPrice = styled.p`
     font-size: 18px;
   }
 `;
-export const InfoBtn = styled.button`
-  ${buttonColor}
-  padding: 10px 37px;
-  margin-bottom: 34px;
-  line-height: 150%;
-  font-size: 14px;
-  width: 214px;
-  height: 62px;
-  @media (max-width: ${$phoneWidth}) {
-    width: 100%;
-    margin-bottom: 30px;
-  }
-`;
+
 export const InfoProfileContainer = styled.div`
   display: flex;
   gap: 12px;
@@ -94,13 +82,18 @@ export const InfoProfileImage = styled.div`
   border-radius: 50%;
   background-color: ${$sceletonColor};
   flex: 0 0 auto;
+  position: relative;
   @media (max-width: ${$phoneWidth}) {
     width: 20px;
     height: 20px;
   }
 `;
 
-export const InfoProfileImg = styled.img``;
+export const InfoProfileImg = styled.img`
+${img}
+border-radius: 50%;
+border: none;
+`;
 
 export const InfoProfileText = styled.div``;
 

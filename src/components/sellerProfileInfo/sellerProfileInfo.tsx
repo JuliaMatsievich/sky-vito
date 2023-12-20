@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { IUser } from '../../interface';
 import * as S from './sellerProfileInfo.styles';
 import { PhoneButton } from '../buttons/phoneButton/phoneButton';
+import { SERVER_URL } from '../../constants/url';
 
 interface IUserInfo {
   user: IUser;
@@ -12,7 +13,11 @@ export const SellerProfileInfo: FC<IUserInfo> = ({ user }: IUserInfo) => {
     <>
       <S.SellerInfo>
         <S.SellerInfoFoto>
-          <S.SellerInfoImg />
+          {user.avatar != null ? (
+              <S.SellerInfoImg src={`${SERVER_URL}/` + user.avatar}/>
+            ) : (
+              <S.SellerInfoImg src="/img/no-foto.png"/>
+            )}
         </S.SellerInfoFoto>
 
         <S.SellerInfoText>
@@ -23,8 +28,7 @@ export const SellerProfileInfo: FC<IUserInfo> = ({ user }: IUserInfo) => {
           </S.SellerInfoSellsFrom>
         </S.SellerInfoText>
 
-        <PhoneButton phone={user.phone}/>
-
+        <PhoneButton phone={user.phone} />
       </S.SellerInfo>
     </>
   );

@@ -14,7 +14,7 @@ export const MainPage = () => {
   return (
     <>
       {isLoading && <div>Загрузка.....</div>}
-      <Search />
+      <Search adverts={adverts}/>
       <S.MainContainer>
         <S.MainTitle>Объявления</S.MainTitle>
         <AdvertList adverts={adverts} />
