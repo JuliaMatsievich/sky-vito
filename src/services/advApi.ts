@@ -5,7 +5,7 @@ import { SERVER_URL } from '../constants/url';
 export const advApi = createApi({
   reducerPath: 'advApi',
   baseQuery: fetchBaseQuery({ baseUrl: SERVER_URL }),
-  tagTypes: ['Advert','User'],
+  tagTypes: ['Advert', 'User'],
 
   endpoints: (builder) => ({
     getAdverts: builder.query<IAdvert[], null>({
@@ -17,7 +17,10 @@ export const advApi = createApi({
       providesTags: () => [{ type: 'Advert', id: 'LIST' }],
     }),
 
-    getAdvertsUser: builder.query<IAdvert[], { user_id?: string; sorting?: string }>({
+    getAdvertsUser: builder.query<
+      IAdvert[],
+      { user_id?: string; sorting?: string }
+    >({
       query: (arg) => ({
         url: `/ads?user_id=${arg.user_id}&sorting=${arg.sorting}`,
         method: 'GET',
@@ -46,4 +49,9 @@ export const advApi = createApi({
   }),
 });
 
-export const { useGetAdvertsQuery, useGetAdvertsByIdQuery, useGetUsersAllQuery, useGetAdvertsUserQuery } = advApi;
+export const {
+  useGetAdvertsQuery,
+  useGetAdvertsByIdQuery,
+  useGetUsersAllQuery,
+  useGetAdvertsUserQuery,
+} = advApi;

@@ -18,7 +18,7 @@ export const ProfilePage = () => {
         <S.ProfileTitle>Здравствуйте, Антон!</S.ProfileTitle>
         <ProfileSettings />
         <S.ProfileAdvertsTitle>Мои товары</S.ProfileAdvertsTitle>
-        <AdvertList adverts={adverts}/>
+        <AdvertList adverts={adverts} />
       </S.ProfileContainer>
     </>
   );

@@ -25,16 +25,17 @@ export const SellerProfilePage = () => {
 
   // const user = users.filter(user => user.id === sellerId)
 
-
   return (
     <>
       <Search />
       <S.ProfileContainer>
         <BackBtn />
         <S.ProfileTitle>Профиль продавца</S.ProfileTitle>
-        <SellerProfileInfo user={users.find((user) => user.id === sellerId) as IUser}/>
+        <SellerProfileInfo
+          user={users.find((user) => user.id === sellerId) as IUser}
+        />
         <S.ProfileAdvertsTitle>Все товары</S.ProfileAdvertsTitle>
-        <AdvertList adverts={adverts}/>
+        <AdvertList adverts={adverts} />
       </S.ProfileContainer>
     </>
   );

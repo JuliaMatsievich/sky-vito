@@ -13,11 +13,11 @@ export const MainPage = () => {
 
   return (
     <>
-     {isLoading && <div>Загрузка.....</div>}
+      {isLoading && <div>Загрузка.....</div>}
       <Search />
       <S.MainContainer>
         <S.MainTitle>Объявления</S.MainTitle>
-        <AdvertList adverts={adverts}/>
+        <AdvertList adverts={adverts} />
       </S.MainContainer>
     </>
   );

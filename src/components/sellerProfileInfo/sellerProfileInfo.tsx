@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { IUser } from '../../interface';
 import * as S from './sellerProfileInfo.styles';
+import { PhoneButton } from '../buttons/phoneButton/phoneButton';
 
 interface IUserInfo {
   user: IUser;
 }
 
 export const SellerProfileInfo: FC<IUserInfo> = ({ user }: IUserInfo) => {
-
   return (
     <>
       <S.SellerInfo>
@@ -23,11 +23,8 @@ export const SellerProfileInfo: FC<IUserInfo> = ({ user }: IUserInfo) => {
           </S.SellerInfoSellsFrom>
         </S.SellerInfoText>
 
-        <S.SellerInfoPhoneBtn>
-          Телефон
-          <br />
-          {user.phone}
-        </S.SellerInfoPhoneBtn>
+        <PhoneButton phone={user.phone}/>
+
       </S.SellerInfo>
     </>
   );

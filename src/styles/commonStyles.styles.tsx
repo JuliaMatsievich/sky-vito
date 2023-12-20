@@ -99,4 +99,4 @@ export const subtitle = css`
 export const link = css`
   text-decoration: none;
   cursor: pointer;
-`
+`;
