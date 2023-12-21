@@ -8,8 +8,8 @@ export const Header = () => {
         <CM.Container>
           <S.HeaderContainer>
             <S.HeaderNav>
-              <S.HeaderLink to='/signin'>
-              <S.ButtonNav >Вход в личный кабинет</S.ButtonNav>
+              <S.HeaderLink to="/signin">
+                <S.ButtonNav>Вход в личный кабинет</S.ButtonNav>
               </S.HeaderLink>
             </S.HeaderNav>
           </S.HeaderContainer>

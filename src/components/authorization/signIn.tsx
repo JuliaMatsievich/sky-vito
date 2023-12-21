@@ -1,12 +1,9 @@
-
 import * as S from './authorization.styles';
 
 export const SignIn = () => {
-
-
   const handleClickSignIn = (e: React.FormEvent<HTMLFormElement>) => {
-	e.preventDefault()
-   window.location.href = '/';
+    e.preventDefault();
+    window.location.href = '/';
   };
 
   return (
@@ -30,12 +27,12 @@ export const SignIn = () => {
                 id="formpassword"
                 placeholder="Пароль"
               />
-              <S.AuthFormBtnEnter type='submit'>
-                Войти
-              </S.AuthFormBtnEnter>
+              <S.AuthFormBtnEnter type="submit">Войти</S.AuthFormBtnEnter>
             </S.AuthForm>
             <S.AuthLink to="/signup">
-              <S.AuthFormBtnSignUpinSignIn>Зарегистрироваться</S.AuthFormBtnSignUpinSignIn>
+              <S.AuthFormBtnSignUpinSignIn>
+                Зарегистрироваться
+              </S.AuthFormBtnSignUpinSignIn>
             </S.AuthLink>
           </S.AuthModalBlock>
         </S.AuthContainer>

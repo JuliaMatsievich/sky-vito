@@ -27,7 +27,7 @@ export const SellerProfilePage = () => {
 
   return (
     <>
-      <Menu/>
+      <Menu />
       <S.ProfileContainer>
         <BackBtn />
         <S.ProfileTitle>Профиль продавца</S.ProfileTitle>

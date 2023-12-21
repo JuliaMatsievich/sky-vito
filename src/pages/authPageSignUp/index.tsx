@@ -1,4 +1,4 @@
-import { SignUp } from "../../components/authorization/signUp";
+import { SignUp } from '../../components/authorization/signUp';
 
 export const AuthPageSignUp = () => {
   return (

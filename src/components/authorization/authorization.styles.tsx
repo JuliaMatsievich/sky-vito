@@ -34,9 +34,9 @@ export const AuthModalBlock = styled.div`
 `;
 
 export const AuthModalBlockSignUp = styled(AuthModalBlock)`
-    top: calc(50% - (647px / 2));
-    height: 647px;
-`
+  top: calc(50% - (647px / 2));
+  height: 647px;
+`;
 
 export const AuthForm = styled.form``;
 
@@ -84,7 +84,7 @@ export const AuthFormPassword = styled(AuthInput)`
 
 export const AuthFormPasswordSecond = styled(AuthInput)`
   margin-bottom: 38px;
-`
+`;
 
 export const AuthFormName = styled(AuthInput)`
   margin-bottom: 38px;
@@ -95,7 +95,6 @@ export const AuthFormSurname = styled(AuthInput)`
 `;
 export const AuthFormCity = styled(AuthInput)`
   margin-bottom: 38px;
-
 `;
 
 export const AuthFormBtnEnter = styled.button`

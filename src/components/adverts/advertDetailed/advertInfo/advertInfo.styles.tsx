@@ -90,9 +90,9 @@ export const InfoProfileImage = styled.div`
 `;
 
 export const InfoProfileImg = styled.img`
-${img}
-border-radius: 50%;
-border: none;
+  ${img}
+  border-radius: 50%;
+  border: none;
 `;
 
 export const InfoProfileText = styled.div``;

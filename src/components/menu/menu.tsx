@@ -10,9 +10,9 @@ export const Menu = () => {
         <S.MenuLogo>
           <S.MenuLogoImg $screenSize={windowWidth} />
         </S.MenuLogo>
-		  <S.MenuLink to='/'>
-        <S.MenuBtn>Вернуться на главную</S.MenuBtn>
-		  </S.MenuLink>
+        <S.MenuLink to="/">
+          <S.MenuBtn>Вернуться на главную</S.MenuBtn>
+        </S.MenuLink>
       </S.MenuWrapper>
     </>
   );

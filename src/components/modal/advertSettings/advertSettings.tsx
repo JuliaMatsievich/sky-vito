@@ -10,9 +10,7 @@ export const AdvertSettings = () => {
   const { windowWidth } = useGetWindowSize();
   return (
     <>
-      {windowWidth !== undefined && windowWidth < PHONE_WIDTH ? (
-        <Menu />
-      ) : null}
+      {windowWidth !== undefined && windowWidth < PHONE_WIDTH ? <Menu /> : null}
       <S.ModalBlock>
         <S.AdvSettingsContainer>
           <ModalCloseBtn />

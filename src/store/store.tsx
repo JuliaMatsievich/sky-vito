@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { userReducer } from './userSlice';
 import { advApi } from '../services/advApi';
+import { advertReducer } from './advertSlice';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
+    adverts: advertReducer,
     [advApi.reducerPath]: advApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

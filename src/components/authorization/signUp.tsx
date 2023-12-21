@@ -1,12 +1,10 @@
 import * as S from './authorization.styles';
 
 export const SignUp = () => {
-
-	const handleClickSignUp = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
-		window.location.href = '/';
-	  };
-	
+  const handleClickSignUp = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    window.location.href = '/';
+  };
 
   return (
     <>
@@ -16,12 +14,12 @@ export const SignUp = () => {
             <S.AuthLogo>
               <S.AuthLogoImg src="/img/logo-modal.png" alt="logo" />
             </S.AuthLogo>
-            <S.AuthForm onSubmit={(e) => {handleClickSignUp(e)}}>
-              <S.AuthFormLogin
-                type="text"
-                name="login"
-                placeholder="email"
-              />
+            <S.AuthForm
+              onSubmit={(e) => {
+                handleClickSignUp(e);
+              }}
+            >
+              <S.AuthFormLogin type="text" name="login" placeholder="email" />
               <S.AuthFormPassword
                 type="password"
                 name="password"

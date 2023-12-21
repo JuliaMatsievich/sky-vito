@@ -33,4 +33,4 @@ export const ButtonNav = styled.button`
 
 export const HeaderLink = styled(Link)`
   ${link}
-`
+`;

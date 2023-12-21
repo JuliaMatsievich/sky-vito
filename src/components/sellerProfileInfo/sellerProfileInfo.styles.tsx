@@ -34,7 +34,7 @@ export const SellerInfoFoto = styled.div`
   margin-bottom: 10px;
   grid-area: 1 / 1 / 3 / 2;
   position: relative;
-  
+
   @media (max-width: ${$phoneWidth}) {
     grid-area: 2 / 1;
     margin-bottom: 30px;

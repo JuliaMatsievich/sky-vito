@@ -16,9 +16,11 @@ export const PhoneButton = ({ phone }: IUserPhone) => {
     <>
       <S.PhoneBtn onClick={handleShowPhone}>
         Телефон <br />
-        {phone != null ? 
-        isShow ? `${phone}` : `${phone?.slice(0, 5)} ХХХ ХХ ХХ`        
-        : 'Неизвестен'}
+        {phone != null
+          ? isShow
+            ? `${phone}`
+            : `${phone?.slice(0, 5)} ХХХ ХХ ХХ`
+          : 'Неизвестен'}
       </S.PhoneBtn>
     </>
   );

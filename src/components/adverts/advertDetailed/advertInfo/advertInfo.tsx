@@ -24,10 +24,12 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
         <PhoneButton phone={advertInfo.user.phone} />
         <S.InfoProfileContainer>
           <S.InfoProfileImage>
-          {advertInfo.user.avatar ? (
-              <S.InfoProfileImg src={`${SERVER_URL}/` + advertInfo.user.avatar}/>
+            {advertInfo.user.avatar ? (
+              <S.InfoProfileImg
+                src={`${SERVER_URL}/` + advertInfo.user.avatar}
+              />
             ) : (
-              <S.InfoProfileImg src="/img/no-foto.png"/>
+              <S.InfoProfileImg src="/img/no-foto.png" />
             )}
           </S.InfoProfileImage>
           <S.InfoProfileText>

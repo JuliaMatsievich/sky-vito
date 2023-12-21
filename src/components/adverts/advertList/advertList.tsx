@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { IAdvert } from '../../../interface';
 
 interface IAdvertList {
-  adverts: IAdvert[] | undefined;
+  adverts: IAdvert[];
 }
 
 export const AdvertList: FC<IAdvertList> = (props) => {

@@ -1,26 +1,26 @@
 import * as S from './search.styles';
 import { useGetWindowSize } from '../../hooks/useGetWindowSize';
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { IAdvert } from '../../interface';
-import { searchAdverts } from '../../helpers/searchFunction';
+import { useDispatch } from 'react-redux';
+import { searchAdverts } from '../../store/advertSlice';
 
 interface IAdvertsSearch {
-  adverts: IAdvert[] | undefined
+  adverts: IAdvert[] | undefined;
 }
 
-export const Search = ({adverts} : IAdvertsSearch) => {
+export const Search = ({ adverts }: IAdvertsSearch) => {
   const { windowWidth } = useGetWindowSize();
+
+  const dispatch = useDispatch()
 
   const [search, setSearch] = useState('');
 
   const handleClickSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('search', search);
-    if(adverts != undefined) {
-      console.log(searchAdverts(adverts, search))
+    if (adverts != undefined) {
+      dispatch(searchAdverts({adverts, searchValue: search}))
     }
-   
-
   };
   return (
     <>
@@ -29,7 +29,11 @@ export const Search = ({adverts} : IAdvertsSearch) => {
           <S.SearchLogoImg $screenSize={windowWidth} />
         </S.SearchLogoLink>
         <S.SearchForm onSubmit={(e) => handleClickSearch(e)}>
-          <S.SearchInput $screenSize={windowWidth} value={search} onChange={(e) => setSearch(e.target.value)} />
+          <S.SearchInput
+            $screenSize={windowWidth}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
           <S.SearchBtn type="submit">Найти</S.SearchBtn>
         </S.SearchForm>
       </S.SearchMain>

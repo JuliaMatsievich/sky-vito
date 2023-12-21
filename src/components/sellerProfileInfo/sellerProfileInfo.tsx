@@ -14,10 +14,10 @@ export const SellerProfileInfo: FC<IUserInfo> = ({ user }: IUserInfo) => {
       <S.SellerInfo>
         <S.SellerInfoFoto>
           {user.avatar != null ? (
-              <S.SellerInfoImg src={`${SERVER_URL}/` + user.avatar}/>
-            ) : (
-              <S.SellerInfoImg src="/img/no-foto.png"/>
-            )}
+            <S.SellerInfoImg src={`${SERVER_URL}/` + user.avatar} />
+          ) : (
+            <S.SellerInfoImg src="/img/no-foto.png" />
+          )}
         </S.SellerInfoFoto>
 
         <S.SellerInfoText>

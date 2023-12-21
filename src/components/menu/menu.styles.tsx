@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { buttonColor, centralContainer, link } from '../../styles/commonStyles.styles';
+import {
+  buttonColor,
+  centralContainer,
+  link,
+} from '../../styles/commonStyles.styles';
 import {
   $mainColor,
   $mediumWidth,
@@ -8,7 +12,6 @@ import {
 } from '../../styles/variables';
 import { PHONE_WIDTH } from '../../constants/breakpoints';
 import { Link } from 'react-router-dom';
-
 
 export const MenuWrapper = styled.div`
   display: flex;
@@ -67,5 +70,5 @@ export const MenuBtn = styled.button`
 `;
 
 export const MenuLink = styled(Link)`
-	${link}
-`
+  ${link}
+`;

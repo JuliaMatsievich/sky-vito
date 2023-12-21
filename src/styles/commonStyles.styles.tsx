@@ -108,4 +108,4 @@ export const img = css`
   top: 0;
   left: 0;
   object-fit: cover;
-`
+`;
