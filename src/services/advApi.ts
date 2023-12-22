@@ -46,6 +46,51 @@ export const advApi = createApi({
       }),
       providesTags: () => [{ type: 'User', id: 'ID' }],
     }),
+
+    getCurrentUser: builder.query<IUser, null>({
+      query: () => ({
+        url: `/user`,
+        method: 'GET',
+        headers: { 'content-type': 'application/json' },
+      }),
+      providesTags: () => [{ type: 'User', id: 'ID' }],
+    }),
+
+    getAuthLogin: builder.mutation<
+      {
+        access_token: string;
+        refresh_token: string;
+        token_type: string;
+      },
+      { email: string; password: string }
+    >({
+      query: (args) => ({
+        url: 'auth/login',
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: args,
+      }),
+    }),
+
+    getAuthRegister: builder.mutation<
+      IUser,
+      {
+        password: string;
+        email: string;
+        role?: string;
+        name?: string;
+        surname?: string;
+        phone?: string;
+        city?: string;
+      }
+    >({
+      query: (args) => ({
+        url: 'auth/register',
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: args,
+      }),
+    }),
   }),
 });
 
@@ -53,5 +98,8 @@ export const {
   useGetAdvertsQuery,
   useGetAdvertsByIdQuery,
   useGetUsersAllQuery,
+  useGetCurrentUserQuery,
   useGetAdvertsUserQuery,
+  useGetAuthLoginMutation,
+  useGetAuthRegisterMutation
 } = advApi;

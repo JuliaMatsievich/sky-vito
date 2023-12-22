@@ -1,19 +1,20 @@
 import { AdvertList } from '../../components/adverts/advertList/advertList';
 import { Search } from '../../components/search/search';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { useGetAdvertsQuery } from '../../services/advApi';
 import * as S from './mainPage.styles';
 
 export const MainPage = () => {
   const { data: adverts, isLoading } = useGetAdvertsQuery(null);
-  const filteredAdverts = useTypedSelector(state => state.adverts.filteredAdverts)
+  const filteredAdverts = useAppSelector(
+    (state) => state.adverts.filteredAdverts,
+  );
 
   if (adverts == undefined) {
     return <div>Ошибка</div>;
   }
 
-
-  console.log('filteredAdverts',filteredAdverts);
+  console.log('filteredAdverts', filteredAdverts);
 
   return (
     <>
@@ -21,7 +22,9 @@ export const MainPage = () => {
       <Search adverts={adverts} />
       <S.MainContainer>
         <S.MainTitle>Объявления</S.MainTitle>
-        <AdvertList adverts={filteredAdverts.length === 0 ? adverts : filteredAdverts} />
+        <AdvertList
+          adverts={filteredAdverts.length === 0 ? adverts : filteredAdverts}
+        />
       </S.MainContainer>
     </>
   );

@@ -2,8 +2,8 @@ import * as S from './search.styles';
 import { useGetWindowSize } from '../../hooks/useGetWindowSize';
 import React, { useState } from 'react';
 import { IAdvert } from '../../interface';
-import { useDispatch } from 'react-redux';
 import { searchAdverts } from '../../store/advertSlice';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 interface IAdvertsSearch {
   adverts: IAdvert[] | undefined;
@@ -12,14 +12,14 @@ interface IAdvertsSearch {
 export const Search = ({ adverts }: IAdvertsSearch) => {
   const { windowWidth } = useGetWindowSize();
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch();
 
   const [search, setSearch] = useState('');
 
   const handleClickSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (adverts != undefined) {
-      dispatch(searchAdverts({adverts, searchValue: search}))
+      dispatch(searchAdverts({ adverts, searchValue: search }));
     }
   };
   return (

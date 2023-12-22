@@ -1,10 +1,47 @@
+import { useEffect, useState } from 'react';
 import * as S from './authorization.styles';
+import { useGetAuthLoginMutation, useGetCurrentUserQuery } from '../../services/advApi';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { setToken} from '../../store/userSlice';
 
 export const SignIn = () => {
-  const handleClickSignIn = (e: React.FormEvent<HTMLFormElement>) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useAppDispatch();
+
+  const [signInApi, {}] = useGetAuthLoginMutation();
+  const {data: currentUser} = useGetCurrentUserQuery(null)
+
+  const handleClickSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    window.location.href = '/';
+
+    try {
+      await signInApi({ email, password })
+        .unwrap()
+        .then((data: { access_token: string; refresh_token: string; }) => {
+          const { access_token, refresh_token } = data;
+          dispatch(
+            setToken({
+              accessToken: access_token,
+              refreshToken: refresh_token,
+            }),
+          );
+        })
+        // .then(() => {
+        //   if(currentUser != undefined) {
+        //     console.log('currentUser', currentUser);
+        //   }
+        // })
+    } catch (error) {
+      console.log('error', error);
+    }
   };
+
+  useEffect(() => {
+    if(currentUser != undefined) {
+      console.log('currentUser', currentUser);
+    }
+  },[currentUser])
 
   return (
     <>
@@ -18,14 +55,20 @@ export const SignIn = () => {
               <S.AuthFormLogin
                 type="text"
                 name="login"
-                id="formlogin"
                 placeholder="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               />
               <S.AuthFormPassword
                 type="password"
                 name="password"
-                id="formpassword"
                 placeholder="Пароль"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
               <S.AuthFormBtnEnter type="submit">Войти</S.AuthFormBtnEnter>
             </S.AuthForm>
