@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { IUser } from '../../interface';
-import { useUpdateUserChangeMutation } from '../../services/userApi';
+import { useAddUserAvatarMutation, useUpdateUserChangeMutation } from '../../services/userApi';
 import * as S from './profileSettings.styles';
+import { SERVER_URL } from '../../constants/url';
 
 interface ProfileUser {
   user: IUser;
@@ -18,10 +19,13 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
     city: userProfile.city,
   });
 
-  const handleChangeInfo = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const [changeUserApi, {}] = useUpdateUserChangeMutation();
+  const [addUserAvatarApi, {}] = useAddUserAvatarMutation();
+
+
+  const handleChangeInfo = async() => {
     try {
-      changeUserApi(changeProfile)
+      await changeUserApi(changeProfile)
         .unwrap()
         .then((data) => {
           setUserProfile(data);
@@ -31,13 +35,16 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
     }
   };
 
-  const handleChangeFoto = (
-    e: React.MouseEvent<HTMLInputElement, MouseEvent>,
-  ) => {
-    console.log('click');
-    console.log('e', e);
+  const handleChangeFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files ? event.target.files[0] : null;
+    
+    // addUserAvatarApi(file)
+    console.log('file',file);
+    if(file) {
+      addUserAvatarApi(file)
+    }
   };
-  const [changeUserApi, {}] = useUpdateUserChangeMutation();
+  
 
   return (
     <>
@@ -46,19 +53,24 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
         <S.Settings>
           <S.SettingsLeft>
             <S.SettingsFoto>
-              <S.SettingsFotoImg />
+            {user.avatar != null ? (
+            <S.SettingsFotoImg src={`${SERVER_URL}/` + user.avatar}/>
+          ) : (
+            <S.SettingsFotoImg src="/img/no-foto.png" />
+          )}
+              
             </S.SettingsFoto>
             <S.SettingsChangeFotoBtn>
               Заменить
               <S.SettingsChangeFotoInput
                 type="file"
-                onClick={(e) => handleChangeFoto(e)}
+                onChange={handleChangeFoto}
               />
             </S.SettingsChangeFotoBtn>
           </S.SettingsLeft>
 
           <S.SettingsRight>
-            <S.SettingsForm onSubmit={(e) => handleChangeInfo(e)}>
+            <S.SettingsForm onSubmit={handleChangeInfo}>
               <S.SettingsFormItem>
                 <S.SettingsNameInput
                   id="name"

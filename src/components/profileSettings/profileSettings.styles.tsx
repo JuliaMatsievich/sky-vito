@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {
   buttonColor,
   centralContainer,
+  img,
   subtitle,
 } from '../../styles/commonStyles.styles';
 import {
@@ -58,8 +59,12 @@ export const SettingsFoto = styled.div`
   border-radius: 50%;
   background-color: #f0f0f0;
   margin-bottom: 10px;
+  position: relative;
 `;
-export const SettingsFotoImg = styled.img``;
+export const SettingsFotoImg = styled.img`
+  ${img}
+  border-radius: 50%;
+  `;
 
 export const SettingsChangeFotoBtn = styled.label`
   border: none;

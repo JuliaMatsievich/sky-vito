@@ -43,8 +43,8 @@ export const userApi = createApi({
       }),
       invalidatesTags: () => [{ type: 'User', id: 'ID' }],
     }),
-	 
-	 getUsersAll: builder.query<IUser[], null>({
+
+    getUsersAll: builder.query<IUser[], null>({
       query: () => ({
         url: `/user/all`,
         method: 'GET',
@@ -79,19 +79,20 @@ export const userApi = createApi({
       invalidatesTags: () => [{ type: 'User', id: 'ID' }],
     }),
 
-	 addUserAvatar: builder.mutation<IUser, File | null>({
-		query: (args) => {
-			const formData = new FormData()
-			if(args) {
-				formData.append('file', args);
-			}
-			return {
-				url: '/user/avatar',
-				method: 'POST',
-				body: formData
-			}
-		}
-	 })
+    addUserAvatar: builder.mutation<IUser, File | null>({
+      query: (args) => {
+        const formData = new FormData();
+        if (args) {
+          formData.append('file', args);
+        }
+        return {
+          url: '/user/avatar',
+          method: 'POST',
+          body: formData,
+			 header: {'content-type': 'multypart/form-data'}
+        };
+      },
+    }),
   }),
 });
 
@@ -102,5 +103,5 @@ export const {
   useGetAuthLoginMutation,
   useGetAuthRegisterMutation,
   useUpdateUserChangeMutation,
-  useAddUserAvatarMutation
+  useAddUserAvatarMutation,
 } = userApi;
