@@ -9,9 +9,9 @@ export const Header = () => {
   // const dispatch = useAppDispatch()
 
   const handleClickOut = () => {
-    localStorage.clear()
-    window.location.href='/signin'
-  }
+    localStorage.clear();
+    window.location.href = '/signin';
+  };
   return (
     <>
       <S.HeaderHeader>
@@ -26,7 +26,7 @@ export const Header = () => {
                   <S.HeaderLink to="/profile">
                     <S.ButtonNav>Личный кабинет</S.ButtonNav>
                   </S.HeaderLink>
-                    <S.ButtonNav onClick={handleClickOut}>Выйти</S.ButtonNav>
+                  <S.ButtonNav onClick={handleClickOut}>Выйти</S.ButtonNav>
                 </>
               ) : (
                 <S.HeaderLink to="/signin">

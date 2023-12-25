@@ -9,7 +9,7 @@ export const store = configureStore({
     user: userReducer,
     adverts: advertReducer,
     [advApi.reducerPath]: advApi.reducer,
-    [userApi.reducerPath]: userApi.reducer
+    [userApi.reducerPath]: userApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(advApi.middleware, userApi.middleware),

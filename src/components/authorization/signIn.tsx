@@ -1,10 +1,8 @@
-import {useState } from 'react';
+import { useState } from 'react';
 import * as S from './authorization.styles';
-import {
-  useGetAuthLoginMutation
-} from '../../services/userApi';
+import { useGetAuthLoginMutation } from '../../services/userApi';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { setToken} from '../../store/userSlice';
+import { setToken } from '../../store/userSlice';
 
 export const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -27,14 +25,12 @@ export const SignIn = () => {
               refreshToken: refresh_token,
             }),
           );
-         window.location.href='/profile'
-        })
-
+          window.location.href = '/profile';
+        });
     } catch (error) {
       console.log('error', error);
     }
   };
-
 
   return (
     <>

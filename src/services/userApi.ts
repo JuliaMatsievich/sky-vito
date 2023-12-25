@@ -8,38 +8,6 @@ export const userApi = createApi({
   tagTypes: ['User'],
 
   endpoints: (builder) => ({
-    getUsersAll: builder.query<IUser[], null>({
-      query: () => ({
-        url: `/user/all`,
-        method: 'GET',
-      }),
-      providesTags: () => [{ type: 'User', id: 'ID' }],
-    }),
-
-    getCurrentUser: builder.query<IUser, null>({
-      query: () => ({
-        url: `/user`,
-        method: 'GET'
-      }),
-      providesTags: () => [{ type: 'User', id: 'ID' }],
-    }),
-
-    getUserChange: builder.mutation<IUser,{
-      email?: string;
-      role?: string;
-      name?: string;
-      surname?: string;
-      phone?: string;
-      city?: string;
-    }>({
-      query: (args) => ({
-        url: `/user`,
-        method: 'PATCH',
-        body: args,
-      }),
-      invalidatesTags: () => [{ type: 'User', id: 'ID' }],
-    }),
-
     getAuthLogin: builder.mutation<
       {
         access_token: string;
@@ -54,7 +22,6 @@ export const userApi = createApi({
         body: args,
       }),
       invalidatesTags: () => [{ type: 'User', id: 'ID' }],
-
     }),
 
     getAuthRegister: builder.mutation<
@@ -75,8 +42,56 @@ export const userApi = createApi({
         body: args,
       }),
       invalidatesTags: () => [{ type: 'User', id: 'ID' }],
-
     }),
+	 
+	 getUsersAll: builder.query<IUser[], null>({
+      query: () => ({
+        url: `/user/all`,
+        method: 'GET',
+      }),
+      providesTags: () => [{ type: 'User', id: 'ID' }],
+    }),
+
+    getCurrentUser: builder.query<IUser, null>({
+      query: () => ({
+        url: `/user`,
+        method: 'GET',
+      }),
+      providesTags: () => [{ type: 'User', id: 'ID' }],
+    }),
+
+    updateUserChange: builder.mutation<
+      IUser,
+      {
+        email?: string;
+        role?: string;
+        name?: string;
+        surname?: string;
+        phone?: string;
+        city?: string;
+      }
+    >({
+      query: (args) => ({
+        url: `/user`,
+        method: 'PATCH',
+        body: args,
+      }),
+      invalidatesTags: () => [{ type: 'User', id: 'ID' }],
+    }),
+
+	 addUserAvatar: builder.mutation<IUser, File | null>({
+		query: (args) => {
+			const formData = new FormData()
+			if(args) {
+				formData.append('file', args);
+			}
+			return {
+				url: '/user/avatar',
+				method: 'POST',
+				body: formData
+			}
+		}
+	 })
   }),
 });
 
@@ -86,5 +101,6 @@ export const {
   useLazyGetCurrentUserQuery,
   useGetAuthLoginMutation,
   useGetAuthRegisterMutation,
-  useGetUserChangeMutation
+  useUpdateUserChangeMutation,
+  useAddUserAvatarMutation
 } = userApi;

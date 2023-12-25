@@ -1,5 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { IAdvert} from '../interface';
+import { IAdvert } from '../interface';
 import { baseQueryWithReauth } from './custom';
 
 export const advApi = createApi({
@@ -16,7 +16,10 @@ export const advApi = createApi({
       providesTags: () => [{ type: 'Advert', id: 'LIST' }],
     }),
 
-    getAdvertsUser: builder.query<IAdvert[],{ user_id?: string; sorting?: string }>({
+    getAdvertsUser: builder.query<
+      IAdvert[],
+      { user_id?: string; sorting?: string }
+    >({
       query: (arg) => ({
         url: `/ads?user_id=${arg.user_id}&sorting=${arg.sorting}`,
         method: 'GET',
@@ -81,26 +84,26 @@ export const advApi = createApi({
 
     // }),
 
-  //   getAuthRegister: builder.mutation<
-  //     IUser,
-  //     {
-  //       password: string;
-  //       email: string;
-  //       role?: string;
-  //       name?: string;
-  //       surname?: string;
-  //       phone?: string;
-  //       city?: string;
-  //     }
-  //   >({
-  //     query: (args) => ({
-  //       url: 'auth/register',
-  //       method: 'POST',
-  //       body: args,
-  //     }),
-  //     invalidatesTags: () => [{ type: 'User', id: 'ID' }],
+    //   getAuthRegister: builder.mutation<
+    //     IUser,
+    //     {
+    //       password: string;
+    //       email: string;
+    //       role?: string;
+    //       name?: string;
+    //       surname?: string;
+    //       phone?: string;
+    //       city?: string;
+    //     }
+    //   >({
+    //     query: (args) => ({
+    //       url: 'auth/register',
+    //       method: 'POST',
+    //       body: args,
+    //     }),
+    //     invalidatesTags: () => [{ type: 'User', id: 'ID' }],
 
-  //   }),
+    //   }),
   }),
 });
 

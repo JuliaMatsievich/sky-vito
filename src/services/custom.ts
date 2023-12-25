@@ -2,7 +2,7 @@ import { BaseQueryFn, fetchBaseQuery } from '@reduxjs/toolkit/query';
 import { SERVER_URL } from '../constants/url';
 import { RootState } from '../store/store';
 import { setToken } from '../store/userSlice';
-import { setLogout} from '../store/userSlice';
+import { setLogout } from '../store/userSlice';
 
 type RefreshTokenResponse = {
   access_token: string;
@@ -58,13 +58,13 @@ export const baseQueryWithReauth: BaseQueryFn = async (
   }
   return result;
 
-//   const result = await baseQuery(args, api, extraOptions);
+  //   const result = await baseQuery(args, api, extraOptions);
 
-//   console.debug('Результат первого запроса', { result });
+  //   console.debug('Результат первого запроса', { result });
 
-//   if (result?.error?.status !== 401) {
-//     return result;
-//   }
+  //   if (result?.error?.status !== 401) {
+  //     return result;
+  //   }
 
   //   if (!(api.getState() as RootState).user.accessToken) {
   //     api.dispatch(setLogout());

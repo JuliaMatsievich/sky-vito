@@ -77,9 +77,7 @@ export const SettingsChangeFotoBtn = styled.label`
 export const SettingsChangeFotoInput = styled.input`
   opacity: 0;
   position: absolute;
-`
-
-
+`;
 
 export const SettingsRight = styled.div``;
 export const SettingsForm = styled.form`

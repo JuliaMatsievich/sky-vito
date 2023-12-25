@@ -13,7 +13,6 @@ export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  
 
   @media (max-width: ${$tabletWidth}) {
     display: none;

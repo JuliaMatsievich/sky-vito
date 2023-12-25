@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { IUser } from '../../interface';
-import { useGetUserChangeMutation } from '../../services/userApi';
+import { useUpdateUserChangeMutation } from '../../services/userApi';
 import * as S from './profileSettings.styles';
 
 interface ProfileUser {
@@ -18,10 +18,10 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
     city: userProfile.city,
   });
 
-  const handleClickChange = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleChangeInfo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-       changeUserApi(changeProfile)
+      changeUserApi(changeProfile)
         .unwrap()
         .then((data) => {
           setUserProfile(data);
@@ -31,12 +31,13 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
     }
   };
 
-  const handleChangeFoto = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-
+  const handleChangeFoto = (
+    e: React.MouseEvent<HTMLInputElement, MouseEvent>,
+  ) => {
     console.log('click');
-    console.log('e',e);
-  }
-  const [changeUserApi, {}] = useGetUserChangeMutation();
+    console.log('e', e);
+  };
+  const [changeUserApi, {}] = useUpdateUserChangeMutation();
 
   return (
     <>
@@ -47,13 +48,17 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
             <S.SettingsFoto>
               <S.SettingsFotoImg />
             </S.SettingsFoto>
-            <S.SettingsChangeFotoBtn>Заменить
-              <S.SettingsChangeFotoInput type='file' onClick={(e) => handleChangeFoto(e)}/>
+            <S.SettingsChangeFotoBtn>
+              Заменить
+              <S.SettingsChangeFotoInput
+                type="file"
+                onClick={(e) => handleChangeFoto(e)}
+              />
             </S.SettingsChangeFotoBtn>
           </S.SettingsLeft>
 
           <S.SettingsRight>
-            <S.SettingsForm onSubmit={(e) => handleClickChange(e)}>
+            <S.SettingsForm onSubmit={(e) => handleChangeInfo(e)}>
               <S.SettingsFormItem>
                 <S.SettingsNameInput
                   id="name"
@@ -74,7 +79,10 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
                   type="text"
                   placeholder={userProfile.surname}
                   onChange={(e) =>
-                    setChangeProfile({ ...changeProfile, surname: e.target.value })
+                    setChangeProfile({
+                      ...changeProfile,
+                      surname: e.target.value,
+                    })
                   }
                 />
                 <S.SettingsSurnameLabel htmlFor="surname">
@@ -102,7 +110,10 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
                   type="tel"
                   placeholder={userProfile.phone}
                   onChange={(e) =>
-                    setChangeProfile({ ...changeProfile, phone: e.target.value })
+                    setChangeProfile({
+                      ...changeProfile,
+                      phone: e.target.value,
+                    })
                   }
                 />
                 <S.SettingsPhoneLabel htmlFor="phone">

@@ -26,7 +26,7 @@ export const userSlice = createSlice({
       state.refreshToken = refreshToken;
       localStorage.setItem('access_token', accessToken);
       localStorage.setItem('refresh_token', refreshToken);
-      localStorage.setItem('isAuth','true')
+      localStorage.setItem('isAuth', 'true');
     },
     // setUser(state, action: PayloadAction<{ user: IUser }>) {
     //   state.user = action.payload.user;
@@ -34,7 +34,7 @@ export const userSlice = createSlice({
     setLogout(state) {
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
-      localStorage.removeItem('isAuth')
+      localStorage.removeItem('isAuth');
       state.accessToken = null;
       state.refreshToken = null;
     },
@@ -43,4 +43,3 @@ export const userSlice = createSlice({
 
 export const { setToken, setLogout } = userSlice.actions;
 export const userReducer = userSlice.reducer;
-

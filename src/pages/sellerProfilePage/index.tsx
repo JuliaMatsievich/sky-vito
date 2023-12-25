@@ -3,7 +3,7 @@ import { AdvertList } from '../../components/adverts/advertList/advertList';
 import { BackBtn } from '../../components/buttons/backBtn/backBtn';
 import { SellerProfileInfo } from '../../components/sellerProfileInfo/sellerProfileInfo';
 import * as S from '../profilePage/profilePage.styles';
-import {  useGetAdvertsUserQuery} from '../../services/advApi';
+import { useGetAdvertsUserQuery } from '../../services/advApi';
 import { IUser } from '../../interface';
 import { Menu } from '../../components/menu/menu';
 import { useGetUsersAllQuery } from '../../services/userApi';
