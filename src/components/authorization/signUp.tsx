@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // import { useAppDispatch } from '../../hooks/useAppDispatch';
 import * as S from './authorization.styles';
-import { useGetAuthRegisterMutation } from '../../services/advApi';
+import { useGetAuthRegisterMutation } from '../../services/userApi';
 
 export const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -11,21 +11,21 @@ export const SignUp = () => {
   const [surname, setSurname] = useState('');
   const [city, setCity] = useState('');
 
-  const [signUpApi, {}] = useGetAuthRegisterMutation()
-
+  const [signUpApi, {}] = useGetAuthRegisterMutation();
 
   // const dispatch = useAppDispatch();
 
   const handleClickSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-   
+
     try {
       await signUpApi({
-       password,
-       email,
-       name,
-       surname,
-       city })
+        password,
+        email,
+        name,
+        surname,
+        city,
+      })
         .unwrap()
         .then((data) => {
           // const { access_token, refresh_token } = data;
@@ -35,7 +35,7 @@ export const SignUp = () => {
           //     refreshToken: refresh_token,
           //   }),
           // );
-          console.log('data',data);
+          console.log('data', data);
           window.location.href = '/signin';
         });
     } catch (error) {

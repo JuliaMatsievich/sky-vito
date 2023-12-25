@@ -1,28 +1,16 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { IUser } from '../interface';
+// import { IUser } from '../interface';
 
 interface userState {
-  user: IUser | null;
   accessToken: string | null;
   refreshToken: string | null;
   isAuth: boolean;
 }
 
 const initialState: userState = {
-  user: {
-    id: 0,
-    name: '',
-    email: '',
-    city: '',
-    avatar: '',
-    sells_from: '',
-    phone: '',
-    role: '',
-    surname: '',
-  },
-  accessToken: localStorage.getItem('accessToken'),
-  refreshToken: localStorage.getItem(' refreshToken'),
-  isAuth: false,
+  accessToken: localStorage.getItem('access_token'),
+  refreshToken: localStorage.getItem('refresh_token'),
+  isAuth: Boolean(localStorage.getItem('isAuth')),
 };
 
 export const userSlice = createSlice({
@@ -38,20 +26,21 @@ export const userSlice = createSlice({
       state.refreshToken = refreshToken;
       localStorage.setItem('access_token', accessToken);
       localStorage.setItem('refresh_token', refreshToken);
-      state.isAuth = true;
+      localStorage.setItem('isAuth','true')
     },
-    setUser(state, action: PayloadAction<{ user: IUser }>) {
-      state.user = action.payload.user;
-    },
+    // setUser(state, action: PayloadAction<{ user: IUser }>) {
+    //   state.user = action.payload.user;
+    // },
     setLogout(state) {
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
+      localStorage.removeItem('isAuth')
       state.accessToken = null;
       state.refreshToken = null;
-      state.isAuth = false;
     },
   },
 });
 
-export const { setToken, setUser, setLogout } = userSlice.actions;
+export const { setToken, setLogout } = userSlice.actions;
 export const userReducer = userSlice.reducer;
+

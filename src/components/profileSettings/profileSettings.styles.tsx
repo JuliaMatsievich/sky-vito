@@ -61,16 +61,25 @@ export const SettingsFoto = styled.div`
 `;
 export const SettingsFotoImg = styled.img``;
 
-export const SettingsChangeFotoBtn = styled.button`
+export const SettingsChangeFotoBtn = styled.label`
   border: none;
   color: ${$buttonColor};
   background-color: transparent;
   transition: all 0.3s ease 0s;
+  cursor: pointer;
+  position: relative;
 
   &:hover {
     color: ${$buttonColorHover};
   }
 `;
+
+export const SettingsChangeFotoInput = styled.input`
+  opacity: 0;
+  position: absolute;
+`
+
+
 
 export const SettingsRight = styled.div``;
 export const SettingsForm = styled.form`

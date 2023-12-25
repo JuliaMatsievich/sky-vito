@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import * as S from './authorization.styles';
-import { useGetAuthLoginMutation, useGetCurrentUserQuery } from '../../services/advApi';
+import {
+  useGetAuthLoginMutation
+} from '../../services/userApi';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { setToken} from '../../store/userSlice';
 
@@ -10,7 +12,6 @@ export const SignIn = () => {
   const dispatch = useAppDispatch();
 
   const [signInApi, {}] = useGetAuthLoginMutation();
-  const {data: currentUser} = useGetCurrentUserQuery(null)
 
   const handleClickSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ export const SignIn = () => {
     try {
       await signInApi({ email, password })
         .unwrap()
-        .then((data: { access_token: string; refresh_token: string; }) => {
+        .then((data: { access_token: string; refresh_token: string }) => {
           const { access_token, refresh_token } = data;
           dispatch(
             setToken({
@@ -26,22 +27,14 @@ export const SignIn = () => {
               refreshToken: refresh_token,
             }),
           );
+         window.location.href='/profile'
         })
-        // .then(() => {
-        //   if(currentUser != undefined) {
-        //     console.log('currentUser', currentUser);
-        //   }
-        // })
+
     } catch (error) {
       console.log('error', error);
     }
   };
 
-  useEffect(() => {
-    if(currentUser != undefined) {
-      console.log('currentUser', currentUser);
-    }
-  },[currentUser])
 
   return (
     <>

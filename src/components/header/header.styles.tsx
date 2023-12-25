@@ -13,6 +13,7 @@ export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  
 
   @media (max-width: ${$tabletWidth}) {
     display: none;
@@ -26,6 +27,7 @@ export const HeaderHeader = styled.header`
 
 export const HeaderNav = styled.div`
   display: flex;
+  gap: 10px;
 `;
 export const ButtonNav = styled.button`
   ${buttonInHeader}

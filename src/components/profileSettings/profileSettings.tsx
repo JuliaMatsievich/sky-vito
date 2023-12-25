@@ -1,6 +1,43 @@
+import { useState } from 'react';
+import { IUser } from '../../interface';
+import { useGetUserChangeMutation } from '../../services/userApi';
 import * as S from './profileSettings.styles';
 
-export const ProfileSettings = () => {
+interface ProfileUser {
+  user: IUser;
+}
+
+export const ProfileSettings = ({ user }: ProfileUser) => {
+  const [userProfile, setUserProfile] = useState(user);
+  const [changeProfile, setChangeProfile] = useState({
+    name: userProfile.name,
+    role: userProfile.role,
+    email: userProfile.email,
+    surname: userProfile.surname,
+    phone: userProfile.phone,
+    city: userProfile.city,
+  });
+
+  const handleClickChange = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+       changeUserApi(changeProfile)
+        .unwrap()
+        .then((data) => {
+          setUserProfile(data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleChangeFoto = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+
+    console.log('click');
+    console.log('e',e);
+  }
+  const [changeUserApi, {}] = useGetUserChangeMutation();
+
   return (
     <>
       <S.SettingsContainer>
@@ -10,17 +47,22 @@ export const ProfileSettings = () => {
             <S.SettingsFoto>
               <S.SettingsFotoImg />
             </S.SettingsFoto>
-            <S.SettingsChangeFotoBtn>Заменить</S.SettingsChangeFotoBtn>
+            <S.SettingsChangeFotoBtn>Заменить
+              <S.SettingsChangeFotoInput type='file' onClick={(e) => handleChangeFoto(e)}/>
+            </S.SettingsChangeFotoBtn>
           </S.SettingsLeft>
 
           <S.SettingsRight>
-            <S.SettingsForm action="">
+            <S.SettingsForm onSubmit={(e) => handleClickChange(e)}>
               <S.SettingsFormItem>
                 <S.SettingsNameInput
                   id="name"
                   name="name"
                   type="text"
-                  placeholder=" "
+                  placeholder={userProfile.name}
+                  onChange={(e) =>
+                    setChangeProfile({ ...changeProfile, name: e.target.value })
+                  }
                 />
                 <S.SettingsNameLabel htmlFor="name">Имя</S.SettingsNameLabel>
               </S.SettingsFormItem>
@@ -30,7 +72,10 @@ export const ProfileSettings = () => {
                   id="surname"
                   name="surname"
                   type="text"
-                  placeholder=" "
+                  placeholder={userProfile.surname}
+                  onChange={(e) =>
+                    setChangeProfile({ ...changeProfile, surname: e.target.value })
+                  }
                 />
                 <S.SettingsSurnameLabel htmlFor="surname">
                   Фамилия
@@ -42,7 +87,10 @@ export const ProfileSettings = () => {
                   id="city"
                   name="city"
                   type="text"
-                  placeholder=" "
+                  placeholder={userProfile.city}
+                  onChange={(e) =>
+                    setChangeProfile({ ...changeProfile, city: e.target.value })
+                  }
                 />
                 <S.SettingsCityLabel htmlFor="city">Город</S.SettingsCityLabel>
               </S.SettingsFormItem>
@@ -52,14 +100,17 @@ export const ProfileSettings = () => {
                   id="phone"
                   name="phone"
                   type="tel"
-                  placeholder=" "
+                  placeholder={userProfile.phone}
+                  onChange={(e) =>
+                    setChangeProfile({ ...changeProfile, phone: e.target.value })
+                  }
                 />
                 <S.SettingsPhoneLabel htmlFor="phone">
                   Телефон
                 </S.SettingsPhoneLabel>
               </S.SettingsFormItem>
 
-              <S.FormButton>Сохранить</S.FormButton>
+              <S.FormButton type="submit">Сохранить</S.FormButton>
             </S.SettingsForm>
           </S.SettingsRight>
         </S.Settings>
