@@ -64,7 +64,7 @@ export const SettingsFoto = styled.div`
 export const SettingsFotoImg = styled.img`
   ${img}
   border-radius: 50%;
-  `;
+`;
 
 export const SettingsChangeFotoBtn = styled.label`
   border: none;

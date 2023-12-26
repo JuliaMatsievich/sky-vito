@@ -58,6 +58,11 @@ export const buttonColor = css`
   &:hover {
     background: ${$buttonColorHover};
   }
+
+  &:disabled {
+    background-color: #d9d9d9;
+    border: 1px solid #d9d9d9
+  }
 `;
 
 export const Container = styled.div`

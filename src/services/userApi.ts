@@ -89,7 +89,7 @@ export const userApi = createApi({
           url: '/user/avatar',
           method: 'POST',
           body: formData,
-			 header: {'content-type': 'multypart/form-data'}
+          header: { 'content-type': 'multypart/form-data' },
         };
       },
     }),

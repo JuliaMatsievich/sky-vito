@@ -1,50 +1,58 @@
-import { useState } from 'react';
 import { IUser } from '../../interface';
-import { useAddUserAvatarMutation, useUpdateUserChangeMutation } from '../../services/userApi';
+import {
+  useAddUserAvatarMutation,
+  useUpdateUserChangeMutation,
+} from '../../services/userApi';
 import * as S from './profileSettings.styles';
 import { SERVER_URL } from '../../constants/url';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 
 interface ProfileUser {
   user: IUser;
 }
 
 export const ProfileSettings = ({ user }: ProfileUser) => {
-  const [userProfile, setUserProfile] = useState(user);
-  const [changeProfile, setChangeProfile] = useState({
-    name: userProfile.name,
-    role: userProfile.role,
-    email: userProfile.email,
-    surname: userProfile.surname,
-    phone: userProfile.phone,
-    city: userProfile.city,
+  const {
+    register,
+    handleSubmit,
+    formState: { isDirty, isSubmitSuccessful },
+  } = useForm<IUser>({
+    defaultValues: {
+      name: user.name,
+      surname: user.surname,
+      city: user.city,
+      phone: user.phone,
+    },
   });
 
   const [changeUserApi, {}] = useUpdateUserChangeMutation();
   const [addUserAvatarApi, {}] = useAddUserAvatarMutation();
 
-
-  const handleChangeInfo = async() => {
+  const handleChangeInfo: SubmitHandler<IUser> = async (data) => {
     try {
-      await changeUserApi(changeProfile)
-        .unwrap()
-        .then((data) => {
-          setUserProfile(data);
-        });
+      await changeUserApi(data).unwrap();
     } catch (error) {
       console.log(error);
     }
+    console.log('data', data);
   };
 
   const handleChangeFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
-    
-    // addUserAvatarApi(file)
-    console.log('file',file);
-    if(file) {
-      addUserAvatarApi(file)
+    if (file) {
+      addUserAvatarApi(file);
     }
   };
-  
+
+  // const handleRefresh = () => {
+  //   // window.location.reload()
+    
+  // }
+
+  useEffect(() => {
+    console.log('1');
+  },[handleSubmit])
 
   return (
     <>
@@ -53,12 +61,11 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
         <S.Settings>
           <S.SettingsLeft>
             <S.SettingsFoto>
-            {user.avatar != null ? (
-            <S.SettingsFotoImg src={`${SERVER_URL}/` + user.avatar}/>
-          ) : (
-            <S.SettingsFotoImg src="/img/no-foto.png" />
-          )}
-              
+              {user.avatar != null ? (
+                <S.SettingsFotoImg src={`${SERVER_URL}/` + user.avatar} />
+              ) : (
+                <S.SettingsFotoImg src="/img/no-foto.png" />
+              )}
             </S.SettingsFoto>
             <S.SettingsChangeFotoBtn>
               Заменить
@@ -70,16 +77,14 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
           </S.SettingsLeft>
 
           <S.SettingsRight>
-            <S.SettingsForm onSubmit={handleChangeInfo}>
+            <S.SettingsForm onSubmit={handleSubmit(handleChangeInfo)}>
               <S.SettingsFormItem>
                 <S.SettingsNameInput
                   id="name"
-                  name="name"
+                  // name="name"
                   type="text"
-                  placeholder={userProfile.name}
-                  onChange={(e) =>
-                    setChangeProfile({ ...changeProfile, name: e.target.value })
-                  }
+                  placeholder='Введите имя'
+                  {...register('name')}
                 />
                 <S.SettingsNameLabel htmlFor="name">Имя</S.SettingsNameLabel>
               </S.SettingsFormItem>
@@ -87,15 +92,10 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
               <S.SettingsFormItem>
                 <S.SettingsSurnameInput
                   id="surname"
-                  name="surname"
+                  // name="surname"
                   type="text"
-                  placeholder={userProfile.surname}
-                  onChange={(e) =>
-                    setChangeProfile({
-                      ...changeProfile,
-                      surname: e.target.value,
-                    })
-                  }
+                  placeholder='Введите фамилию'
+                  {...register('surname')}
                 />
                 <S.SettingsSurnameLabel htmlFor="surname">
                   Фамилия
@@ -105,12 +105,10 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
               <S.SettingsFormItem>
                 <S.SettingsCityInput
                   id="city"
-                  name="city"
+                  // name="city"
                   type="text"
-                  placeholder={userProfile.city}
-                  onChange={(e) =>
-                    setChangeProfile({ ...changeProfile, city: e.target.value })
-                  }
+                  placeholder='Введите город'
+                  {...register('city')}
                 />
                 <S.SettingsCityLabel htmlFor="city">Город</S.SettingsCityLabel>
               </S.SettingsFormItem>
@@ -118,22 +116,19 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
               <S.SettingsFormItem>
                 <S.SettingsPhoneInput
                   id="phone"
-                  name="phone"
+                  // name="phone"
                   type="tel"
-                  placeholder={userProfile.phone}
-                  onChange={(e) =>
-                    setChangeProfile({
-                      ...changeProfile,
-                      phone: e.target.value,
-                    })
-                  }
+                  placeholder='Введите номер телефона'
+                  {...register('phone')}
                 />
                 <S.SettingsPhoneLabel htmlFor="phone">
                   Телефон
                 </S.SettingsPhoneLabel>
               </S.SettingsFormItem>
 
-              <S.FormButton type="submit">Сохранить</S.FormButton>
+              <S.FormButton disabled={!isDirty || isSubmitSuccessful} type="submit">
+                Сохранить
+              </S.FormButton>
             </S.SettingsForm>
           </S.SettingsRight>
         </S.Settings>
