@@ -43,14 +43,17 @@ export const advApi = createApi({
       providesTags: () => [{ type: 'Advert', id: 'ID' }],
     }),
 
-    addAdvert: builder.mutation<IAdvert, {
-      title: string,
-      description?: string,
-      price?: number,
-      images?: File | null
-    }>({
+    addAdvert: builder.mutation<
+      IAdvert,
+      {
+        title: string;
+        description?: string;
+        price?: number;
+        images?: File | null;
+      }
+    >({
       query: (args) => {
-        const {title, description, price, images} = args
+        const { title, description, price, images } = args;
         const formData = new FormData();
         if (images) {
           formData.append('file', images);
@@ -65,11 +68,14 @@ export const advApi = createApi({
       },
     }),
 
-    addAdvertWithoutImage: builder.mutation<IAdvert, {
-      title: string,
-      description?: string,
-      price?: number
-    }>({
+    addAdvertWithoutImage: builder.mutation<
+      IAdvert,
+      {
+        title: string;
+        description?: string;
+        price?: number;
+      }
+    >({
       query: (args) => {
         return {
           url: `/adstext`,
@@ -87,5 +93,5 @@ export const {
   useGetAdvertsUserQuery,
   useGetAdvertsCurrentUserQuery,
   useAddAdvertMutation,
-  useAddAdvertWithoutImageMutation
+  useAddAdvertWithoutImageMutation,
 } = advApi;

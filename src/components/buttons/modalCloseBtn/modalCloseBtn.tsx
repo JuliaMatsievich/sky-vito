@@ -2,8 +2,7 @@ import { useModal } from '../../../hooks/useModal';
 import * as S from './modalClsoseBtn.styles';
 
 export const ModalCloseBtn = () => {
-  const {handleShowModal} = useModal()
-
+  const { handleShowModal } = useModal();
 
   return (
     <>

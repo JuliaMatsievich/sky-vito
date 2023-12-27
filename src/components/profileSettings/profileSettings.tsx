@@ -6,7 +6,7 @@ import {
 import * as S from './profileSettings.styles';
 import { SERVER_URL } from '../../constants/url';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 interface ProfileUser {
   user: IUser;
@@ -16,7 +16,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
   const {
     register,
     handleSubmit,
-    formState: { isDirty, isSubmitSuccessful },
+    formState: {isDirty, isSubmitted}
   } = useForm<IUser>({
     defaultValues: {
       avatar: user.avatar,
@@ -25,14 +25,21 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
       city: user.city,
       phone: user.phone,
     },
+    mode: "onChange"
   });
 
   const [changeUserApi, {}] = useUpdateUserChangeMutation();
   const [addUserAvatarApi, {}] = useAddUserAvatarMutation();
 
   const handleChangeInfo: SubmitHandler<IUser> = async (data) => {
-    try {
-      await changeUserApi(data).unwrap();
+   const dataForm = {
+    name: data.name,
+    surname: data.surname,
+    city: data.city,
+    phone: data.phone,
+   } 
+   try {
+      await changeUserApi(dataForm).unwrap();
     } catch (error) {
       console.log(error);
     }
@@ -45,10 +52,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
     }
   };
 
-  useEffect(() => {
-    console.log('1');
-  }, [handleSubmit]);
-
+ 
   return (
     <>
       <S.SettingsContainer>
@@ -68,6 +72,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
                 Заменить
                 <S.SettingsChangeFotoInput
                   type="file"
+                  id='avatar'
                   {...register('avatar', {
                     onChange: (event) => handleChangeFoto(event),
                   })}
@@ -121,7 +126,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
               </S.SettingsFormItem>
 
               <S.FormButton
-                disabled={!isDirty || isSubmitSuccessful}
+                disabled={!isDirty || isSubmitted}
                 type="submit"
               >
                 Сохранить

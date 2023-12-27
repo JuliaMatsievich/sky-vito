@@ -3,13 +3,12 @@ import { useAppDispatch } from './useAppDispatch';
 import { showModal } from '../store/advertSlice';
 
 export const useModal = () => {
-  const isShowModal = useAppSelector(state => state.adverts.isShowModal)
+  const isShowModal = useAppSelector((state) => state.adverts.isShowModal);
   const dispatch = useAppDispatch();
 
   const handleShowModal = () => {
-	dispatch(showModal())
-  }
-
+    dispatch(showModal());
+  };
 
   return { isShowModal, handleShowModal };
 };

@@ -4,12 +4,12 @@ import { searchAdvertsFunc } from '../helpers/searchFunction';
 
 interface AdvertsState {
   filteredAdverts: IAdvert[];
-  isShowModal: boolean
+  isShowModal: boolean;
 }
 
 const initialState: AdvertsState = {
   filteredAdverts: [],
-  isShowModal: false
+  isShowModal: false,
 };
 
 export const advertsSlice = createSlice({
@@ -24,9 +24,9 @@ export const advertsSlice = createSlice({
       state.filteredAdverts = searchAdvertsFunc(adverts, searchValue);
     },
 
-    showModal (state) {
-      state.isShowModal = !state.isShowModal
-    }
+    showModal(state) {
+      state.isShowModal = !state.isShowModal;
+    },
   },
 });
 

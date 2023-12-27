@@ -5,9 +5,23 @@ import { PHONE_WIDTH } from '../../../constants/breakpoints';
 import { BackBtn } from '../../buttons/backBtn/backBtn';
 import { Footer } from '../../Footer/footer';
 import { Menu } from '../../menu/menu';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { IAdvert } from '../../../interface';
 
 export const AddNewAdvert = () => {
   const { windowWidth } = useGetWindowSize();
+
+  const {
+    register,
+    handleSubmit,
+  } = useForm<IAdvert>();
+
+  const handleAddAdvert: SubmitHandler<IAdvert> = (data) => {
+    console.log('fffff');  
+    console.log('data', data);
+
+  }
+
   return (
     <>
       {windowWidth !== undefined && windowWidth < PHONE_WIDTH ? <Menu /> : null}
@@ -16,21 +30,21 @@ export const AddNewAdvert = () => {
           <ModalCloseBtn />
           <BackBtn />
           <S.AdvSettingsTitle>Новое объявление</S.AdvSettingsTitle>
-          <S.AdvSettingsForm>
+          <S.AdvSettingsForm onSubmit={handleSubmit(handleAddAdvert)}>
             <S.AdvSettingsFormItem>
               <S.FormItemInput
                 id="title"
-                name="title"
                 type="text"
                 placeholder="Введите название"
+                {...register('title')}
               ></S.FormItemInput>
               <S.FormItemName htmlFor="title">Название</S.FormItemName>
             </S.AdvSettingsFormItem>
             <S.AdvSettingsFormItem>
               <S.FormItemTextarea
                 id="description"
-                name="description"
                 placeholder="Введите описание"
+                {...register('description')}
               ></S.FormItemTextarea>
               <S.FormItemName htmlFor="description">Описание</S.FormItemName>
             </S.AdvSettingsFormItem>
@@ -60,13 +74,13 @@ export const AddNewAdvert = () => {
               <S.FormItemPriceCover>
                 <S.FormItemInputPrice
                   id="price"
-                  name="price"
                   placeholder=" "
+                {...register('price')}
                 ></S.FormItemInputPrice>
                 <S.FormItemName htmlFor="price">Цена</S.FormItemName>
               </S.FormItemPriceCover>
             </S.AdvSettingsFormItem>
-            <S.AdvSettingsBtn>Опубликовать</S.AdvSettingsBtn>
+            <S.AdvSettingsBtn type='submit'>Опубликовать</S.AdvSettingsBtn>
           </S.AdvSettingsForm>
         </S.AdvSettingsContainer>
       </S.ModalBlock>
