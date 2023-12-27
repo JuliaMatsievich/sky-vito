@@ -27,4 +27,5 @@ export const ProfileAdvertsTitle = styled.h2`
 export const ProfileContainer = styled.div`
   ${centralContainer}
   position: relative;
+  margin-bottom: 60px;
 `;

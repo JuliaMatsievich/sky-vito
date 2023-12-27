@@ -61,7 +61,8 @@ export const buttonColor = css`
 
   &:disabled {
     background-color: #d9d9d9;
-    border: 1px solid #d9d9d9
+    border: 1px solid #d9d9d9;
+    cursor: auto;
   }
 `;
 

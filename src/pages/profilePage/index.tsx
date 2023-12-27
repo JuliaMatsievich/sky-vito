@@ -1,13 +1,13 @@
 import { AdvertList } from '../../components/adverts/advertList/advertList';
 import { Menu } from '../../components/menu/menu';
 import { ProfileSettings } from '../../components/profileSettings/profileSettings';
-import { useGetAdvertsQuery } from '../../services/advApi';
+import { useGetAdvertsCurrentUserQuery} from '../../services/advApi';
 import { useGetCurrentUserQuery } from '../../services/userApi';
 
 import * as S from './profilePage.styles';
 
 export const ProfilePage = () => {
-  const { data: adverts } = useGetAdvertsQuery(null);
+  const { data: adverts } = useGetAdvertsCurrentUserQuery(null);
 
   const { data: user } = useGetCurrentUserQuery(null);
 
@@ -22,7 +22,10 @@ export const ProfilePage = () => {
         <S.ProfileTitle>Здравствуйте, {user?.name}</S.ProfileTitle>
         <ProfileSettings user={user} />
         <S.ProfileAdvertsTitle>Мои товары</S.ProfileAdvertsTitle>
-        <AdvertList adverts={adverts} />
+        {adverts.length === 0 ? 
+        <p>Нет товаров</p>
+        : <AdvertList adverts={adverts} />}
+        
       </S.ProfileContainer>
     </>
   );

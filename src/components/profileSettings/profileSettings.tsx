@@ -1,5 +1,6 @@
 import { IUser } from '../../interface';
 import {
+ 
   useAddUserAvatarMutation,
   useUpdateUserChangeMutation,
 } from '../../services/userApi';
@@ -19,6 +20,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
     formState: { isDirty, isSubmitSuccessful },
   } = useForm<IUser>({
     defaultValues: {
+      avatar: user.avatar,
       name: user.name,
       surname: user.surname,
       city: user.city,
@@ -35,30 +37,27 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
     } catch (error) {
       console.log(error);
     }
-    console.log('data', data);
   };
 
   const handleChangeFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
-      addUserAvatarApi(file);
+      addUserAvatarApi(file).unwrap();
     }
   };
 
-  // const handleRefresh = () => {
-  //   // window.location.reload()
-    
-  // }
-
   useEffect(() => {
     console.log('1');
-  },[handleSubmit])
+  }, [handleSubmit]);
+
 
   return (
     <>
       <S.SettingsContainer>
         <S.SettingsTitle>Настройки профиля</S.SettingsTitle>
+        
         <S.Settings>
+          <S.SettingsForm onSubmit={handleSubmit(handleChangeInfo)}>
           <S.SettingsLeft>
             <S.SettingsFoto>
               {user.avatar != null ? (
@@ -71,19 +70,19 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
               Заменить
               <S.SettingsChangeFotoInput
                 type="file"
-                onChange={handleChangeFoto}
+                {...register('avatar',{
+                  onChange: (event) => handleChangeFoto(event)
+                })}
               />
             </S.SettingsChangeFotoBtn>
           </S.SettingsLeft>
 
           <S.SettingsRight>
-            <S.SettingsForm onSubmit={handleSubmit(handleChangeInfo)}>
               <S.SettingsFormItem>
                 <S.SettingsNameInput
                   id="name"
-                  // name="name"
                   type="text"
-                  placeholder='Введите имя'
+                  placeholder="Введите имя"
                   {...register('name')}
                 />
                 <S.SettingsNameLabel htmlFor="name">Имя</S.SettingsNameLabel>
@@ -92,9 +91,8 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
               <S.SettingsFormItem>
                 <S.SettingsSurnameInput
                   id="surname"
-                  // name="surname"
                   type="text"
-                  placeholder='Введите фамилию'
+                  placeholder="Введите фамилию"
                   {...register('surname')}
                 />
                 <S.SettingsSurnameLabel htmlFor="surname">
@@ -105,9 +103,8 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
               <S.SettingsFormItem>
                 <S.SettingsCityInput
                   id="city"
-                  // name="city"
                   type="text"
-                  placeholder='Введите город'
+                  placeholder="Введите город"
                   {...register('city')}
                 />
                 <S.SettingsCityLabel htmlFor="city">Город</S.SettingsCityLabel>
@@ -116,9 +113,8 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
               <S.SettingsFormItem>
                 <S.SettingsPhoneInput
                   id="phone"
-                  // name="phone"
                   type="tel"
-                  placeholder='Введите номер телефона'
+                  placeholder="Введите номер телефона"
                   {...register('phone')}
                 />
                 <S.SettingsPhoneLabel htmlFor="phone">
@@ -126,11 +122,14 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
                 </S.SettingsPhoneLabel>
               </S.SettingsFormItem>
 
-              <S.FormButton disabled={!isDirty || isSubmitSuccessful} type="submit">
+              <S.FormButton
+                disabled={!isDirty || isSubmitSuccessful}
+                type="submit"
+              >
                 Сохранить
               </S.FormButton>
-            </S.SettingsForm>
           </S.SettingsRight>
+          </S.SettingsForm>
         </S.Settings>
       </S.SettingsContainer>
     </>

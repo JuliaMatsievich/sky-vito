@@ -32,7 +32,7 @@ export const FormImage = styled.div`
 `;
 
 export const Settings = styled.div`
-  display: flex;
+  /* display: flex;
   gap: 50px;
   flex-wrap: wrap;
 
@@ -40,7 +40,7 @@ export const Settings = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
+  } */
 `;
 
 export const SettingsLeft = styled.div`
@@ -84,11 +84,24 @@ export const SettingsChangeFotoInput = styled.input`
   position: absolute;
 `;
 
-export const SettingsRight = styled.div``;
-export const SettingsForm = styled.form`
+export const SettingsRight = styled.div`
   display: flex;
   flex-wrap: wrap;
   max-width: 614px;
+`;
+export const SettingsForm = styled.form`
+  /* display: flex;
+  flex-wrap: wrap;
+  max-width: 614px; */
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+
+  @media (max-width: ${$tabletWidth}) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const SettingsUsername = styled.div`
