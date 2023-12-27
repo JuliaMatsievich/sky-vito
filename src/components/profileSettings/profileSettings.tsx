@@ -7,6 +7,7 @@ import * as S from './profileSettings.styles';
 import { SERVER_URL } from '../../constants/url';
 import { SubmitHandler, useForm } from 'react-hook-form';
 // import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 interface ProfileUser {
   user: IUser;
@@ -16,7 +17,8 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
   const {
     register,
     handleSubmit,
-    formState: {isDirty, isSubmitted}
+    formState: { isDirty},
+    reset
   } = useForm<IUser>({
     defaultValues: {
       avatar: user.avatar,
@@ -24,22 +26,28 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
       surname: user.surname,
       city: user.city,
       phone: user.phone,
-    },
-    mode: "onChange"
+    }
   });
 
   const [changeUserApi, {}] = useUpdateUserChangeMutation();
   const [addUserAvatarApi, {}] = useAddUserAvatarMutation();
 
   const handleChangeInfo: SubmitHandler<IUser> = async (data) => {
-   const dataForm = {
-    name: data.name,
-    surname: data.surname,
-    city: data.city,
-    phone: data.phone,
-   } 
-   try {
+    const dataForm = {
+      name: data.name,
+      surname: data.surname,
+      city: data.city,
+      phone: data.phone,
+    };
+    try {
       await changeUserApi(dataForm).unwrap();
+      reset({
+        avatar: user.avatar,
+        name: data.name,
+        surname: data.surname,
+        city: data.city,
+        phone: data.phone,
+      })
     } catch (error) {
       console.log(error);
     }
@@ -52,7 +60,16 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
     }
   };
 
- 
+  // useEffect((  )=>{
+  //   reset({
+  //     avatar: user.avatar,
+  //     name: user.name,
+  //     surname: user.surname,
+  //     city: user.city,
+  //     phone: user.phone,
+  //   })
+  // }, [isSubmitSuccessful])
+
   return (
     <>
       <S.SettingsContainer>
@@ -72,7 +89,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
                 Заменить
                 <S.SettingsChangeFotoInput
                   type="file"
-                  id='avatar'
+                  id="avatar"
                   {...register('avatar', {
                     onChange: (event) => handleChangeFoto(event),
                   })}
@@ -125,10 +142,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
                 </S.SettingsPhoneLabel>
               </S.SettingsFormItem>
 
-              <S.FormButton
-                disabled={!isDirty || isSubmitted}
-                type="submit"
-              >
+              <S.FormButton disabled={!isDirty} type="submit" >
                 Сохранить
               </S.FormButton>
             </S.SettingsRight>

@@ -11,16 +11,12 @@ import { IAdvert } from '../../../interface';
 export const AddNewAdvert = () => {
   const { windowWidth } = useGetWindowSize();
 
-  const {
-    register,
-    handleSubmit,
-  } = useForm<IAdvert>();
+  const { register, handleSubmit } = useForm<IAdvert>();
 
   const handleAddAdvert: SubmitHandler<IAdvert> = (data) => {
-    console.log('fffff');  
+    console.log('fffff');
     console.log('data', data);
-
-  }
+  };
 
   return (
     <>
@@ -75,12 +71,12 @@ export const AddNewAdvert = () => {
                 <S.FormItemInputPrice
                   id="price"
                   placeholder=" "
-                {...register('price')}
+                  {...register('price')}
                 ></S.FormItemInputPrice>
                 <S.FormItemName htmlFor="price">Цена</S.FormItemName>
               </S.FormItemPriceCover>
             </S.AdvSettingsFormItem>
-            <S.AdvSettingsBtn type='submit'>Опубликовать</S.AdvSettingsBtn>
+            <S.AdvSettingsBtn type="submit">Опубликовать</S.AdvSettingsBtn>
           </S.AdvSettingsForm>
         </S.AdvSettingsContainer>
       </S.ModalBlock>
