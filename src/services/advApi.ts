@@ -42,6 +42,42 @@ export const advApi = createApi({
       }),
       providesTags: () => [{ type: 'Advert', id: 'ID' }],
     }),
+
+    addAdvert: builder.mutation<IAdvert, {
+      title: string,
+      description?: string,
+      price?: number,
+      images?: File | null
+    }>({
+      query: (args) => {
+        const {title, description, price, images} = args
+        const formData = new FormData();
+        if (images) {
+          formData.append('file', images);
+        }
+
+        return {
+          url: `/ads?title=${title}&description=${description}&price=${price}'`,
+          method: `POST`,
+          body: formData,
+          header: { 'content-type': 'multypart/form-data' },
+        };
+      },
+    }),
+
+    addAdvertWithoutImage: builder.mutation<IAdvert, {
+      title: string,
+      description?: string,
+      price?: number
+    }>({
+      query: (args) => {
+        return {
+          url: `/adstext`,
+          method: `POST`,
+          body: args,
+        };
+      },
+    }),
   }),
 });
 
@@ -49,5 +85,7 @@ export const {
   useGetAdvertsQuery,
   useGetAdvertsByIdQuery,
   useGetAdvertsUserQuery,
-  useGetAdvertsCurrentUserQuery
+  useGetAdvertsCurrentUserQuery,
+  useAddAdvertMutation,
+  useAddAdvertWithoutImageMutation
 } = advApi;

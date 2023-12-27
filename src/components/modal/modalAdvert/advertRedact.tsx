@@ -6,7 +6,7 @@ import { BackBtn } from '../../buttons/backBtn/backBtn';
 import { Footer } from '../../Footer/footer';
 import { Menu } from '../../menu/menu';
 
-export const AdvertSettings = () => {
+export const AdvertRedact = () => {
   const { windowWidth } = useGetWindowSize();
   return (
     <>

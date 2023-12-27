@@ -1,17 +1,21 @@
 import * as S from './header.styles';
 import * as CM from '../../styles/commonStyles.styles';
 import { useAppSelector } from '../../hooks/useAppSelector';
-// import { useAppDispatch } from '../../hooks/useAppDispatch';
-// import { setLogout } from '../../store/userSlice';
+import { AddNewAdvert } from '../modal/modalAdvert/addNewAdvert';
+import { useModal } from '../../hooks/useModal';
 
 export const Header = () => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
-  // const dispatch = useAppDispatch()
+ 
+  const {isShowModal, handleShowModal} = useModal()
+  
 
   const handleClickOut = () => {
     localStorage.clear();
     window.location.href = '/signin';
   };
+
+
   return (
     <>
       <S.HeaderHeader>
@@ -20,9 +24,8 @@ export const Header = () => {
             <S.HeaderNav>
               {isAuth ? (
                 <>
-                  <S.HeaderLink to="/advertSettings">
-                    <S.ButtonNav>Разместить объявление</S.ButtonNav>
-                  </S.HeaderLink>
+                  <S.ButtonNav onClick={handleShowModal}>Разместить объявление</S.ButtonNav>
+                  {isShowModal ? <AddNewAdvert /> : null}
                   <S.HeaderLink to="/profile">
                     <S.ButtonNav>Личный кабинет</S.ButtonNav>
                   </S.HeaderLink>

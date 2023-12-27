@@ -29,7 +29,7 @@ export const ModalBlock = styled.div`
 export const AdvSettingsContainer = styled.div`
   border-radius: 12px;
   background: #fff;
-  border: 1px solid red;
+  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.10);
   padding: 20px 50px 42px 50px;
   width: 600px;
   height: auto;

@@ -1,6 +1,5 @@
 import { IUser } from '../../interface';
 import {
- 
   useAddUserAvatarMutation,
   useUpdateUserChangeMutation,
 } from '../../services/userApi';
@@ -50,34 +49,33 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
     console.log('1');
   }, [handleSubmit]);
 
-
   return (
     <>
       <S.SettingsContainer>
         <S.SettingsTitle>Настройки профиля</S.SettingsTitle>
-        
+
         <S.Settings>
           <S.SettingsForm onSubmit={handleSubmit(handleChangeInfo)}>
-          <S.SettingsLeft>
-            <S.SettingsFoto>
-              {user.avatar != null ? (
-                <S.SettingsFotoImg src={`${SERVER_URL}/` + user.avatar} />
-              ) : (
-                <S.SettingsFotoImg src="/img/no-foto.png" />
-              )}
-            </S.SettingsFoto>
-            <S.SettingsChangeFotoBtn>
-              Заменить
-              <S.SettingsChangeFotoInput
-                type="file"
-                {...register('avatar',{
-                  onChange: (event) => handleChangeFoto(event)
-                })}
-              />
-            </S.SettingsChangeFotoBtn>
-          </S.SettingsLeft>
+            <S.SettingsLeft>
+              <S.SettingsFoto>
+                {user.avatar != null ? (
+                  <S.SettingsFotoImg src={`${SERVER_URL}/` + user.avatar} />
+                ) : (
+                  <S.SettingsFotoImg src="/img/no-foto.png" />
+                )}
+              </S.SettingsFoto>
+              <S.SettingsChangeFotoBtn>
+                Заменить
+                <S.SettingsChangeFotoInput
+                  type="file"
+                  {...register('avatar', {
+                    onChange: (event) => handleChangeFoto(event),
+                  })}
+                />
+              </S.SettingsChangeFotoBtn>
+            </S.SettingsLeft>
 
-          <S.SettingsRight>
+            <S.SettingsRight>
               <S.SettingsFormItem>
                 <S.SettingsNameInput
                   id="name"
@@ -128,7 +126,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
               >
                 Сохранить
               </S.FormButton>
-          </S.SettingsRight>
+            </S.SettingsRight>
           </S.SettingsForm>
         </S.Settings>
       </S.SettingsContainer>

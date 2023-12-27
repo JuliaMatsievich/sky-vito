@@ -4,7 +4,6 @@ import { MainPage } from './pages/mainPage';
 import { ProfilePage } from './pages/profilePage';
 import { AdvertPage } from './pages/advertPage';
 import { ModalReviews } from './components/modal/modalReviews/modalReviews';
-import { AdvertSettings } from './components/modal/advertSettings/advertSettings';
 import { SellerProfilePage } from './pages/sellerProfilePage';
 import { AuthPageSignIn } from './pages/authPageSignIn';
 import { AuthPageSignUp } from './pages/authPageSignUp';
@@ -22,7 +21,6 @@ export const AppRoutes = () => {
       </Route>
       <Route element={<ProtectedRoute />}>
         <Route path="/modalReviews" element={<ModalReviews />} />
-        <Route path="/advertSettings" element={<AdvertSettings />} />
         <Route path="/" element={<Layout />}>
           <Route path="profile" element={<ProfilePage />} />
         </Route>
