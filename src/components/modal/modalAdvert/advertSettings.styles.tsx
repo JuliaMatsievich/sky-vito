@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { buttonColor, img, subtitle } from '../../../styles/commonStyles.styles';
+import {
+  buttonColor,
+  img,
+  subtitle,
+} from '../../../styles/commonStyles.styles';
 import {
   $buttonColorHover,
   $phoneWidth,

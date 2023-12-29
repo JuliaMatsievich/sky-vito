@@ -6,6 +6,7 @@ import {
   $tabletWidth,
 } from '../../../styles/variables';
 import { Link } from 'react-router-dom';
+import { link } from '../../../styles/commonStyles.styles';
 
 export const AdvertItem = styled.div`
   display: flex;
@@ -33,7 +34,9 @@ export const AdvertImage = styled.div`
   }
 `;
 
-export const AdvertLink = styled(Link)``;
+export const AdvertLink = styled(Link)`
+${link}
+`;
 
 export const AdvertImg = styled.img`
   width: 100%;

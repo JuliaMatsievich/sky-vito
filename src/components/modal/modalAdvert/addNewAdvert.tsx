@@ -7,8 +7,11 @@ import { Footer } from '../../Footer/footer';
 import { Menu } from '../../menu/menu';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { useAddAdvertWithoutImageMutation, useAddImageInAdvertMutation} from '../../../services/advApi';
-// import { IAdvert } from '../../../interface';
+import {
+  useAddAdvertWithoutImageMutation,
+  useAddImageInAdvertMutation,
+} from '../../../services/advApi';
+
 interface IAdvertForm {
   title: string;
   description: string;
@@ -20,21 +23,24 @@ export const AddNewAdvert = () => {
 
   const [advfoto, setAdvfoto] = useState<File[]>([]);
   const [imageSrc, setImageSrc] = useState<string[]>([]);
-  const [addAdvApiWithoutImg] = useAddAdvertWithoutImageMutation()
-  const [addImageInAdvert] = useAddImageInAdvertMutation()
+  const [addAdvApiWithoutImg] = useAddAdvertWithoutImageMutation();
+  const [addImageInAdvert] = useAddImageInAdvertMutation();
 
   const { register, handleSubmit } = useForm<IAdvertForm>();
 
   const handleAddAdvert: SubmitHandler<IAdvertForm> = (data) => {
-    const {title, description, price} = data
-    addAdvApiWithoutImg({title, description, price}).unwrap()
+    const { title, description, price } = data;
+    addAdvApiWithoutImg({ title, description, price })
+      .unwrap()
       .then((res) => {
-        if(advfoto.length > 0) {
-          for (let i = 0; i < advfoto.length ; i++) {
-            addImageInAdvert({pk: res.id, image: advfoto[i]})
+        if (advfoto.length > 0) {
+          for (let i = 0; i < advfoto.length; i++) {
+            addImageInAdvert({ pk: res.id, image: advfoto[i] });
+          }
+          window.location.href=`advert/${res.id}`
         }
-        }
-      })
+      
+      });
   };
 
   const handleAddFoto = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -20,7 +20,9 @@ export const Advert = ({ advert }: IAdvertProps) => {
           </S.AdvertLink>
         </S.AdvertImage>
         <S.AdvertText>
-          <S.AdvertTitle>{advert.title}</S.AdvertTitle>
+          <S.AdvertLink to={`/advert/${advert.id}`}>
+            <S.AdvertTitle>{advert.title}</S.AdvertTitle>
+          </S.AdvertLink>
           <S.AdvertPrice>{advert.price} ₽</S.AdvertPrice>
           <S.AdvertCity>{advert.user.city}</S.AdvertCity>
           <S.AdvertCreated>{advert.created_on}</S.AdvertCreated>

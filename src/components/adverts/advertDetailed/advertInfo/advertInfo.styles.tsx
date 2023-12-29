@@ -5,7 +5,7 @@ import {
   $phoneWidth,
   $sceletonColor,
 } from '../../../../styles/variables';
-import { img, link } from '../../../../styles/commonStyles.styles';
+import { buttonColor, img, link } from '../../../../styles/commonStyles.styles';
 import { Link } from 'react-router-dom';
 
 export const AdvertInfoContainer = styled.div``;
@@ -122,3 +122,16 @@ export const InfoProfileSinceSale = styled.p`
     font-size: 14px;
   }
 `;
+
+export const InfoButtons = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-bottom: 34px;
+`
+export const InfoRedactAdvBtn = styled.button`
+  ${buttonColor}
+`
+
+export const InfoDeleteAdvBtn = styled.button`
+  ${buttonColor}
+`

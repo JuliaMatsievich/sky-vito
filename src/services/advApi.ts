@@ -87,11 +87,13 @@ export const advApi = createApi({
       invalidatesTags: () => [{ type: 'Advert', id: 'ID' }],
     }),
 
-    
-    addImageInAdvert: builder.mutation<IAdvert,{
-      pk: number,
-      image: File;
-    }>({
+    addImageInAdvert: builder.mutation<
+      IAdvert,
+      {
+        pk: number;
+        image: File;
+      }
+    >({
       query: (args) => {
         const formData = new FormData();
         if (args.image) {
@@ -115,5 +117,5 @@ export const {
   useGetAdvertsCurrentUserQuery,
   useAddAdvertMutation,
   useAddAdvertWithoutImageMutation,
-  useAddImageInAdvertMutation
+  useAddImageInAdvertMutation,
 } = advApi;
