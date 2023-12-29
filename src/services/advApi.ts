@@ -66,6 +66,7 @@ export const advApi = createApi({
           header: { 'content-type': 'multypart/form-data' },
         };
       },
+      invalidatesTags: () => [{ type: 'Advert', id: 'ID' }],
     }),
 
     addAdvertWithoutImage: builder.mutation<
@@ -83,6 +84,26 @@ export const advApi = createApi({
           body: args,
         };
       },
+      invalidatesTags: () => [{ type: 'Advert', id: 'ID' }],
+    }),
+
+    
+    addImageInAdvert: builder.mutation<IAdvert,{
+      pk: number,
+      image: File;
+    }>({
+      query: (args) => {
+        const formData = new FormData();
+        if (args.image) {
+          formData.append('file', args.image);
+        }
+        return {
+          url: `/ads/${args.pk}/image`,
+          method: 'POST',
+          body: formData,
+          header: { 'content-type': 'multypart/form-data' },
+        };
+      },
     }),
   }),
 });
@@ -94,4 +115,5 @@ export const {
   useGetAdvertsCurrentUserQuery,
   useAddAdvertMutation,
   useAddAdvertWithoutImageMutation,
+  useAddImageInAdvertMutation
 } = advApi;

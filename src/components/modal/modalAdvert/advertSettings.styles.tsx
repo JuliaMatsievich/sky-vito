@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { buttonColor, subtitle } from '../../../styles/commonStyles.styles';
+import { buttonColor, img, subtitle } from '../../../styles/commonStyles.styles';
 import {
   $buttonColorHover,
   $phoneWidth,
@@ -56,7 +56,7 @@ export const AdvSettingsTitle = styled.h2`
   }
 `;
 
-export const AdvSettingsForm = styled.div`
+export const AdvSettingsForm = styled.form`
   display: flex;
   flex-direction: column;
 `;
@@ -180,9 +180,23 @@ export const FormItemFotoImage = styled.div`
   width: 90px;
   height: 90px;
   background-color: ${$sceletonColor};
+  position: relative;
 `;
 
-export const FormItemFotoImg = styled.img``;
+export const FormItemFotoInput = styled.input`
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  z-index: 1;
+`;
+
+export const FormItemFotoImg = styled.img`
+  ${img}
+`;
 
 export const AdvSettingsBtn = styled.button`
   ${buttonColor}

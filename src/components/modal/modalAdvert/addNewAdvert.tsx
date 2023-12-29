@@ -6,16 +6,53 @@ import { BackBtn } from '../../buttons/backBtn/backBtn';
 import { Footer } from '../../Footer/footer';
 import { Menu } from '../../menu/menu';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { IAdvert } from '../../../interface';
+import { useState } from 'react';
+import { useAddAdvertWithoutImageMutation, useAddImageInAdvertMutation} from '../../../services/advApi';
+// import { IAdvert } from '../../../interface';
+interface IAdvertForm {
+  title: string;
+  description: string;
+  price: number;
+}
 
 export const AddNewAdvert = () => {
   const { windowWidth } = useGetWindowSize();
 
-  const { register, handleSubmit } = useForm<IAdvert>();
+  const [advfoto, setAdvfoto] = useState<File[]>([]);
+  const [imageSrc, setImageSrc] = useState<string[]>([]);
+  const [addAdvApiWithoutImg] = useAddAdvertWithoutImageMutation()
+  const [addImageInAdvert] = useAddImageInAdvertMutation()
 
-  const handleAddAdvert: SubmitHandler<IAdvert> = (data) => {
-    console.log('fffff');
-    console.log('data', data);
+  const { register, handleSubmit } = useForm<IAdvertForm>();
+
+  const handleAddAdvert: SubmitHandler<IAdvertForm> = (data) => {
+    const {title, description, price} = data
+    addAdvApiWithoutImg({title, description, price}).unwrap()
+      .then((res) => {
+        if(advfoto.length > 0) {
+          for (let i = 0; i < advfoto.length ; i++) {
+            addImageInAdvert({pk: res.id, image: advfoto[i]})
+        }
+        }
+      })
+  };
+
+  const handleAddFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files ? event.target.files[0] : null;
+    if (file) {
+      setAdvfoto([...advfoto, file]);
+      if (file.type && !file.type.startsWith('image/')) {
+        console.log('File is not an image.');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImageSrc([...imageSrc, e.target?.result as string]);
+      };
+      reader.readAsDataURL(file);
+      return;
+    }
   };
 
   return (
@@ -32,7 +69,9 @@ export const AddNewAdvert = () => {
                 id="title"
                 type="text"
                 placeholder="Введите название"
-                {...register('title')}
+                {...register('title', {
+                  required: 'Поле не может быть пустым',
+                })}
               ></S.FormItemInput>
               <S.FormItemName htmlFor="title">Название</S.FormItemName>
             </S.AdvSettingsFormItem>
@@ -50,19 +89,58 @@ export const AddNewAdvert = () => {
               </S.FormItemFotoName>
               <S.FormItemFotoContainer>
                 <S.FormItemFotoImage>
-                  <S.FormItemFotoImg />
+                  <S.FormItemFotoInput
+                    type="file"
+                    id="advfoto"
+                    onChange={(event) => handleAddFoto(event)}
+                  />
+                  <S.FormItemFotoImg
+                    src={imageSrc.length > 0 ? imageSrc[0] : '/img/addfile.png'}
+                  />
                 </S.FormItemFotoImage>
+
                 <S.FormItemFotoImage>
-                  <S.FormItemFotoImg />
+                  <S.FormItemFotoInput
+                    type="file"
+                    id="advfoto"
+                    onChange={(event) => handleAddFoto(event)}
+                  />
+                  <S.FormItemFotoImg
+                    src={imageSrc.length > 1 ? imageSrc[1] : '/img/addfile.png'}
+                  />
                 </S.FormItemFotoImage>
+
                 <S.FormItemFotoImage>
-                  <S.FormItemFotoImg />
+                  <S.FormItemFotoInput
+                    type="file"
+                    id="advfoto"
+                    onChange={(event) => handleAddFoto(event)}
+                  />
+                  <S.FormItemFotoImg
+                    src={imageSrc.length > 2 ? imageSrc[2] : '/img/addfile.png'}
+                  />
                 </S.FormItemFotoImage>
+
                 <S.FormItemFotoImage>
-                  <S.FormItemFotoImg />
+                  <S.FormItemFotoInput
+                    type="file"
+                    id="advfoto"
+                    onChange={(event) => handleAddFoto(event)}
+                  />
+                  <S.FormItemFotoImg
+                    src={imageSrc.length > 3 ? imageSrc[3] : '/img/addfile.png'}
+                  />
                 </S.FormItemFotoImage>
+
                 <S.FormItemFotoImage>
-                  <S.FormItemFotoImg />
+                  <S.FormItemFotoInput
+                    type="file"
+                    id="advfoto"
+                    onChange={(event) => handleAddFoto(event)}
+                  />
+                  <S.FormItemFotoImg
+                    src={imageSrc.length > 4 ? imageSrc[4] : '/img/addfile.png'}
+                  />
                 </S.FormItemFotoImage>
               </S.FormItemFotoContainer>
             </S.AdvSettingsFormItemFoto>
