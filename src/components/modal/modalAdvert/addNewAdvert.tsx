@@ -37,9 +37,8 @@ export const AddNewAdvert = () => {
           for (let i = 0; i < advfoto.length; i++) {
             addImageInAdvert({ pk: res.id, image: advfoto[i] });
           }
-          window.location.href=`advert/${res.id}`
+          window.location.href = `/advert/${res.id}`;
         }
-      
       });
   };
 

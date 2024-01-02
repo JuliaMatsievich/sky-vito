@@ -1,14 +1,16 @@
 import { useAppSelector } from './useAppSelector';
 import { useAppDispatch } from './useAppDispatch';
-import { showModal } from '../store/advertSlice';
+import { closeModal, openModal } from '../store/modalSlice';
 
 export const useModal = () => {
-  const isShowModal = useAppSelector((state) => state.adverts.isShowModal);
+  const isShowModal = useAppSelector((state) => state.modal.isShowModal);
   const dispatch = useAppDispatch();
 
-  const handleShowModal = () => {
-    dispatch(showModal());
+  const closeMod = () => dispatch(closeModal());
+  const openMod = (modalName: string) => {
+    dispatch(openModal({ modalName }));
   };
 
-  return { isShowModal, handleShowModal };
+  const modalName = useAppSelector((state) => state.modal.modalName)
+  return { isShowModal, openMod, closeMod, modalName };
 };

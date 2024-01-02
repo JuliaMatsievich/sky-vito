@@ -35,7 +35,7 @@ export const AdvertImage = styled.div`
 `;
 
 export const AdvertLink = styled(Link)`
-${link}
+  ${link}
 `;
 
 export const AdvertImg = styled.img`

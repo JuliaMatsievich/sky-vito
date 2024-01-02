@@ -3,11 +3,13 @@ import { userReducer } from './userSlice';
 import { advApi } from '../services/advApi';
 import { advertReducer } from './advertSlice';
 import { userApi } from '../services/userApi';
+import { modalReducer } from './modalSlice';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     adverts: advertReducer,
+    modal: modalReducer,
     [advApi.reducerPath]: advApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
   },

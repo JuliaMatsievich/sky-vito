@@ -107,6 +107,45 @@ export const advApi = createApi({
         };
       },
     }),
+
+    deleteAdvert: builder.mutation<void, number>({
+      query: (id) => ({
+        url: `/ads/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: () => [{ type: 'Advert', id: 'ID' }],
+    }),
+
+    changeAdvert: builder.mutation<IAdvert, {
+      title: string;
+      description?: string;
+      price?: number;
+      pk: number
+    }>({
+      query: (args) => ({
+        url: `/ads/${args.pk}`,
+        method: 'PATCH',
+        body: {
+          title: args.title,
+          description: args.description,
+          price: args.price
+        }
+      }),
+      invalidatesTags: () => [{ type: 'Advert', id: 'ID' }],
+    }),
+
+    deleteImage: builder.mutation<IAdvert, {
+      pk: number;
+      file_url: string
+    }>({
+      query: ({pk, file_url}) => ({
+        url: `/ads/${pk}/image`,
+        params: `file_url=${file_url}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: () => [{ type: 'Advert', id: 'ID' }],
+    }),
+    
   }),
 });
 
@@ -118,4 +157,7 @@ export const {
   useAddAdvertMutation,
   useAddAdvertWithoutImageMutation,
   useAddImageInAdvertMutation,
+  useDeleteAdvertMutation,
+  useChangeAdvertMutation,
+  useDeleteImageMutation
 } = advApi;

@@ -127,11 +127,11 @@ export const InfoButtons = styled.div`
   display: flex;
   gap: 10px;
   margin-bottom: 34px;
-`
+`;
 export const InfoRedactAdvBtn = styled.button`
   ${buttonColor}
-`
+`;
 
 export const InfoDeleteAdvBtn = styled.button`
   ${buttonColor}
-`
+`;

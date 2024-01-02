@@ -44,8 +44,6 @@ export const userSlice = createSlice({
       state.refreshToken = null;
       // state.user = null
     },
-
-    
   },
 });
 

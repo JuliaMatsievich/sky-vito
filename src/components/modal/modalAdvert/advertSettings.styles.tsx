@@ -209,3 +209,44 @@ export const AdvSettingsBtn = styled.button`
     width: 100%;
   }
 `;
+
+export const ImageDeleteContainer = styled.div`
+  width:15px;
+  height: 15px;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  z-index: 3;
+  background-color: white;
+  cursor: pointer;
+`;
+
+export const ImageDeleteLine = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    border-radius: 2px;
+    background-color: #707070;
+    top: 6px;
+    left: 0px
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+  &:hover::after,
+  &:hover::before {
+    background-color: #0080c1;
+  }
+`;

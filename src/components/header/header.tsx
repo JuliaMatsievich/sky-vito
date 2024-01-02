@@ -7,7 +7,7 @@ import { useModal } from '../../hooks/useModal';
 export const Header = () => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
 
-  const { isShowModal, handleShowModal } = useModal();
+  const { isShowModal, openMod, modalName } = useModal();
 
   const handleClickOut = () => {
     localStorage.clear();
@@ -22,10 +22,10 @@ export const Header = () => {
             <S.HeaderNav>
               {isAuth ? (
                 <>
-                  <S.ButtonNav onClick={handleShowModal}>
+                  <S.ButtonNav onClick={() => openMod('addAdvert')}>
                     Разместить объявление
                   </S.ButtonNav>
-                  {isShowModal ? <AddNewAdvert /> : null}
+                  {isShowModal && modalName==='addAdvert' ? <AddNewAdvert /> : null}
                   <S.HeaderLink to="/profile">
                     <S.ButtonNav>Личный кабинет</S.ButtonNav>
                   </S.HeaderLink>
