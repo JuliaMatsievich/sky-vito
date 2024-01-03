@@ -1,4 +1,5 @@
 import { SERVER_URL } from '../../../constants/url';
+import { formatDateCreatedAdvert } from '../../../helpers/formatDateCreatedFunc';
 import { getFirstCapitalLetter } from '../../../helpers/getFirstCapitalLetterFunc';
 import { IAdvert } from '../../../interface';
 import * as S from './advertCard.styles';
@@ -26,7 +27,7 @@ export const Advert = ({ advert }: IAdvertProps) => {
           </S.AdvertLink>
           <S.AdvertPrice>{advert.price} ₽</S.AdvertPrice>
           <S.AdvertCity>{advert.user.city}</S.AdvertCity>
-          <S.AdvertCreated>{advert.created_on}</S.AdvertCreated>
+          <S.AdvertCreated>{formatDateCreatedAdvert(advert.created_on)}</S.AdvertCreated>
         </S.AdvertText>
       </S.AdvertItem>
     </>

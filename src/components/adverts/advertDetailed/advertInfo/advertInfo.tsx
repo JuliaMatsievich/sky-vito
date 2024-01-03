@@ -13,6 +13,8 @@ import { useModal } from '../../../../hooks/useModal';
 import { AdvertRedact } from '../../../modal/modalAdvert/advertRedact';
 import { ModalReviews } from '../../../modal/modalReviews/modalReviews';
 import { getFirstCapitalLetter } from '../../../../helpers/getFirstCapitalLetterFunc';
+import { formatDateCreatedAdvert } from '../../../../helpers/formatDateCreatedFunc';
+import { formatDateSellsFrom } from '../../../../helpers/formatDateSellsFromFunc';
 
 interface IAdvertInfoProps {
   id: number;
@@ -45,7 +47,7 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
     <>
       <S.AdvertInfoContainer>
         <S.InfoTitle>{getFirstCapitalLetter(advertInfo.title)}</S.InfoTitle>
-        <S.InfoCreated>{advertInfo.created_on}</S.InfoCreated>
+        <S.InfoCreated>{formatDateCreatedAdvert(advertInfo.created_on)}</S.InfoCreated>
         <S.InfoCity>{advertInfo.user.city}</S.InfoCity>
         <S.InfoReviews onClick={() => openMod('reviews')}>
           {comments !== undefined && comments.length > 0
@@ -90,7 +92,7 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
               <S.InfoProfileName>{advertInfo.user.name}</S.InfoProfileName>
             </S.InfoProfileLink>
             <S.InfoProfileSinceSale>
-              Продает с {advertInfo.user.sells_from}
+              Продает с {formatDateSellsFrom(advertInfo.user.sells_from)}
             </S.InfoProfileSinceSale>
           </S.InfoProfileText>
         </S.InfoProfileContainer>
