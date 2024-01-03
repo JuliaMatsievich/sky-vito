@@ -174,19 +174,22 @@ export const advApi = createApi({
       providesTags: () => [{ type: 'Comment', id: 'LIST' }],
     }),
 
-    addComment: builder.mutation<IComment,{
-      pk: number;
-      text: string
-    }>({
+    addComment: builder.mutation<
+      IComment,
+      {
+        pk: number;
+        text: string;
+      }
+    >({
       query: (args) => ({
         url: `/ads/${args.pk}/comments`,
         method: `POST`,
-        body:{
-          text: args.text
-        }
+        body: {
+          text: args.text,
+        },
       }),
       invalidatesTags: () => [{ type: 'Comment', id: 'ID' }],
-    })
+    }),
   }),
 });
 
@@ -205,5 +208,5 @@ export const {
   useGetCommentsAdvertQuery,
   useGetCommentByIdQuery,
   useAddCommentMutation,
-  useLazyGetCommentsAdvertQuery
+  useLazyGetCommentsAdvertQuery,
 } = advApi;

@@ -1,4 +1,5 @@
 import { SERVER_URL } from '../../../constants/url';
+import { getFirstCapitalLetter } from '../../../helpers/getFirstCapitalLetterFunc';
 import { IAdvert } from '../../../interface';
 import * as S from './advertCard.styles';
 
@@ -21,7 +22,7 @@ export const Advert = ({ advert }: IAdvertProps) => {
         </S.AdvertImage>
         <S.AdvertText>
           <S.AdvertLink to={`/advert/${advert.id}`}>
-            <S.AdvertTitle>{advert.title}</S.AdvertTitle>
+            <S.AdvertTitle>{getFirstCapitalLetter(advert.title)}</S.AdvertTitle>
           </S.AdvertLink>
           <S.AdvertPrice>{advert.price} ₽</S.AdvertPrice>
           <S.AdvertCity>{advert.user.city}</S.AdvertCity>

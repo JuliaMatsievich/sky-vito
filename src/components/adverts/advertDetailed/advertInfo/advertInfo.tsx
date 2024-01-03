@@ -12,6 +12,7 @@ import {
 import { useModal } from '../../../../hooks/useModal';
 import { AdvertRedact } from '../../../modal/modalAdvert/advertRedact';
 import { ModalReviews } from '../../../modal/modalReviews/modalReviews';
+import { getFirstCapitalLetter } from '../../../../helpers/getFirstCapitalLetterFunc';
 
 interface IAdvertInfoProps {
   id: number;
@@ -26,7 +27,8 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
   const { isShowModal, openMod, modalName } = useModal();
   const [deleteAdvertApi, {}] = useDeleteAdvertMutation();
   const { data: comments } = useGetCommentsAdvertQuery({ pk: advertInfo.id });
-  const [advertsUserApi, {data: advertsUser}] = useLazyGetAdvertsCurrentUserQuery()
+  const [advertsUserApi, { data: advertsUser }] =
+    useLazyGetAdvertsCurrentUserQuery();
 
   const handleDeleteAdv = (id: number) => {
     deleteAdvertApi(id).unwrap();
@@ -34,20 +36,21 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
   };
 
   useEffect(() => {
-    if(isAuth) {
-      advertsUserApi(null).unwrap()
+    if (isAuth) {
+      advertsUserApi(null).unwrap();
     }
-  },[advertsUser, advertsUserApi, isAuth])
+  }, [advertsUser, advertsUserApi, isAuth]);
 
- 
   return (
     <>
       <S.AdvertInfoContainer>
-        <S.InfoTitle>{advertInfo.title}</S.InfoTitle>
+        <S.InfoTitle>{getFirstCapitalLetter(advertInfo.title)}</S.InfoTitle>
         <S.InfoCreated>{advertInfo.created_on}</S.InfoCreated>
         <S.InfoCity>{advertInfo.user.city}</S.InfoCity>
         <S.InfoReviews onClick={() => openMod('reviews')}>
-          {comments !== undefined && comments.length > 0 ? comments.length + ' отзыва': 'Нет отзывов'}
+          {comments !== undefined && comments.length > 0
+            ? comments.length + ' отзыва'
+            : 'Нет отзывов'}
         </S.InfoReviews>
         {isShowModal && modalName === 'reviews' ? (
           <ModalReviews comments={comments} advId={advertInfo.id} />

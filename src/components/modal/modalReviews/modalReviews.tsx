@@ -9,46 +9,56 @@ import { FC, useState } from 'react';
 import { SERVER_URL } from '../../../constants/url';
 import { IComment } from '../../../interface';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import { useAddCommentMutation,  useLazyGetCommentsAdvertQuery } from '../../../services/advApi';
+import {
+  useAddCommentMutation,
+  useLazyGetCommentsAdvertQuery,
+} from '../../../services/advApi';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ErrorMessage } from '../../error/errorMessage';
 
-
 interface IModalComments {
   comments: IComment[] | undefined;
-  advId: number
+  advId: number;
 }
 
 interface ICommentForm {
-  text: string
+  text: string;
 }
 
 export const ModalReviews: FC<IModalComments> = (props) => {
   const { comments, advId } = props;
-  const [currComments, setCurrComments] = useState<IComment[] | undefined>(comments)
+  const [currComments, setCurrComments] = useState<IComment[] | undefined>(
+    comments,
+  );
   const { windowWidth } = useGetWindowSize();
   const isAuth = useAppSelector((state) => state.user.isAuth);
-  const [addCommentApi, {}] = useAddCommentMutation()
-  const [getComments, {}] = useLazyGetCommentsAdvertQuery()
+  const [addCommentApi, {}] = useAddCommentMutation();
+  const [getComments, {}] = useLazyGetCommentsAdvertQuery();
 
-
-  const {register, handleSubmit, formState: {isDirty, errors, isSubmitSuccessful}, reset} = useForm<ICommentForm>({
+  const {
+    register,
+    handleSubmit,
+    formState: { isDirty, errors, isSubmitSuccessful },
+    reset,
+  } = useForm<ICommentForm>({
     defaultValues: {
-      text: ''
-    }
-  })
+      text: '',
+    },
+  });
 
   const handleAddComment: SubmitHandler<ICommentForm> = async (data) => {
-    const {text} = data;
-    await addCommentApi({pk: advId, text: text}).unwrap()
-    .then(() => {
-      getComments({pk: advId}).unwrap()
-      .then((data) => {
-          setCurrComments(data)
-      })
-      reset()
-    })
-  }
+    const { text } = data;
+    await addCommentApi({ pk: advId, text: text })
+      .unwrap()
+      .then(() => {
+        getComments({ pk: advId })
+          .unwrap()
+          .then((data) => {
+            setCurrComments(data);
+          });
+        reset();
+      });
+  };
 
   return (
     <>
@@ -70,11 +80,18 @@ export const ModalReviews: FC<IModalComments> = (props) => {
                       rows={5}
                       placeholder="Введите отзыв"
                       {...register('text', {
-                        required: 'Поле не может быть пустым'
+                        required: 'Поле не может быть пустым',
                       })}
                     ></S.MReviewsTextarea>
-                    {errors.text && <ErrorMessage message={errors.text.message}/>}
-                    <S.MReviewsBtn disabled={!isDirty || isSubmitSuccessful} type='submit'>Опубликовать</S.MReviewsBtn>
+                    {errors.text && (
+                      <ErrorMessage message={errors.text.message} />
+                    )}
+                    <S.MReviewsBtn
+                      disabled={!isDirty || isSubmitSuccessful}
+                      type="submit"
+                    >
+                      Опубликовать
+                    </S.MReviewsBtn>
                   </S.MReviewsForm>
                 </>
               ) : null}
