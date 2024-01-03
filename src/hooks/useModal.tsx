@@ -11,6 +11,6 @@ export const useModal = () => {
     dispatch(openModal({ modalName }));
   };
 
-  const modalName = useAppSelector((state) => state.modal.modalName)
+  const modalName = useAppSelector((state) => state.modal.modalName);
   return { isShowModal, openMod, closeMod, modalName };
 };

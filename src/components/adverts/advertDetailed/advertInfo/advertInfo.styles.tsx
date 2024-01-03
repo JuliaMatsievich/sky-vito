@@ -54,6 +54,7 @@ export const InfoReviews = styled.a`
   line-height: 130%; /* 20.8px */
   margin-bottom: 34px;
   display: inline-block;
+  cursor: pointer;
   @media (max-width: ${$phoneWidth}) {
     font-size: 14px;
     line-height: normal;

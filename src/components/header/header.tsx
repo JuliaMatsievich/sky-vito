@@ -25,7 +25,9 @@ export const Header = () => {
                   <S.ButtonNav onClick={() => openMod('addAdvert')}>
                     Разместить объявление
                   </S.ButtonNav>
-                  {isShowModal && modalName==='addAdvert' ? <AddNewAdvert /> : null}
+                  {isShowModal && modalName === 'addAdvert' ? (
+                    <AddNewAdvert />
+                  ) : null}
                   <S.HeaderLink to="/profile">
                     <S.ButtonNav>Личный кабинет</S.ButtonNav>
                   </S.HeaderLink>

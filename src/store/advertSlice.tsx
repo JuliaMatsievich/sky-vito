@@ -5,13 +5,13 @@ import { searchAdvertsFunc } from '../helpers/searchFunction';
 interface AdvertsState {
   filteredAdverts: IAdvert[];
   isShowModal: boolean;
-  modalName: string
+  modalName: string;
 }
 
 const initialState: AdvertsState = {
   filteredAdverts: [],
   isShowModal: false,
-  modalName: ''
+  modalName: '',
 };
 
 export const advertsSlice = createSlice({
@@ -28,7 +28,7 @@ export const advertsSlice = createSlice({
 
     showModal(state, action: PayloadAction<{ modalName: string }>) {
       state.isShowModal = !state.isShowModal;
-      state.modalName = action.payload.modalName
+      state.modalName = action.payload.modalName;
     },
   },
 });

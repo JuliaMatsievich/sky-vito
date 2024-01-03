@@ -6,8 +6,13 @@ import { BackBtn } from '../../buttons/backBtn/backBtn';
 import { Footer } from '../../Footer/footer';
 import { Menu } from '../../menu/menu';
 import { FC, useState } from 'react';
-import { useAddImageInAdvertMutation, useChangeAdvertMutation,  useDeleteImageMutation,  useGetAdvertsByIdQuery } from '../../../services/advApi';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import {
+  useAddImageInAdvertMutation,
+  useChangeAdvertMutation,
+  useDeleteImageMutation,
+  useGetAdvertsByIdQuery,
+} from '../../../services/advApi';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 // import { SERVER_URL } from '../../../constants/url';
 import { FormItemFotoImage } from './formItemFotoImage';
 import { SERVER_URL } from '../../../constants/url';
@@ -17,30 +22,33 @@ interface IAdvertForm {
   title: string;
   description: string;
   price: number;
-  images: File[]
+  images: File[];
 }
 
-export const AdvertRedact:FC<{advId: number}> = ({advId}) => {
+export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
   const { windowWidth } = useGetWindowSize();
-  const {data: advert} = useGetAdvertsByIdQuery(advId)
- 
-
+  const { data: advert } = useGetAdvertsByIdQuery(advId);
 
   const [advfoto, setAdvfoto] = useState<File[]>([]);
   // const [imageSrc, setImageSrc] = useState<string[]>([]);
   const [changeAdvApi] = useChangeAdvertMutation();
   const [addImageInAdvert] = useAddImageInAdvertMutation();
-  const [deleteImageApi] = useDeleteImageMutation()
+  const [deleteImageApi] = useDeleteImageMutation();
 
-  const { register, handleSubmit, formState: {isDirty}, reset } = useForm<IAdvertForm>({
-    defaultValues:{
+  const {
+    register,
+    handleSubmit,
+    // formState: { isDirty },
+    reset,
+    control
+  } = useForm<IAdvertForm>({
+    defaultValues: {
       title: advert?.title,
       description: advert?.description,
-      price: advert?.price, 
-      images: []
-    }
+      price: advert?.price,
+      images: [],
+    },
   });
-
 
   const handleAddAdvert: SubmitHandler<IAdvertForm> = (data) => {
     const { title, description, price } = data;
@@ -57,8 +65,8 @@ export const AdvertRedact:FC<{advId: number}> = ({advId}) => {
         reset({
           title: res.title,
           description: res.description,
-          price: res.price
-         })
+          price: res.price,
+        });
       });
   };
 
@@ -121,16 +129,36 @@ export const AdvertRedact:FC<{advId: number}> = ({advId}) => {
                 Фотографии товара<span> не более 5 фотографий</span>
               </S.FormItemFotoName>
               <S.FormItemFotoContainer>
-
-                {advert != undefined && advert?.images.length > 0 ?
-                advert?.images.map((image) => (
+                {advert != undefined && advert?.images.length > 0
+                  ? advert?.images.map((image) => (
+                      <>
+                        <FormItemFotoImage
+                          advfoto={advfoto}
+                          setAdvfoto={setAdvfoto}
+                          deleteImage={() => deleteImage(advId, image.url)}
+                          src={`${SERVER_URL}/` + image.url}
+                        />
+                      </>
+                    ))
+                  : null}
+                {[...Array(5 - (advert?.images.length || 0))].map((_,index) => (
                   <>
-                  <FormItemFotoImage advfoto={advfoto} setAdvfoto={setAdvfoto} deleteImage={()=> deleteImage(advId, image.url)} src={`${SERVER_URL}/` + image.url}/>
+                  <Controller
+                  key={index}
+                  name={`images.${index}`}
+                  control={control}
+                  render={({field})=>(
+                    
+                    <FormItemFotoImage
+                    advfoto={advfoto}
+                    setAdvfoto={setAdvfoto}
+                    src='/img/addfile.png'
+                    {...field}
+                  />
+                  )}
+                  />
                   </>
-                )
-                )
-                : null
-              }
+                ))}
 
                 {/* <S.FormItemFotoImage>
                   <S.ImageDeleteContainer>
@@ -221,7 +249,9 @@ export const AdvertRedact:FC<{advId: number}> = ({advId}) => {
                 <S.FormItemName htmlFor="price">Цена</S.FormItemName>
               </S.FormItemPriceCover>
             </S.AdvSettingsFormItem>
-            <S.AdvSettingsBtn disabled={!isDirty} type="submit">Сохранить</S.AdvSettingsBtn>
+            <S.AdvSettingsBtn  type="submit">
+              Сохранить
+            </S.AdvSettingsBtn>
           </S.AdvSettingsForm>
         </S.AdvSettingsContainer>
       </S.ModalBlock>

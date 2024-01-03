@@ -4,9 +4,13 @@ import * as S from './advertInfo.styles';
 import { PhoneButton } from '../../../buttons/phoneButton/phoneButton';
 import { SERVER_URL } from '../../../../constants/url';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
-import { useDeleteAdvertMutation, useGetAdvertsCurrentUserQuery } from '../../../../services/advApi';
+import {
+  useDeleteAdvertMutation,
+  useGetAdvertsCurrentUserQuery,
+} from '../../../../services/advApi';
 import { useModal } from '../../../../hooks/useModal';
 import { AdvertRedact } from '../../../modal/modalAdvert/advertRedact';
+import { ModalReviews } from '../../../modal/modalReviews/modalReviews';
 
 interface IAdvertInfoProps {
   id: number;
@@ -20,12 +24,12 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
   const { data: advertsUser } = useGetAdvertsCurrentUserQuery(null);
   const { isShowModal, openMod, modalName } = useModal();
-  const [deleteAdvertApi, {}] = useDeleteAdvertMutation(); 
+  const [deleteAdvertApi, {}] = useDeleteAdvertMutation();
 
   const handleDeleteAdv = (id: number) => {
-    deleteAdvertApi(id).unwrap()
-    window.location.href=`/profile`
-  }
+    deleteAdvertApi(id).unwrap();
+    window.location.href = `/profile`;
+  };
 
   return (
     <>
@@ -33,7 +37,10 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
         <S.InfoTitle>{advertInfo.title}</S.InfoTitle>
         <S.InfoCreated>{advertInfo.created_on}</S.InfoCreated>
         <S.InfoCity>{advertInfo.user.city}</S.InfoCity>
-        <S.InfoReviews>23 отзыва</S.InfoReviews>
+        <S.InfoReviews onClick={() => openMod('reviews')}>23 отзыва</S.InfoReviews>
+        {isShowModal && modalName === 'reviews' ? (
+          <ModalReviews advId={advertInfo.id}/>
+        ) : null}
         <S.InfoPrice>{advertInfo.price} ₽</S.InfoPrice>
         {isAuth && advertsUser?.find(({ id }) => id === advertInfo.id) ? (
           <>
@@ -41,13 +48,19 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
               <S.InfoRedactAdvBtn onClick={() => openMod('redact')}>
                 Редактировать
               </S.InfoRedactAdvBtn>
-              <S.InfoDeleteAdvBtn onClick={() => handleDeleteAdv(advertInfo.id)}>Снять с публикации</S.InfoDeleteAdvBtn>
+              <S.InfoDeleteAdvBtn
+                onClick={() => handleDeleteAdv(advertInfo.id)}
+              >
+                Снять с публикации
+              </S.InfoDeleteAdvBtn>
             </S.InfoButtons>
           </>
         ) : (
           <PhoneButton phone={advertInfo.user.phone} />
         )}
-        {isShowModal && modalName==='redact' ? <AdvertRedact advId={advertInfo.id}/> : null}
+        {isShowModal && modalName === 'redact' ? (
+          <AdvertRedact advId={advertInfo.id} />
+        ) : null}
         <S.InfoProfileContainer>
           <S.InfoProfileImage>
             {advertInfo.user.avatar ? (

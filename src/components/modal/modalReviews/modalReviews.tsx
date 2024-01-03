@@ -5,9 +5,20 @@ import { PHONE_WIDTH } from '../../../constants/breakpoints';
 import { BackBtn } from '../../buttons/backBtn/backBtn';
 import { Footer } from '../../Footer/footer';
 import { Menu } from '../../menu/menu';
+import { useGetCommentsAdvertQuery } from '../../../services/advApi';
+import { FC } from 'react';
+import { SERVER_URL } from '../../../constants/url';
 
-export const ModalReviews = () => {
+interface IModalComments {
+  advId: number;
+
+}
+
+export const ModalReviews:FC<IModalComments> = (props) => {
+  const {advId} = props
   const { windowWidth } = useGetWindowSize();
+  const {data: comments} = useGetCommentsAdvertQuery({pk: advId});
+
   return (
     <>
       {windowWidth !== undefined && windowWidth < PHONE_WIDTH ? <Menu /> : null}
@@ -29,7 +40,25 @@ export const ModalReviews = () => {
                 <S.MReviewsBtn>Опубликовать</S.MReviewsBtn>
               </S.MReviewsForm>
               <S.MReviewsReview>
-                <S.ReviewItem>
+                {comments !=undefined ? comments?.map((comment) => (
+                  <S.ReviewItem>
+                  <S.ReviewLeft>
+                    <S.ReviewImage>
+                      <S.ReviewImg src={comment.author.avatar !==undefined ?`${SERVER_URL}/` + comment.author.avatar : "/img/no-foto.png"} alt="avatar" />
+                    </S.ReviewImage>
+                  </S.ReviewLeft>
+                  <S.ReviewRight>
+                    <S.ReviewName>
+                      {comment.author.name} <span>{comment.created_on}</span>
+                    </S.ReviewName>
+                    <S.ReviewTitle>Комментарий</S.ReviewTitle>
+                    <S.ReviewText>
+                     {comment.text}
+                    </S.ReviewText>
+                  </S.ReviewRight>
+                </S.ReviewItem>
+                )) : <div>Комменатриев пока нет</div>}
+                {/* <S.ReviewItem>
                   <S.ReviewLeft>
                     <S.ReviewImage>
                       <S.ReviewImg src="" alt="" />
@@ -154,7 +183,7 @@ export const ModalReviews = () => {
                       aliqua.
                     </S.ReviewText>
                   </S.ReviewRight>
-                </S.ReviewItem>
+                </S.ReviewItem> */}
               </S.MReviewsReview>
             </S.MReviewContent>
           </S.MReviewsScroll>

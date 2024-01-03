@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { buttonColor, subtitle } from '../../../styles/commonStyles.styles';
+import { buttonColor, img, subtitle } from '../../../styles/commonStyles.styles';
 import {
   $greyColor,
   $mainColor,
@@ -30,11 +30,11 @@ export const ModalBlock = styled.div`
 export const MReviewsContainer = styled.div`
   border-radius: 12px;
   background: #fff;
-  border: 1px solid red;
   padding: 20px 12px 57px 50px;
   width: 800px;
   height: auto;
   position: relative;
+  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.10);
 
   @media (max-width: ${$tabletWidth}) {
     width: 600px;
@@ -153,9 +153,12 @@ export const ReviewImage = styled.div`
   background-color: ${$sceletonColor};
   border-radius: 50%;
   flex: 0 0 auto;
+  position: relative;
 `;
 
-export const ReviewImg = styled.img``;
+export const ReviewImg = styled.img`
+${img}
+`;
 
 export const ReviewRight = styled.div``;
 

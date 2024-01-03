@@ -211,7 +211,7 @@ export const AdvSettingsBtn = styled.button`
 `;
 
 export const ImageDeleteContainer = styled.div`
-  width:15px;
+  width: 15px;
   height: 15px;
   position: absolute;
   top: 3px;
@@ -235,7 +235,7 @@ export const ImageDeleteLine = styled.div`
     border-radius: 2px;
     background-color: #707070;
     top: 6px;
-    left: 0px
+    left: 0px;
   }
 
   &::before {
