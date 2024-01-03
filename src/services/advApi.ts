@@ -5,7 +5,7 @@ import { baseQueryWithReauth } from './custom';
 export const advApi = createApi({
   reducerPath: 'advApi',
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['Advert', 'User'],
+  tagTypes: ['Advert', 'User', 'Comment'],
 
   endpoints: (builder) => ({
     getAdverts: builder.query<IAdvert[], null>({
@@ -31,6 +31,7 @@ export const advApi = createApi({
       query: (id) => ({
         url: `/ads/${id}`,
         method: 'GET',
+        headers: { 'content-type': 'application/json' },
       }),
       providesTags: () => [{ type: 'Advert', id: 'ID' }],
     }),
@@ -152,22 +153,40 @@ export const advApi = createApi({
       invalidatesTags: () => [{ type: 'Advert', id: 'ID' }],
     }),
 
-    getCommentsAdvert: builder.query<IComment[], {
-      pk: number
+    getCommentsAdvert: builder.query<
+      IComment[],
+      {
+        pk: number;
+      }
+    >({
+      query: (args) => ({
+        url: `/ads/${args.pk}/comments`,
+        method: 'GET',
+      }),
+      providesTags: () => [{ type: 'Comment', id: 'LIST' }],
+    }),
+
+    getCommentById: builder.query<IComment, number>({
+      query: (id) => ({
+        url: `/comments/${id}`,
+        method: 'GET',
+      }),
+      providesTags: () => [{ type: 'Comment', id: 'LIST' }],
+    }),
+
+    addComment: builder.mutation<IComment,{
+      pk: number;
+      text: string
     }>({
       query: (args) => ({
         url: `/ads/${args.pk}/comments`,
-        method: 'GET'
-      })
-    }),
-
-    getCommentById:  builder.query<IComment, number>({
-      query: (id) => ({
-        url: `/comments/${id}`,
-        method: 'GET'
-      })
-    }), 
-    
+        method: `POST`,
+        body:{
+          text: args.text
+        }
+      }),
+      invalidatesTags: () => [{ type: 'Comment', id: 'ID' }],
+    })
   }),
 });
 
@@ -176,6 +195,7 @@ export const {
   useGetAdvertsByIdQuery,
   useGetAdvertsUserQuery,
   useGetAdvertsCurrentUserQuery,
+  useLazyGetAdvertsCurrentUserQuery,
   useAddAdvertMutation,
   useAddAdvertWithoutImageMutation,
   useAddImageInAdvertMutation,
@@ -183,5 +203,7 @@ export const {
   useChangeAdvertMutation,
   useDeleteImageMutation,
   useGetCommentsAdvertQuery,
-  useGetCommentByIdQuery
+  useGetCommentByIdQuery,
+  useAddCommentMutation,
+  useLazyGetCommentsAdvertQuery
 } = advApi;

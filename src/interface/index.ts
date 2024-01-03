@@ -31,5 +31,5 @@ export interface IComment {
   id: number;
   text: string;
   created_on: string;
-  author: IUser
+  author: IUser;
 }

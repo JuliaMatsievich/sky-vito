@@ -5,19 +5,50 @@ import { PHONE_WIDTH } from '../../../constants/breakpoints';
 import { BackBtn } from '../../buttons/backBtn/backBtn';
 import { Footer } from '../../Footer/footer';
 import { Menu } from '../../menu/menu';
-import { useGetCommentsAdvertQuery } from '../../../services/advApi';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { SERVER_URL } from '../../../constants/url';
+import { IComment } from '../../../interface';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { useAddCommentMutation,  useLazyGetCommentsAdvertQuery } from '../../../services/advApi';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { ErrorMessage } from '../../error/errorMessage';
+
 
 interface IModalComments {
-  advId: number;
-
+  comments: IComment[] | undefined;
+  advId: number
 }
 
-export const ModalReviews:FC<IModalComments> = (props) => {
-  const {advId} = props
+interface ICommentForm {
+  text: string
+}
+
+export const ModalReviews: FC<IModalComments> = (props) => {
+  const { comments, advId } = props;
+  const [currComments, setCurrComments] = useState<IComment[] | undefined>(comments)
   const { windowWidth } = useGetWindowSize();
-  const {data: comments} = useGetCommentsAdvertQuery({pk: advId});
+  const isAuth = useAppSelector((state) => state.user.isAuth);
+  const [addCommentApi, {}] = useAddCommentMutation()
+  const [getComments, {}] = useLazyGetCommentsAdvertQuery()
+
+
+  const {register, handleSubmit, formState: {isDirty, errors, isSubmitSuccessful}, reset} = useForm<ICommentForm>({
+    defaultValues: {
+      text: ''
+    }
+  })
+
+  const handleAddComment: SubmitHandler<ICommentForm> = async (data) => {
+    const {text} = data;
+    await addCommentApi({pk: advId, text: text}).unwrap()
+    .then(() => {
+      getComments({pk: advId}).unwrap()
+      .then((data) => {
+          setCurrComments(data)
+      })
+      reset()
+    })
+  }
 
   return (
     <>
@@ -29,161 +60,53 @@ export const ModalReviews:FC<IModalComments> = (props) => {
           <S.MReviewsTitle>Отзывы о товаре</S.MReviewsTitle>
           <S.MReviewsScroll>
             <S.MReviewContent>
-              <S.MReviewsAdd className="mreviews__add">
-                Добавить отзыв
-              </S.MReviewsAdd>
-              <S.MReviewsForm>
-                <S.MReviewsTextarea
-                  rows={5}
-                  placeholder="Введите отзыв"
-                ></S.MReviewsTextarea>
-                <S.MReviewsBtn>Опубликовать</S.MReviewsBtn>
-              </S.MReviewsForm>
+              {isAuth ? (
+                <>
+                  <S.MReviewsAdd className="mreviews__add">
+                    Добавить отзыв
+                  </S.MReviewsAdd>
+                  <S.MReviewsForm onSubmit={handleSubmit(handleAddComment)}>
+                    <S.MReviewsTextarea
+                      rows={5}
+                      placeholder="Введите отзыв"
+                      {...register('text', {
+                        required: 'Поле не может быть пустым'
+                      })}
+                    ></S.MReviewsTextarea>
+                    {errors.text && <ErrorMessage message={errors.text.message}/>}
+                    <S.MReviewsBtn disabled={!isDirty || isSubmitSuccessful} type='submit'>Опубликовать</S.MReviewsBtn>
+                  </S.MReviewsForm>
+                </>
+              ) : null}
               <S.MReviewsReview>
-                {comments !=undefined ? comments?.map((comment) => (
-                  <S.ReviewItem>
-                  <S.ReviewLeft>
-                    <S.ReviewImage>
-                      <S.ReviewImg src={comment.author.avatar !==undefined ?`${SERVER_URL}/` + comment.author.avatar : "/img/no-foto.png"} alt="avatar" />
-                    </S.ReviewImage>
-                  </S.ReviewLeft>
-                  <S.ReviewRight>
-                    <S.ReviewName>
-                      {comment.author.name} <span>{comment.created_on}</span>
-                    </S.ReviewName>
-                    <S.ReviewTitle>Комментарий</S.ReviewTitle>
-                    <S.ReviewText>
-                     {comment.text}
-                    </S.ReviewText>
-                  </S.ReviewRight>
-                </S.ReviewItem>
-                )) : <div>Комменатриев пока нет</div>}
-                {/* <S.ReviewItem>
-                  <S.ReviewLeft>
-                    <S.ReviewImage>
-                      <S.ReviewImg src="" alt="" />
-                    </S.ReviewImage>
-                  </S.ReviewLeft>
-                  <S.ReviewRight>
-                    <S.ReviewName>
-                      Олег <span>14 августа</span>
-                    </S.ReviewName>
-                    <S.ReviewTitle>Комментарий</S.ReviewTitle>
-                    <S.ReviewText>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </S.ReviewText>
-                  </S.ReviewRight>
-                </S.ReviewItem>
-                <S.ReviewItem>
-                  <S.ReviewLeft>
-                    <S.ReviewImage>
-                      <S.ReviewImg src="" alt="" />
-                    </S.ReviewImage>
-                  </S.ReviewLeft>
-                  <S.ReviewRight>
-                    <S.ReviewName>
-                      Олег <span>14 августа</span>
-                    </S.ReviewName>
-                    <S.ReviewTitle>Комментарий</S.ReviewTitle>
-                    <S.ReviewText>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </S.ReviewText>
-                  </S.ReviewRight>
-                </S.ReviewItem>
-                <S.ReviewItem>
-                  <S.ReviewLeft>
-                    <S.ReviewImage>
-                      <S.ReviewImg src="" alt="" />
-                    </S.ReviewImage>
-                  </S.ReviewLeft>
-                  <S.ReviewRight>
-                    <S.ReviewName>
-                      Олег <span>14 августа</span>
-                    </S.ReviewName>
-                    <S.ReviewTitle>Комментарий</S.ReviewTitle>
-                    <S.ReviewText>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </S.ReviewText>
-                  </S.ReviewRight>
-                </S.ReviewItem>
-                <S.ReviewItem>
-                  <S.ReviewLeft>
-                    <S.ReviewImage>
-                      <S.ReviewImg src="" alt="" />
-                    </S.ReviewImage>
-                  </S.ReviewLeft>
-                  <S.ReviewRight>
-                    <S.ReviewName>
-                      Олег <span>14 августа</span>
-                    </S.ReviewName>
-                    <S.ReviewTitle>Комментарий</S.ReviewTitle>
-                    <S.ReviewText>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </S.ReviewText>
-                  </S.ReviewRight>
-                </S.ReviewItem>
-                <S.ReviewItem>
-                  <S.ReviewLeft>
-                    <S.ReviewImage>
-                      <S.ReviewImg src="" alt="" />
-                    </S.ReviewImage>
-                  </S.ReviewLeft>
-                  <S.ReviewRight>
-                    <S.ReviewName>
-                      Олег <span>14 августа</span>
-                    </S.ReviewName>
-                    <S.ReviewTitle>Комментарий</S.ReviewTitle>
-                    <S.ReviewText>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </S.ReviewText>
-                  </S.ReviewRight>
-                </S.ReviewItem>
-                <S.ReviewItem>
-                  <S.ReviewLeft>
-                    <S.ReviewImage>
-                      <S.ReviewImg src="" alt="" />
-                    </S.ReviewImage>
-                  </S.ReviewLeft>
-                  <S.ReviewRight>
-                    <S.ReviewName>
-                      Олег <span>14 августа</span>
-                    </S.ReviewName>
-                    <S.ReviewTitle>Комментарий</S.ReviewTitle>
-                    <S.ReviewText>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </S.ReviewText>
-                  </S.ReviewRight>
-                </S.ReviewItem>
-                <S.ReviewItem>
-                  <S.ReviewLeft>
-                    <S.ReviewImage>
-                      <S.ReviewImg src="" alt="" />
-                    </S.ReviewImage>
-                  </S.ReviewLeft>
-                  <S.ReviewRight>
-                    <S.ReviewName>
-                      Олег <span>14 августа</span>
-                    </S.ReviewName>
-                    <S.ReviewTitle>Комментарий</S.ReviewTitle>
-                    <S.ReviewText>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </S.ReviewText>
-                  </S.ReviewRight>
-                </S.ReviewItem> */}
+                {currComments != undefined && currComments.length > 0 ? (
+                  currComments?.map((comment) => (
+                    <S.ReviewItem key={comment.id}>
+                      <S.ReviewLeft>
+                        <S.ReviewImage>
+                          <S.ReviewImg
+                            src={
+                              comment.author.avatar !== undefined
+                                ? `${SERVER_URL}/` + comment.author.avatar
+                                : '/img/no-foto.png'
+                            }
+                            alt="avatar"
+                          />
+                        </S.ReviewImage>
+                      </S.ReviewLeft>
+                      <S.ReviewRight>
+                        <S.ReviewName>
+                          {comment.author.name}{' '}
+                          <span>{comment.created_on}</span>
+                        </S.ReviewName>
+                        <S.ReviewTitle>Комментарий</S.ReviewTitle>
+                        <S.ReviewText>{comment.text}</S.ReviewText>
+                      </S.ReviewRight>
+                    </S.ReviewItem>
+                  ))
+                ) : (
+                  <div>Отзывов пока нет</div>
+                )}
               </S.MReviewsReview>
             </S.MReviewContent>
           </S.MReviewsScroll>

@@ -40,7 +40,7 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
     handleSubmit,
     // formState: { isDirty },
     reset,
-    control
+    control,
   } = useForm<IAdvertForm>({
     defaultValues: {
       title: advert?.title,
@@ -141,24 +141,25 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
                       </>
                     ))
                   : null}
-                {[...Array(5 - (advert?.images.length || 0))].map((_,index) => (
-                  <>
-                  <Controller
-                  key={index}
-                  name={`images.${index}`}
-                  control={control}
-                  render={({field})=>(
-                    
-                    <FormItemFotoImage
-                    advfoto={advfoto}
-                    setAdvfoto={setAdvfoto}
-                    src='/img/addfile.png'
-                    {...field}
-                  />
-                  )}
-                  />
-                  </>
-                ))}
+                {[...Array(5 - (advert?.images.length || 0))].map(
+                  (_, index) => (
+                    <>
+                      <Controller
+                        key={index}
+                        name={`images.${index}`}
+                        control={control}
+                        render={({ field }) => (
+                          <FormItemFotoImage
+                            advfoto={advfoto}
+                            setAdvfoto={setAdvfoto}
+                            src="/img/addfile.png"
+                            {...field}
+                          />
+                        )}
+                      />
+                    </>
+                  ),
+                )}
 
                 {/* <S.FormItemFotoImage>
                   <S.ImageDeleteContainer>
@@ -249,9 +250,7 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
                 <S.FormItemName htmlFor="price">Цена</S.FormItemName>
               </S.FormItemPriceCover>
             </S.AdvSettingsFormItem>
-            <S.AdvSettingsBtn  type="submit">
-              Сохранить
-            </S.AdvSettingsBtn>
+            <S.AdvSettingsBtn type="submit">Сохранить</S.AdvSettingsBtn>
           </S.AdvSettingsForm>
         </S.AdvSettingsContainer>
       </S.ModalBlock>

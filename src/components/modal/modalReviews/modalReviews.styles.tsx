@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { buttonColor, img, subtitle } from '../../../styles/commonStyles.styles';
+import {
+  buttonColor,
+  img,
+  subtitle,
+} from '../../../styles/commonStyles.styles';
 import {
   $greyColor,
   $mainColor,
@@ -34,7 +38,7 @@ export const MReviewsContainer = styled.div`
   width: 800px;
   height: auto;
   position: relative;
-  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.1);
 
   @media (max-width: ${$tabletWidth}) {
     width: 600px;
@@ -157,7 +161,7 @@ export const ReviewImage = styled.div`
 `;
 
 export const ReviewImg = styled.img`
-${img}
+  ${img}
 `;
 
 export const ReviewRight = styled.div``;

@@ -36,6 +36,12 @@ body {
 button {
 	cursor: pointer
 }
+
+textarea {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 14px;
+}
 `;
 
 export const Wrapper = styled.div`
@@ -43,3 +49,4 @@ export const Wrapper = styled.div`
   min-height: 100%;
   background-color: #fff;
 `;
+

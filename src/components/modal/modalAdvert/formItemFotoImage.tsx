@@ -13,8 +13,7 @@ interface IFormInputImage {
 export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
   const { advfoto, setAdvfoto, deleteImage, src } = props;
   const [imageSrc, setImageSrc] = useState<string[]>([]);
-//   const [addImageInAdvert] = useAddImageInAdvertMutation();
-  
+  //   const [addImageInAdvert] = useAddImageInAdvertMutation();
 
   const handleAddFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
@@ -34,10 +33,10 @@ export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
     }
   };
 
-const handleDeleteImage = () => {
-	setImageSrc([]);
-	if(deleteImage != undefined) deleteImage()
-}
+  const handleDeleteImage = () => {
+    setImageSrc([]);
+    if (deleteImage != undefined) deleteImage();
+  };
 
   return (
     <>
@@ -54,9 +53,7 @@ const handleDeleteImage = () => {
           onChange={(event) => handleAddFoto(event)}
         />
         {imageSrc.length > 0 ? (
-          <S.FormItemFotoImg
-            src = {imageSrc[0]} 
-          />
+          <S.FormItemFotoImg src={imageSrc[0]} />
         ) : (
           <S.FormItemFotoImg src={src ? src : '/img/addfile.png'} />
         )}

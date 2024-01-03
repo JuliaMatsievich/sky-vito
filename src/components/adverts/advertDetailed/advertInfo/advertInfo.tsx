@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { IUser } from '../../../../interface';
 import * as S from './advertInfo.styles';
 import { PhoneButton } from '../../../buttons/phoneButton/phoneButton';
@@ -6,7 +6,8 @@ import { SERVER_URL } from '../../../../constants/url';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import {
   useDeleteAdvertMutation,
-  useGetAdvertsCurrentUserQuery,
+  useGetCommentsAdvertQuery,
+  useLazyGetAdvertsCurrentUserQuery,
 } from '../../../../services/advApi';
 import { useModal } from '../../../../hooks/useModal';
 import { AdvertRedact } from '../../../modal/modalAdvert/advertRedact';
@@ -22,24 +23,34 @@ interface IAdvertInfoProps {
 
 export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
-  const { data: advertsUser } = useGetAdvertsCurrentUserQuery(null);
   const { isShowModal, openMod, modalName } = useModal();
   const [deleteAdvertApi, {}] = useDeleteAdvertMutation();
+  const { data: comments } = useGetCommentsAdvertQuery({ pk: advertInfo.id });
+  const [advertsUserApi, {data: advertsUser}] = useLazyGetAdvertsCurrentUserQuery()
 
   const handleDeleteAdv = (id: number) => {
     deleteAdvertApi(id).unwrap();
     window.location.href = `/profile`;
   };
 
+  useEffect(() => {
+    if(isAuth) {
+      advertsUserApi(null).unwrap()
+    }
+  },[advertsUser, advertsUserApi, isAuth])
+
+ 
   return (
     <>
       <S.AdvertInfoContainer>
         <S.InfoTitle>{advertInfo.title}</S.InfoTitle>
         <S.InfoCreated>{advertInfo.created_on}</S.InfoCreated>
         <S.InfoCity>{advertInfo.user.city}</S.InfoCity>
-        <S.InfoReviews onClick={() => openMod('reviews')}>23 отзыва</S.InfoReviews>
+        <S.InfoReviews onClick={() => openMod('reviews')}>
+          {comments !== undefined && comments.length > 0 ? comments.length + ' отзыва': 'Нет отзывов'}
+        </S.InfoReviews>
         {isShowModal && modalName === 'reviews' ? (
-          <ModalReviews advId={advertInfo.id}/>
+          <ModalReviews comments={comments} advId={advertInfo.id} />
         ) : null}
         <S.InfoPrice>{advertInfo.price} ₽</S.InfoPrice>
         {isAuth && advertsUser?.find(({ id }) => id === advertInfo.id) ? (
