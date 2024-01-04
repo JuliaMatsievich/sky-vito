@@ -1,7 +1,5 @@
 import { FC, useState } from 'react';
 import * as S from './advertSettings.styles';
-// import { useAddImageInAdvertMutation } from '../../../services/advApi';
-// import { SERVER_URL } from '../../../constants/url';
 
 interface IFormInputImage {
   advfoto: File[];
@@ -41,7 +39,7 @@ export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
   return (
     <>
       <S.FormItemFotoImage>
-        {imageSrc ? (
+        {src !== '/img/addfile.png' || imageSrc.length > 0 ? (
           <S.ImageDeleteContainer onClick={handleDeleteImage}>
             <S.ImageDeleteLine></S.ImageDeleteLine>
           </S.ImageDeleteContainer>

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import {
   buttonColor,
-  centralContainer,
   img,
   subtitle,
 } from '../../styles/commonStyles.styles';
@@ -13,7 +12,6 @@ import {
 } from '../../styles/variables';
 
 export const SettingsContainer = styled.div`
-  /* ${centralContainer}; */
   margin-bottom: 70px;
   @media (max-width: ${$tabletWidth}) {
     margin-bottom: 40px;
@@ -32,15 +30,6 @@ export const FormImage = styled.div`
 `;
 
 export const Settings = styled.div`
-  /* display: flex;
-  gap: 50px;
-  flex-wrap: wrap;
-
-  @media (max-width: ${$tabletWidth}) {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  } */
 `;
 
 export const SettingsLeft = styled.div`
@@ -86,16 +75,14 @@ export const SettingsChangeFotoInput = styled.input`
 
 export const SettingsRight = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   max-width: 614px;
+  flex-direction: column;
 `;
 export const SettingsForm = styled.form`
-  /* display: flex;
-  flex-wrap: wrap;
-  max-width: 614px; */
   display: flex;
   gap: 50px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 
   @media (max-width: ${$tabletWidth}) {
     flex-direction: column;
@@ -107,7 +94,7 @@ export const SettingsForm = styled.form`
 export const SettingsUsername = styled.div`
   display: flex;
   gap: 14px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 `;
 
 export const SettingsFormItem = styled.div`
@@ -127,12 +114,12 @@ export const SettingsLabel = styled.label`
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 150%; /* 24px */
+  line-height: 150%; 
 
   @media (max-width: ${$phoneWidth}) {
     font-size: 14px;
     font-weight: 400;
-    line-height: 150%; /* 21px */
+    line-height: 150%; 
   }
 `;
 
@@ -146,7 +133,7 @@ export const SettingsInput = styled.input`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 150%; /* 24px */
+  line-height: 150%; 
 
   @media (max-width: ${$phoneWidth}) {
     border-radius: 30px;
@@ -205,7 +192,7 @@ export const SettingsPhoneInput = styled(SettingsInput)`
 
 export const FormButton = styled.button`
   ${buttonColor}
-
+  width: 154px;
   @media (max-width: ${$tabletWidth}) {
     width: 100%;
   }

@@ -1,23 +1,33 @@
 import { useState } from 'react';
-// import { useAppDispatch } from '../../hooks/useAppDispatch';
 import * as S from './authorization.styles';
 import { useGetAuthRegisterMutation } from '../../services/userApi';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { ErrorMessage } from '../error/errorMessage';
+
+interface ISignUpFrom {
+  email: string;
+  password: string;
+  repeatPassword: string;
+  name?: string;
+  surname?: string;
+  city?: string;
+}
 
 export const SignUp = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordSecond, setPasswordSecond] = useState('');
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [city, setCity] = useState('');
+
+  const [error, setError] = useState<string | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { isDirty, errors, isSubmitting },
+    getValues
+  } = useForm<ISignUpFrom>();
 
   const [signUpApi, {}] = useGetAuthRegisterMutation();
 
-  // const dispatch = useAppDispatch();
-
-  const handleClickSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const handleClickSignUp: SubmitHandler<ISignUpFrom> = async (data) => {
+    const { email, password, name, surname, city } = data;
     try {
       await signUpApi({
         password,
@@ -27,19 +37,12 @@ export const SignUp = () => {
         city,
       })
         .unwrap()
-        .then((data) => {
-          // const { access_token, refresh_token } = data;
-          // dispatch(
-          //   setToken({
-          //     accessToken: access_token,
-          //     refreshToken: refresh_token,
-          //   }),
-          // );
-          console.log('data', data);
+        .then(() => {
           window.location.href = '/signin';
         });
     } catch (error) {
       console.log('error', error);
+      setError('Что-то пошло не так, попробуйте позже');
     }
   };
 
@@ -51,66 +54,98 @@ export const SignUp = () => {
             <S.AuthLogo>
               <S.AuthLogoImg src="/img/logo-modal.png" alt="logo" />
             </S.AuthLogo>
-            <S.AuthForm
-              onSubmit={(e) => {
-                handleClickSignUp(e);
-              }}
-            >
+            <S.AuthForm onSubmit={handleSubmit(handleClickSignUp)}>
               <S.AuthFormLogin
-                type="text"
-                name="login"
+                type="email"
                 placeholder="email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
+                {...register('email', {
+                  required: 'Поле email не должно быть пустым',
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: 'Некорректный адрес электронной почты',
+                  },
+                })}
               />
+              {errors.email && <ErrorMessage message={errors.email.message} />}
               <S.AuthFormPassword
                 type="password"
-                name="password"
                 placeholder="Пароль"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
+                {...register('password', {
+                  required: 'Поле Пароль не может быть пустым',
+                  minLength: {
+                    value: 6,
+                    message: 'Минимальная длина пароля 6 символов',
+                  },
+                  maxLength: {
+                    value: 16,
+                    message: 'Максимальная длина пароля 16 символов',
+                  },
+                  pattern: {
+                    value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,16}$/,
+                    message: 'Пароль должен содержать латинские буквы и цифры',
+                  },
+                })}
               />
+              {errors.password && <ErrorMessage message={errors.password.message} />}
               <S.AuthFormPasswordSecond
                 type="password"
-                name="passwordSecond"
                 placeholder="Повторите пароль"
-                value={passwordSecond}
-                onChange={(e) => {
-                  setPasswordSecond(e.target.value);
-                }}
+                {...register('repeatPassword', {
+                  validate: (value) => value === getValues('password') || 'Пароли не совпадают',
+                  required: 'Повторите пароль',
+                })}
               />
+              {errors.repeatPassword && <ErrorMessage message={errors.repeatPassword.message} />}
               <S.AuthFormName
                 type="text"
-                name="name"
                 placeholder="Имя (необязательно)"
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
+                {...register('name', {
+                  required: false,
+                  minLength: {
+                    value: 3,
+                    message: 'Минимальная длина имени 3 символа',
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: 'Максимальная длина имени 20 символов',
+                  },
+                })}                
               />
+              {errors.name && <ErrorMessage message={errors.name.message} />}
               <S.AuthFormSurname
                 type="text"
-                name="surname"
                 placeholder="Фаимлия (необязательно)"
-                value={surname}
-                onChange={(e) => {
-                  setSurname(e.target.value);
-                }}
+                {...register('surname', {
+                  required: false,
+                  minLength: {
+                    value: 3,
+                    message: 'Минимальная длина имени 3 символа',
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: 'Максимальная длина имени 20 символов',
+                  },
+                })} 
               />
+              {errors.surname && <ErrorMessage message={errors.surname.message} />}
               <S.AuthFormCity
                 type="text"
-                name="city"
                 placeholder="Город (необязательно)"
-                value={city}
-                onChange={(e) => {
-                  setCity(e.target.value);
-                }}
+                {...register('city', {
+                  required: false,
+                  minLength: {
+                    value: 3,
+                    message: 'Минимальная длина города 3 символа',
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: 'Максимальная длина города 20 символов',
+                  },
+                })}
               />
-              <S.AuthFormBtnSignUp>Зарегистрироваться</S.AuthFormBtnSignUp>
+              {errors.city && <ErrorMessage message={errors.city.message} />}
+              {error ? <ErrorMessage message={error}/> : null}
+              <S.AuthFormBtnSignUp disabled={!isDirty || isSubmitting} type='submit'>Зарегистрироваться</S.AuthFormBtnSignUp>
             </S.AuthForm>
           </S.AuthModalBlockSignUp>
         </S.AuthContainer>

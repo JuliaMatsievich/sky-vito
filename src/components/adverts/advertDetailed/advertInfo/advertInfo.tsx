@@ -47,7 +47,9 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
     <>
       <S.AdvertInfoContainer>
         <S.InfoTitle>{getFirstCapitalLetter(advertInfo.title)}</S.InfoTitle>
-        <S.InfoCreated>{formatDateCreatedAdvert(advertInfo.created_on)}</S.InfoCreated>
+        <S.InfoCreated>
+          {formatDateCreatedAdvert(advertInfo.created_on)}
+        </S.InfoCreated>
         <S.InfoCity>{advertInfo.user.city}</S.InfoCity>
         <S.InfoReviews onClick={() => openMod('reviews')}>
           {comments !== undefined && comments.length > 0
@@ -57,7 +59,7 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
         {isShowModal && modalName === 'reviews' ? (
           <ModalReviews comments={comments} advId={advertInfo.id} />
         ) : null}
-        <S.InfoPrice>{advertInfo.price} ₽</S.InfoPrice>
+        <S.InfoPrice>{advertInfo.price.toLocaleString()} ₽</S.InfoPrice>
         {isAuth && advertsUser?.find(({ id }) => id === advertInfo.id) ? (
           <>
             <S.InfoButtons>

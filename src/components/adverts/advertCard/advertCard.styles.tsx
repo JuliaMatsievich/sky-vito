@@ -66,12 +66,13 @@ export const AdvertTitle = styled.div`
   font-weight: 500;
   line-height: 120%; /* 26.4px */
   margin-bottom: 10px;
-  /* height: 52px; */
-  /* overflow: hidden; */
-  /* white-space: nowrap; */
-  /* -webkit-line-clamp: 2; количество строк */
-  /* -webkit-box-orient: vertical; */
-  /* text-overflow: ellipsis; */
+  position: relative;
+
+  &:hover span {
+  visibility: visible;
+  opacity: 1;
+}
+
 
   @media (max-width: ${$tabletWidth}) {
     font-size: 18px;
@@ -82,6 +83,26 @@ export const AdvertTitle = styled.div`
     font-size: 14px;
   }
 `;
+
+export const Tooltip = styled.span`
+  visibility: hidden;
+  width: 200px;
+  background-color: #fff;
+  color:  ${$mainColor};
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 16px;
+  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.10);
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Расположение подсказки относительно основного текста */
+  left: 50%;
+  margin-left: -60px; /* Центрирование подсказки */
+ 
+  opacity: 0; /* Начальная прозрачность */
+  transition: opacity 0.3s; /* Плавное появление */
+`
 
 export const AdvertPrice = styled.div`
   font-size: 22px;
@@ -120,3 +141,7 @@ export const AdvertCreated = styled(AdvertCity)`
   margin-bottom: 0px;
   overflow: hidden;
 `;
+
+
+
+ 

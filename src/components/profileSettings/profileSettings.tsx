@@ -6,6 +6,7 @@ import {
 import * as S from './profileSettings.styles';
 import { SERVER_URL } from '../../constants/url';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { ErrorMessage } from '../error/errorMessage';
 
 interface ProfileUser {
   user: IUser;
@@ -15,7 +16,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
   const {
     register,
     handleSubmit,
-    formState: { isDirty },
+    formState: { isDirty, errors },
     reset,
   } = useForm<IUser>({
     defaultValues: {
@@ -58,6 +59,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
     }
   };
 
+
   return (
     <>
       <S.SettingsContainer>
@@ -78,6 +80,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
                 <S.SettingsChangeFotoInput
                   type="file"
                   id="avatar"
+                  accept="image/*"
                   {...register('avatar', {
                     onChange: (event) => handleChangeFoto(event),
                   })}
@@ -86,28 +89,32 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
             </S.SettingsLeft>
 
             <S.SettingsRight>
-              <S.SettingsFormItem>
-                <S.SettingsNameInput
-                  id="name"
-                  type="text"
-                  placeholder="Введите имя"
-                  {...register('name')}
-                />
-                <S.SettingsNameLabel htmlFor="name">Имя</S.SettingsNameLabel>
-              </S.SettingsFormItem>
+              <S.SettingsUsername>
+                <S.SettingsFormItem>
+                  <S.SettingsNameInput
+                    id="name"
+                    type="text"
+                    placeholder="Введите имя"
+                    {...register('name', {
+                      required: 'Поле Имя не может быть пустым',
+                    })}
+                  />
+                  <S.SettingsNameLabel htmlFor="name">Имя</S.SettingsNameLabel>
+                </S.SettingsFormItem>
 
-              <S.SettingsFormItem>
-                <S.SettingsSurnameInput
-                  id="surname"
-                  type="text"
-                  placeholder="Введите фамилию"
-                  {...register('surname')}
-                />
-                <S.SettingsSurnameLabel htmlFor="surname">
-                  Фамилия
-                </S.SettingsSurnameLabel>
-              </S.SettingsFormItem>
-
+                <S.SettingsFormItem>
+                  <S.SettingsSurnameInput
+                    id="surname"
+                    type="text"
+                    placeholder="Введите фамилию"
+                    {...register('surname')}
+                  />
+                  <S.SettingsSurnameLabel htmlFor="surname">
+                    Фамилия
+                  </S.SettingsSurnameLabel>
+                </S.SettingsFormItem>
+              </S.SettingsUsername>
+              {errors.name && <ErrorMessage message={errors.name.message} />}
               <S.SettingsFormItem>
                 <S.SettingsCityInput
                   id="city"
@@ -119,11 +126,19 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
               </S.SettingsFormItem>
 
               <S.SettingsFormItem>
+                {errors.phone && (
+                  <ErrorMessage message={errors.phone.message} />
+                )}
                 <S.SettingsPhoneInput
                   id="phone"
                   type="tel"
                   placeholder="Введите номер телефона"
-                  {...register('phone')}
+                  {...register('phone', {
+                    pattern: {
+                      value: /\+?[0-9\s\-\(\)]+/,
+                      message: 'Введите корректный номер телефона',
+                    },
+                  })}
                 />
                 <S.SettingsPhoneLabel htmlFor="phone">
                   Телефон

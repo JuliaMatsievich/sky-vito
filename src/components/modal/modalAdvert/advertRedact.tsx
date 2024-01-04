@@ -13,11 +13,10 @@ import {
   useGetAdvertsByIdQuery,
 } from '../../../services/advApi';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-// import { SERVER_URL } from '../../../constants/url';
 import { FormItemFotoImage } from './formItemFotoImage';
 import { SERVER_URL } from '../../../constants/url';
-// import { IImage } from '../../../interface';
-
+import { useModal } from '../../../hooks/useModal';
+import { ErrorMessage } from '../../error/errorMessage';
 interface IAdvertForm {
   title: string;
   description: string;
@@ -27,6 +26,7 @@ interface IAdvertForm {
 
 export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
   const { windowWidth } = useGetWindowSize();
+  const { closeMod } = useModal();
   const { data: advert } = useGetAdvertsByIdQuery(advId);
 
   const [advfoto, setAdvfoto] = useState<File[]>([]);
@@ -38,8 +38,7 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
   const {
     register,
     handleSubmit,
-    // formState: { isDirty },
-    reset,
+    formState: { errors },
     control,
   } = useForm<IAdvertForm>({
     defaultValues: {
@@ -52,21 +51,15 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
 
   const handleAddAdvert: SubmitHandler<IAdvertForm> = (data) => {
     const { title, description, price } = data;
-    console.log('data', data);
     changeAdvApi({ title, description, price, pk: advId })
       .unwrap()
-      .then((res) => {
-        console.log('res', res);
+      .then(() => {
         if (advfoto.length > 0) {
           for (let i = 0; i < advfoto.length; i++) {
-            addImageInAdvert({ pk: res.id, image: advfoto[i] });
+            addImageInAdvert({ pk: advId, image: advfoto[i] });
           }
         }
-        reset({
-          title: res.title,
-          description: res.description,
-          price: res.price,
-        });
+        closeMod();
       });
   };
 
@@ -78,6 +71,15 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
     }
   };
 
+  // const UploadImage = () => {
+  //   if (advfoto.length > 0) {
+  //     for (let i = 0; i < advfoto.length; i++) {
+  //       addImageInAdvert({ pk: advId, image: advfoto[i] });
+  //     }
+  //   }
+  // }
+
+ 
   // const handleAddFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   const file = event.target.files ? event.target.files[0] : null;
   //   if (file) {
@@ -106,6 +108,7 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
           <S.AdvSettingsTitle>Редактировать объявление</S.AdvSettingsTitle>
           <S.AdvSettingsForm onSubmit={handleSubmit(handleAddAdvert)}>
             <S.AdvSettingsFormItem>
+            {errors.title && <ErrorMessage message={errors.title.message} />}
               <S.FormItemInput
                 id="title"
                 type="text"
@@ -130,9 +133,10 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
               </S.FormItemFotoName>
               <S.FormItemFotoContainer>
                 {advert != undefined && advert?.images.length > 0
-                  ? advert?.images.map((image) => (
+                  ? advert?.images.map((image,index) => (
                       <>
                         <FormItemFotoImage
+                          key={index+10}
                           advfoto={advfoto}
                           setAdvfoto={setAdvfoto}
                           deleteImage={() => deleteImage(advId, image.url)}
@@ -145,15 +149,18 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
                   (_, index) => (
                     <>
                       <Controller
-                        key={index}
+                        key={index + 100}
                         name={`images.${index}`}
                         control={control}
-                        render={({ field }) => (
+                        render={({ field: {ref} }) => (
                           <FormItemFotoImage
                             advfoto={advfoto}
+                            // key={index+200}
+                            // setAdvfoto={onChange}
+                            // onChange={() => setAdvfoto()}
                             setAdvfoto={setAdvfoto}
                             src="/img/addfile.png"
-                            {...field}
+                            {...ref}
                           />
                         )}
                       />
@@ -161,83 +168,6 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
                   ),
                 )}
 
-                {/* <S.FormItemFotoImage>
-                  <S.ImageDeleteContainer>
-                    <S.ImageDeleteLine></S.ImageDeleteLine>
-                  </S.ImageDeleteContainer>
-                  <S.FormItemFotoInput
-                    type="file"
-                    id="advfoto"
-                    {...register('images', {
-                      onChange: (event) => handleAddFoto(event),
-                    })}
-                    // onChange={(event) => handleAddFoto(event)}
-                  />
-              {imageSrc.length > 0 ?
-              <S.FormItemFotoImg src={imageSrc.length > 0 ? imageSrc[0] : '/img/addfile.png'} />
-              :<S.FormItemFotoImg src={advert != undefined ? `${SERVER_URL}/` + advert?.images[0].url : '/img/addfile.png'} />
-              }
-                </S.FormItemFotoImage>
-
-                <S.FormItemFotoImage>
-                  <S.FormItemFotoInput
-                    type="file"
-                    id="advfoto"
-                    {...register('images', {
-                      onChange: (event) => handleAddFoto(event),
-                    })}
-                    // onChange={(event) => handleAddFoto(event)}
-                  />
-              {imageSrc.length > 1 ?
-              <S.FormItemFotoImg src={imageSrc.length > 1 ? imageSrc[1] : '/img/addfile.png'} />
-              :<S.FormItemFotoImg src={advert?.images[1] != undefined ? `${SERVER_URL}/` + advert?.images[1].url : '/img/addfile.png'} />
-              }
-                </S.FormItemFotoImage>
-
-                <S.FormItemFotoImage>
-                  <S.FormItemFotoInput
-                    type="file"
-                    id="advfoto"
-                    {...register('images', {
-                      onChange: (event) => handleAddFoto(event),
-                    })}
-                    // onChange={(event) => handleAddFoto(event)}
-                  />
-              {imageSrc.length > 2 ?
-              <S.FormItemFotoImg src={imageSrc.length > 2 ? imageSrc[2] : '/img/addfile.png'} />
-              :<S.FormItemFotoImg src={advert?.images[2] != undefined ? `${SERVER_URL}/` + advert?.images[2].url : '/img/addfile.png'} />
-              }
-                </S.FormItemFotoImage>
-
-                <S.FormItemFotoImage>
-                  <S.FormItemFotoInput
-                    type="file"
-                    id="advfoto"
-                    {...register('images', {
-                      onChange: (event) => handleAddFoto(event),
-                    })}
-                    // onChange={(event) => handleAddFoto(event)}
-                  />
-              {imageSrc.length > 3 ?
-              <S.FormItemFotoImg src={imageSrc.length > 3 ? imageSrc[3] : '/img/addfile.png'} />
-              :<S.FormItemFotoImg src={advert?.images[3] != undefined ? `${SERVER_URL}/` + advert?.images[3].url : '/img/addfile.png'} />
-              }
-                </S.FormItemFotoImage>
-
-                <S.FormItemFotoImage>
-                  <S.FormItemFotoInput
-                    type="file"
-                    id="advfoto"
-                    {...register('images', {
-                      onChange: (event) => handleAddFoto(event),
-                    })}
-                    // onChange={(event) => handleAddFoto(event)}
-                  />
-              {imageSrc.length > 4 ?
-              <S.FormItemFotoImg src={imageSrc.length > 4 ? imageSrc[4] : '/img/addfile.png'} />
-              :<S.FormItemFotoImg src={advert?.images[4] != undefined ? `${SERVER_URL}/` + advert?.images[4].url : '/img/addfile.png'} />
-              }
-                </S.FormItemFotoImage> */}
               </S.FormItemFotoContainer>
             </S.AdvSettingsFormItemFoto>
             <S.AdvSettingsFormItem>

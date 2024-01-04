@@ -24,7 +24,7 @@ export const AuthModalBlock = styled.div`
   top: calc(50% - (439px / 2));
   opacity: 1;
   width: 366px;
-  height: 439px;
+  min-height: 439px;
   background-color: #ffffff;
   border-radius: 12px;
   display: flex;

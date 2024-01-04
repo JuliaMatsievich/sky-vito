@@ -1,6 +1,7 @@
 import { SERVER_URL } from '../../../constants/url';
 import { formatDateCreatedAdvert } from '../../../helpers/formatDateCreatedFunc';
 import { getFirstCapitalLetter } from '../../../helpers/getFirstCapitalLetterFunc';
+import { truncate } from '../../../helpers/trancateFunc';
 import { IAdvert } from '../../../interface';
 import * as S from './advertCard.styles';
 
@@ -23,11 +24,13 @@ export const Advert = ({ advert }: IAdvertProps) => {
         </S.AdvertImage>
         <S.AdvertText>
           <S.AdvertLink to={`/advert/${advert.id}`}>
-            <S.AdvertTitle>{getFirstCapitalLetter(advert.title)}</S.AdvertTitle>
+            <S.AdvertTitle>{truncate(getFirstCapitalLetter(advert.title),16)}<S.Tooltip>{getFirstCapitalLetter(advert.title)}</S.Tooltip></S.AdvertTitle>
           </S.AdvertLink>
-          <S.AdvertPrice>{advert.price} ₽</S.AdvertPrice>
+          <S.AdvertPrice>{advert.price.toLocaleString()} ₽</S.AdvertPrice>
           <S.AdvertCity>{advert.user.city}</S.AdvertCity>
-          <S.AdvertCreated>{formatDateCreatedAdvert(advert.created_on)}</S.AdvertCreated>
+          <S.AdvertCreated>
+            {formatDateCreatedAdvert(advert.created_on)}
+          </S.AdvertCreated>
         </S.AdvertText>
       </S.AdvertItem>
     </>

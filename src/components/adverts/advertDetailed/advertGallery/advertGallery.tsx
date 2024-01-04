@@ -14,13 +14,12 @@ export const AdvertGallery: FC<ImageProps> = (props) => {
     <>
       <S.AdvertGalleryContainer>
         <S.GalleryImage>
-          {images[0]?.url != undefined ? (
+          {images[0]?.url !== undefined ? (
             <S.GalleryImageImg src={`${SERVER_URL}/` + images[0]?.url} />
           ) : (
             <S.GalleryImageImg src="/img/no-foto.png" />
           )}
-          <S.GalleryImageImg src={`${SERVER_URL}/` + images[0]?.url} />
-        </S.GalleryImage>
+         </S.GalleryImage>
         <S.GalleryImageBar>
           {images.map((image) => (
             <S.GalleryImageBarItem key={image.id}>
