@@ -2,19 +2,20 @@ import { FC, useState } from 'react';
 import * as S from './advertSettings.styles';
 
 interface IFormInputImage {
-   getFile: (file: File) => void
+  getFile: (file: File | null) => void;
   deleteImage?: () => void;
   src?: string;
 }
 
 export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
-  const {  deleteImage, src, getFile } = props;
-  const [imageSrc, setImageSrc] = useState<string[]>([]);
+  const { deleteImage, src, getFile } = props;
+  const [imageSrc, setImageSrc] = useState<string>();
+
 
   const handleAddFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
-      getFile(file)
+      getFile(file);
       if (file.type && !file.type.startsWith('image/')) {
         console.log('File is not an image.');
         return;
@@ -22,7 +23,8 @@ export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
 
       const reader = new FileReader();
       reader.onload = (e) => {
-        setImageSrc([...imageSrc, e.target?.result as string]);
+        setImageSrc(e.target?.result as string);
+
       };
       reader.readAsDataURL(file);
       return;
@@ -30,14 +32,15 @@ export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
   };
 
   const handleDeleteImage = () => {
-    setImageSrc([]);
+    setImageSrc('');
     if (deleteImage != undefined) deleteImage();
+        getFile(null)
   };
 
   return (
     <>
       <S.FormItemFotoImage>
-        {src !== '/img/addfile.png' || imageSrc.length > 0 ? (
+        {src !== '/img/addfile.png' || imageSrc ? (
           <S.ImageDeleteContainer onClick={handleDeleteImage}>
             <S.ImageDeleteLine></S.ImageDeleteLine>
           </S.ImageDeleteContainer>
@@ -48,8 +51,8 @@ export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
           id="advfoto"
           onChange={(event) => handleAddFoto(event)}
         />
-        {imageSrc.length > 0 ? (
-          <S.FormItemFotoImg src={imageSrc[0]} />
+        {imageSrc? (
+          <S.FormItemFotoImg src={imageSrc} />
         ) : (
           <S.FormItemFotoImg src={src ? src : '/img/addfile.png'} />
         )}

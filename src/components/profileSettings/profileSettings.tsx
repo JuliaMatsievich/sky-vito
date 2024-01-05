@@ -7,7 +7,7 @@ import * as S from './profileSettings.styles';
 import { SERVER_URL } from '../../constants/url';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ErrorMessage } from '../error/errorMessage';
-import {  useState } from 'react';
+import { useState } from 'react';
 
 interface ProfileUser {
   user: IUser;
@@ -31,7 +31,9 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
 
   const [changeUserApi, {}] = useUpdateUserChangeMutation();
   const [addUserAvatarApi, {}] = useAddUserAvatarMutation();
-  const [preview, setPreview] = useState<string>(`${SERVER_URL}/`+user?.avatar);
+  const [preview, setPreview] = useState<string>(
+    `${SERVER_URL}/` + user?.avatar,
+  );
 
   const handleChangeInfo: SubmitHandler<IUser> = async (data) => {
     const dataForm = {
@@ -79,7 +81,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
                   <S.SettingsFotoImg src="/img/no-foto.png" />
                 )}
               </S.SettingsFoto>
-              <S.SettingsChangeFotoBtn >
+              <S.SettingsChangeFotoBtn>
                 Заменить
                 <S.SettingsChangeFotoInput
                   type="file"

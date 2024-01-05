@@ -209,5 +209,5 @@ export const {
   useGetCommentByIdQuery,
   useAddCommentMutation,
   useLazyGetCommentsAdvertQuery,
-  useLazyGetAdvertsByIdQuery
+  useLazyGetAdvertsByIdQuery,
 } = advApi;

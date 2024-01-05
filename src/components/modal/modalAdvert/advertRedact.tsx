@@ -45,14 +45,13 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
       images: [],
     },
   });
- 
 
-  const UploadImage = async (image: File) => {
+  const UploadImage = async (image: File | null) => {
     if (image) {
       try {
-      const reader = new FileReader();
-      reader.readAsDataURL(image);
-        
+        const reader = new FileReader();
+        reader.readAsDataURL(image);
+
         await addImageInAdvert({ pk: advId, image: image }).unwrap();
       } catch (error) {
         console.log('error', error);
@@ -125,20 +124,21 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
                 {[...Array(5 - (advert?.images.length || 0))].map(
                   (_, index) => (
                     <>
+                      {/* <FormItemFotoImage
+                    key={index + 200}
+                    getFile={(file) => UploadImage(file)}
+                    src="/img/addfile.png"
+                  /> */}
                       <Controller
                         key={index + 100}
                         name={`images.${index}`}
                         control={control}
-                        render={({ field: { ref } }) => (
+                        render={({ field }) => (
                           <FormItemFotoImage
-                            // advfoto={advfoto}
                             key={index + 200}
-                            // setAdvfoto={onChange}
-                            // onChange={() => setAdvfoto()}
-                            // setAdvfoto={setAdvfoto}
                             getFile={(file) => UploadImage(file)}
                             src="/img/addfile.png"
-                            {...ref}
+                            {...field}
                           />
                         )}
                       />

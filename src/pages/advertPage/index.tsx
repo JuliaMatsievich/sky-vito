@@ -3,7 +3,7 @@ import { AdvertDescription } from '../../components/adverts/advertDetailed/adver
 import { AdvertGallery } from '../../components/adverts/advertDetailed/advertGallery/advertGallery';
 import { AdvertInfo } from '../../components/adverts/advertDetailed/advertInfo/advertInfo';
 import * as S from './advertPage.styles';
-import {  useGetAdvertsByIdQuery } from '../../services/advApi';
+import { useGetAdvertsByIdQuery } from '../../services/advApi';
 import { FC } from 'react';
 import { Menu } from '../../components/menu/menu';
 
@@ -12,12 +12,10 @@ export const AdvertPage: FC = () => {
   const advertId = Number(params.id);
   const { data: advert, isLoading } = useGetAdvertsByIdQuery(advertId);
 
-
-
   return (
     <>
       <Menu />
-      {isLoading || advert == undefined? (
+      {isLoading || advert == undefined ? (
         <div>Загрузка...</div>
       ) : (
         <S.AdvertContainer>

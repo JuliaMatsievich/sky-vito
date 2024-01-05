@@ -8,7 +8,6 @@ import { SERVER_URL } from '../../../../constants/url';
 // import { useGetWindowSize } from '../../../../hooks/useGetWindowSize';
 // import { PHONE_WIDTH } from '../../../../constants/breakpoints';
 
-
 type ImageProps = {
   images: IImage[];
 };
@@ -29,7 +28,6 @@ export const AdvertGallery: FC<ImageProps> = (props) => {
   // }
 
   // const {windowWidth} = useGetWindowSize()
-
 
   // const images = [
   //   {
@@ -98,8 +96,6 @@ export const AdvertGallery: FC<ImageProps> = (props) => {
   //     bulletClass: 'bullets'
   //   },
   // ];
-
-
 
   return (
     <>
