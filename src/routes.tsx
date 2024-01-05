@@ -20,13 +20,13 @@ export const AppRoutes = () => {
         <Route index element={<MainPage />} />
         <Route path="sellerProfile/:id" element={<SellerProfilePage />} />
         <Route path="advert/:id" element={<AdvertPage />} />
-        <Route path='reviewsAdvert/:id' element={<ReviewsAdvertPage/>}/>
+        <Route path="reviewsAdvert/:id" element={<ReviewsAdvertPage />} />
       </Route>
       <Route element={<ProtectedRoute />}>
         <Route path="/" element={<Layout />}>
           <Route path="profile" element={<ProfilePage />} />
-          <Route path='addAdvert' element={<AddNewAdvertPage/>}/>
-          <Route path='redactAdvert/:id' element={<RedactAdvertPage/>}/>
+          <Route path="addAdvert" element={<AddNewAdvertPage />} />
+          <Route path="redactAdvert/:id" element={<RedactAdvertPage />} />
         </Route>
       </Route>
       {/* <Route path="*" element={<NotFound />} /> */}

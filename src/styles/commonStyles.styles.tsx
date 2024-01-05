@@ -9,7 +9,6 @@ import {
 export const centralContainer = css`
   padding-left: 140px;
   padding-right: 140px;
-  
 
   @media (max-width: ${$tabletWidth}) {
     padding-left: 60px;

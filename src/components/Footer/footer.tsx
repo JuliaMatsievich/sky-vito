@@ -4,17 +4,16 @@ import { ProfileIconSvg } from '../iconsSvg/profileIcon';
 import * as S from './footer.styles';
 
 export const Footer = () => {
-  
   return (
     <>
       <S.FooterContainer>
         <S.FooterLink to="/">
           <HomeIconSvg />
         </S.FooterLink>
-        <S.FooterLink to='/addAdvert'>
+        <S.FooterLink to="/addAdvert">
           <AddIconSvg />
         </S.FooterLink>
-        <S.FooterLink to='/profile'>
+        <S.FooterLink to="/profile">
           <ProfileIconSvg />
         </S.FooterLink>
       </S.FooterContainer>

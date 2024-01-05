@@ -2,21 +2,19 @@ import { FC, useState } from 'react';
 import * as S from './advertSettings.styles';
 
 interface IFormInputImage {
-  advfoto: File[];
-  setAdvfoto: React.Dispatch<React.SetStateAction<File[]>>;
+   getFile: (file: File) => void
   deleteImage?: () => void;
   src?: string;
 }
 
 export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
-  const { advfoto, setAdvfoto, deleteImage, src } = props;
+  const {  deleteImage, src, getFile } = props;
   const [imageSrc, setImageSrc] = useState<string[]>([]);
-  //   const [addImageInAdvert] = useAddImageInAdvertMutation();
 
   const handleAddFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
-      setAdvfoto([...advfoto, file]);
+      getFile(file)
       if (file.type && !file.type.startsWith('image/')) {
         console.log('File is not an image.');
         return;

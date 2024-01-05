@@ -16,12 +16,11 @@ export const AdvertContent = styled.div`
     gap: 0;
     margin-bottom: 30px;
   }
-  
 `;
 export const AdvertLeft = styled.div``;
 export const AdvertRight = styled.div`
-align-self: flex-start;
-width: 100% ;
+  align-self: flex-start;
+  width: 100%;
 `;
 export const AdvertDescription = styled.div``;
 export const AdvertDescriptionTitle = styled.h2`

@@ -24,5 +24,5 @@ export const FooterContainer = styled.footer`
 `;
 
 export const FooterLink = styled(Link)`
-${link}
-`
+  ${link}
+`;

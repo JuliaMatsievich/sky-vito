@@ -7,6 +7,7 @@ import * as S from './profileSettings.styles';
 import { SERVER_URL } from '../../constants/url';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ErrorMessage } from '../error/errorMessage';
+import {  useState } from 'react';
 
 interface ProfileUser {
   user: IUser;
@@ -30,6 +31,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
 
   const [changeUserApi, {}] = useUpdateUserChangeMutation();
   const [addUserAvatarApi, {}] = useAddUserAvatarMutation();
+  const [preview, setPreview] = useState<string>(`${SERVER_URL}/`+user?.avatar);
 
   const handleChangeInfo: SubmitHandler<IUser> = async (data) => {
     const dataForm = {
@@ -55,6 +57,8 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
   const handleChangeFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
+      const urlImage = URL.createObjectURL(file);
+      setPreview(urlImage);
       addUserAvatarApi(file).unwrap();
     }
   };
@@ -69,17 +73,19 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
             <S.SettingsLeft>
               <S.SettingsFoto>
                 {user.avatar != null ? (
-                  <S.SettingsFotoImg src={`${SERVER_URL}/` + user.avatar} />
+                  // <S.SettingsFotoImg src={`${SERVER_URL}/` + user.avatar} />
+                  <S.SettingsFotoImg src={preview} />
                 ) : (
                   <S.SettingsFotoImg src="/img/no-foto.png" />
                 )}
               </S.SettingsFoto>
-              <S.SettingsChangeFotoBtn>
+              <S.SettingsChangeFotoBtn >
                 Заменить
                 <S.SettingsChangeFotoInput
                   type="file"
                   id="avatar"
                   accept="image/*"
+                  // onChange={handleChangeFoto}
                   {...register('avatar', {
                     onChange: (event) => handleChangeFoto(event),
                   })}

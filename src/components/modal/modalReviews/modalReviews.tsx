@@ -61,7 +61,7 @@ export const ModalReviews: FC<IModalComments> = (props) => {
 
   return (
     <>
-        <S.ModalBlock>
+      <S.ModalBlock>
         <S.MReviewsContainer>
           <ModalCloseBtn />
           <BackBtn />

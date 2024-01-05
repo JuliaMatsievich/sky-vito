@@ -4,8 +4,7 @@ import * as S from './advertSettings.styles';
 import { PHONE_WIDTH } from '../../../constants/breakpoints';
 import { BackBtn } from '../../buttons/backBtn/backBtn';
 import { Footer } from '../../Footer/footer';
-// import { Menu } from '../../menu/menu';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import {
   useAddImageInAdvertMutation,
   useChangeAdvertMutation,
@@ -29,8 +28,6 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
   const { closeMod } = useModal();
   const { data: advert } = useGetAdvertsByIdQuery(advId);
 
-  const [advfoto, setAdvfoto] = useState<File[]>([]);
-  // const [imageSrc, setImageSrc] = useState<string[]>([]);
   const [changeAdvApi] = useChangeAdvertMutation();
   const [addImageInAdvert] = useAddImageInAdvertMutation();
   const [deleteImageApi] = useDeleteImageMutation();
@@ -48,17 +45,26 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
       images: [],
     },
   });
+ 
+
+  const UploadImage = async (image: File) => {
+    if (image) {
+      try {
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
+        
+        await addImageInAdvert({ pk: advId, image: image }).unwrap();
+      } catch (error) {
+        console.log('error', error);
+      }
+    }
+  };
 
   const handleAddAdvert: SubmitHandler<IAdvertForm> = (data) => {
     const { title, description, price } = data;
     changeAdvApi({ title, description, price, pk: advId })
       .unwrap()
       .then(() => {
-        if (advfoto.length > 0) {
-          for (let i = 0; i < advfoto.length; i++) {
-            addImageInAdvert({ pk: advId, image: advfoto[i] });
-          }
-        }
         closeMod();
       });
   };
@@ -71,35 +77,8 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
     }
   };
 
-  // const UploadImage = () => {
-  //   if (advfoto.length > 0) {
-  //     for (let i = 0; i < advfoto.length; i++) {
-  //       addImageInAdvert({ pk: advId, image: advfoto[i] });
-  //     }
-  //   }
-  // }
-
-  // const handleAddFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = event.target.files ? event.target.files[0] : null;
-  //   if (file) {
-  //     setAdvfoto([...advfoto, file]);
-  //     if (file.type && !file.type.startsWith('image/')) {
-  //       console.log('File is not an image.');
-  //       return;
-  //     }
-
-  //     const reader = new FileReader();
-  //     reader.onload = (e) => {
-  //       setImageSrc([...imageSrc, e.target?.result as string]);
-  //     };
-  //     reader.readAsDataURL(file);
-  //     return;
-  //   }
-  // };
-
   return (
     <>
-      {/* {windowWidth !== undefined && windowWidth <= PHONE_WIDTH ? <Menu /> : null} */}
       <S.ModalBlock>
         <S.AdvSettingsContainer>
           <ModalCloseBtn />
@@ -136,8 +115,7 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
                       <>
                         <FormItemFotoImage
                           key={index + 10}
-                          advfoto={advfoto}
-                          setAdvfoto={setAdvfoto}
+                          getFile={(file) => UploadImage(file)}
                           deleteImage={() => deleteImage(advId, image.url)}
                           src={`${SERVER_URL}/` + image.url}
                         />
@@ -153,11 +131,12 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
                         control={control}
                         render={({ field: { ref } }) => (
                           <FormItemFotoImage
-                            advfoto={advfoto}
-                            // key={index+200}
+                            // advfoto={advfoto}
+                            key={index + 200}
                             // setAdvfoto={onChange}
                             // onChange={() => setAdvfoto()}
-                            setAdvfoto={setAdvfoto}
+                            // setAdvfoto={setAdvfoto}
+                            getFile={(file) => UploadImage(file)}
                             src="/img/addfile.png"
                             {...ref}
                           />

@@ -9,7 +9,6 @@ export const Menu = () => {
     window.location.href = '/signin';
   };
 
-
   return (
     <>
       <S.MenuWrapper>
@@ -19,7 +18,7 @@ export const Menu = () => {
           </S.MenuLogo>
         </S.MenuLink>
         <S.MenuSignOut onClick={handleClickOut}>
-          <S.MenuSignOutImg src='/img/icons/icon_signout.png'/>
+          <S.MenuSignOutImg src="/img/icons/icon_signout.png" />
         </S.MenuSignOut>
         <S.MenuLinkBtn to="/">
           <S.MenuBtn>Вернуться на главную</S.MenuBtn>

@@ -9,5 +9,4 @@ export const MainTitle = styled.h1`
 
 export const MainContainer = styled.div`
   ${centralContainer}
-  
 `;

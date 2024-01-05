@@ -82,15 +82,14 @@ export const MenuLink = styled(Link)`
 `;
 
 export const MenuSignOut = styled.div`
-cursor: pointer;
-`
+  cursor: pointer;
+`;
 
 export const MenuSignOutImg = styled.img`
   display: none;
-  @media(max-width: ${$tabletWidth}) {
+  @media (max-width: ${$tabletWidth}) {
     display: block;
     width: 32px;
     height: 32px;
   }
-`
-
+`;
