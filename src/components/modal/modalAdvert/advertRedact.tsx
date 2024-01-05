@@ -4,7 +4,8 @@ import * as S from './advertSettings.styles';
 import { PHONE_WIDTH } from '../../../constants/breakpoints';
 import { BackBtn } from '../../buttons/backBtn/backBtn';
 import { Footer } from '../../Footer/footer';
-import { FC } from 'react';
+// import { Menu } from '../../menu/menu';
+import { FC, useState } from 'react';
 import {
   useAddImageInAdvertMutation,
   useChangeAdvertMutation,
@@ -28,6 +29,8 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
   const { closeMod } = useModal();
   const { data: advert } = useGetAdvertsByIdQuery(advId);
 
+  const [advfoto, setAdvfoto] = useState<File[]>([]);
+  // const [imageSrc, setImageSrc] = useState<string[]>([]);
   const [changeAdvApi] = useChangeAdvertMutation();
   const [addImageInAdvert] = useAddImageInAdvertMutation();
   const [deleteImageApi] = useDeleteImageMutation();
@@ -46,25 +49,19 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
     },
   });
 
-  const UploadImage = async (image: File | null) => {
-    if (image) {
-      try {
-        const reader = new FileReader();
-        reader.readAsDataURL(image);
-
-        await addImageInAdvert({ pk: advId, image: image }).unwrap();
-      } catch (error) {
-        console.log('error', error);
-      }
-    }
-  };
-
   const handleAddAdvert: SubmitHandler<IAdvertForm> = (data) => {
     const { title, description, price } = data;
     changeAdvApi({ title, description, price, pk: advId })
       .unwrap()
       .then(() => {
+        if (advfoto.length > 0) {
+          for (let i = 0; i < advfoto.length; i++) {
+            addImageInAdvert({ pk: advId, image: advfoto[i] });
+          }
+          // UploadImage({ pk: advId, image: advfoto[i] })
+        }
         closeMod();
+        location.reload()
       });
   };
 
@@ -75,6 +72,36 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
       console.log(error);
     }
   };
+
+  // const UploadImage = () => {
+  //   if (advfoto.length > 0) {
+  //     for (let i = 0; i < advfoto.length; i++) {
+  //       addImageInAdvert({ pk: advId, image: advfoto[i] });
+  //     }
+  //   }
+  // }
+
+  // const UploadImage = (image: File, advId) => {
+  //   addImageInAdvert({ pk: advId, image: image })
+  // }
+
+  // const handleAddFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = event.target.files ? event.target.files[0] : null;
+  //   if (file) {
+  //     setAdvfoto([...advfoto, file]);
+  //     if (file.type && !file.type.startsWith('image/')) {
+  //       console.log('File is not an image.');
+  //       return;
+  //     }
+
+  //     const reader = new FileReader();
+  //     reader.onload = (e) => {
+  //       setImageSrc([...imageSrc, e.target?.result as string]);
+  //     };
+  //     reader.readAsDataURL(file);
+  //     return;
+  //   }
+  // };
 
   return (
     <>
@@ -114,7 +141,8 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
                       <>
                         <FormItemFotoImage
                           key={index + 10}
-                          getFile={(file) => UploadImage(file)}
+                          advfoto={advfoto}
+                          setAdvfoto={setAdvfoto}
                           deleteImage={() => deleteImage(advId, image.url)}
                           src={`${SERVER_URL}/` + image.url}
                         />
@@ -124,21 +152,19 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
                 {[...Array(5 - (advert?.images.length || 0))].map(
                   (_, index) => (
                     <>
-                      {/* <FormItemFotoImage
-                    key={index + 200}
-                    getFile={(file) => UploadImage(file)}
-                    src="/img/addfile.png"
-                  /> */}
                       <Controller
                         key={index + 100}
                         name={`images.${index}`}
                         control={control}
-                        render={({ field }) => (
+                        render={({ field: { ref } }) => (
                           <FormItemFotoImage
-                            key={index + 200}
-                            getFile={(file) => UploadImage(file)}
+                            advfoto={advfoto}
+                            key={index+200}
+                            // setAdvfoto={onChange}
+                            // onChange={() => setAdvfoto()}
+                            setAdvfoto={setAdvfoto}
                             src="/img/addfile.png"
-                            {...field}
+                            {...ref}
                           />
                         )}
                       />
