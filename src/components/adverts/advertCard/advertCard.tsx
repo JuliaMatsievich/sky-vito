@@ -24,7 +24,10 @@ export const Advert = ({ advert }: IAdvertProps) => {
         </S.AdvertImage>
         <S.AdvertText>
           <S.AdvertLink to={`/advert/${advert.id}`}>
-            <S.AdvertTitle>{truncate(getFirstCapitalLetter(advert.title),16)}<S.Tooltip>{getFirstCapitalLetter(advert.title)}</S.Tooltip></S.AdvertTitle>
+            <S.AdvertTitle>
+              {truncate(getFirstCapitalLetter(advert.title), 16)}
+              <S.Tooltip>{getFirstCapitalLetter(advert.title)}</S.Tooltip>
+            </S.AdvertTitle>
           </S.AdvertLink>
           <S.AdvertPrice>{advert.price.toLocaleString()} ₽</S.AdvertPrice>
           <S.AdvertCity>{advert.user.city}</S.AdvertCity>

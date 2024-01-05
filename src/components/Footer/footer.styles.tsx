@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { $phoneWidth } from '../../styles/variables';
+import { Link } from 'react-router-dom';
+import { link } from '../../styles/commonStyles.styles';
 
 export const FooterContainer = styled.footer`
   display: none;
@@ -20,3 +22,7 @@ export const FooterContainer = styled.footer`
     background: #fff;
   }
 `;
+
+export const FooterLink = styled(Link)`
+${link}
+`

@@ -49,6 +49,8 @@ export const AdvSettingsContainer = styled.div`
     width: 100%;
     border-radius: 0%;
     padding: 0px 20px 30px 20px;
+    height: 100%;
+    box-shadow: none;
   }
 `;
 
@@ -57,6 +59,7 @@ export const AdvSettingsTitle = styled.h2`
   margin-bottom: 20px;
   @media (max-width: ${$phoneWidth}) {
     margin-left: 30px;
+    font-size: 24px;
   }
 `;
 

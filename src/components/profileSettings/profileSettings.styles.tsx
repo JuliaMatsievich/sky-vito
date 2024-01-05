@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import {
-  buttonColor,
-  img,
-  subtitle,
-} from '../../styles/commonStyles.styles';
+import { buttonColor, img, subtitle } from '../../styles/commonStyles.styles';
 import {
   $buttonColor,
   $buttonColorHover,
@@ -29,8 +25,7 @@ export const FormImage = styled.div`
   background-color: #f0f0f0;
 `;
 
-export const Settings = styled.div`
-`;
+export const Settings = styled.div``;
 
 export const SettingsLeft = styled.div`
   display: flex;
@@ -114,12 +109,12 @@ export const SettingsLabel = styled.label`
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 150%; 
+  line-height: 150%;
 
   @media (max-width: ${$phoneWidth}) {
     font-size: 14px;
     font-weight: 400;
-    line-height: 150%; 
+    line-height: 150%;
   }
 `;
 
@@ -133,7 +128,7 @@ export const SettingsInput = styled.input`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 150%; 
+  line-height: 150%;
 
   @media (max-width: ${$phoneWidth}) {
     border-radius: 30px;

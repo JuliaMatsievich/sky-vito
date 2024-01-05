@@ -9,6 +9,7 @@ import {
 export const centralContainer = css`
   padding-left: 140px;
   padding-right: 140px;
+  
 
   @media (max-width: ${$tabletWidth}) {
     padding-left: 60px;
@@ -18,6 +19,7 @@ export const centralContainer = css`
   @media (max-width: ${$phoneWidth}) {
     padding-left: 17px;
     padding-right: 17px;
+    margin-bottom: 60px;
   }
 `;
 

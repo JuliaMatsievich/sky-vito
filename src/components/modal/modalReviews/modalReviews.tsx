@@ -4,7 +4,6 @@ import * as S from './modalReviews.styles';
 import { PHONE_WIDTH } from '../../../constants/breakpoints';
 import { BackBtn } from '../../buttons/backBtn/backBtn';
 import { Footer } from '../../Footer/footer';
-import { Menu } from '../../menu/menu';
 import { FC, useState } from 'react';
 import { SERVER_URL } from '../../../constants/url';
 import { IComment } from '../../../interface';
@@ -62,8 +61,7 @@ export const ModalReviews: FC<IModalComments> = (props) => {
 
   return (
     <>
-      {windowWidth !== undefined && windowWidth < PHONE_WIDTH ? <Menu /> : null}
-      <S.ModalBlock>
+        <S.ModalBlock>
         <S.MReviewsContainer>
           <ModalCloseBtn />
           <BackBtn />

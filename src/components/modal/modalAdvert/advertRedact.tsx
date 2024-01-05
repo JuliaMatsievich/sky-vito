@@ -4,7 +4,7 @@ import * as S from './advertSettings.styles';
 import { PHONE_WIDTH } from '../../../constants/breakpoints';
 import { BackBtn } from '../../buttons/backBtn/backBtn';
 import { Footer } from '../../Footer/footer';
-import { Menu } from '../../menu/menu';
+// import { Menu } from '../../menu/menu';
 import { FC, useState } from 'react';
 import {
   useAddImageInAdvertMutation,
@@ -79,7 +79,6 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
   //   }
   // }
 
- 
   // const handleAddFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   const file = event.target.files ? event.target.files[0] : null;
   //   if (file) {
@@ -100,7 +99,7 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
 
   return (
     <>
-      {windowWidth !== undefined && windowWidth < PHONE_WIDTH ? <Menu /> : null}
+      {/* {windowWidth !== undefined && windowWidth <= PHONE_WIDTH ? <Menu /> : null} */}
       <S.ModalBlock>
         <S.AdvSettingsContainer>
           <ModalCloseBtn />
@@ -108,7 +107,7 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
           <S.AdvSettingsTitle>Редактировать объявление</S.AdvSettingsTitle>
           <S.AdvSettingsForm onSubmit={handleSubmit(handleAddAdvert)}>
             <S.AdvSettingsFormItem>
-            {errors.title && <ErrorMessage message={errors.title.message} />}
+              {errors.title && <ErrorMessage message={errors.title.message} />}
               <S.FormItemInput
                 id="title"
                 type="text"
@@ -133,10 +132,10 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
               </S.FormItemFotoName>
               <S.FormItemFotoContainer>
                 {advert != undefined && advert?.images.length > 0
-                  ? advert?.images.map((image,index) => (
+                  ? advert?.images.map((image, index) => (
                       <>
                         <FormItemFotoImage
-                          key={index+10}
+                          key={index + 10}
                           advfoto={advfoto}
                           setAdvfoto={setAdvfoto}
                           deleteImage={() => deleteImage(advId, image.url)}
@@ -152,7 +151,7 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
                         key={index + 100}
                         name={`images.${index}`}
                         control={control}
-                        render={({ field: {ref} }) => (
+                        render={({ field: { ref } }) => (
                           <FormItemFotoImage
                             advfoto={advfoto}
                             // key={index+200}
@@ -167,7 +166,6 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
                     </>
                   ),
                 )}
-
               </S.FormItemFotoContainer>
             </S.AdvSettingsFormItemFoto>
             <S.AdvSettingsFormItem>

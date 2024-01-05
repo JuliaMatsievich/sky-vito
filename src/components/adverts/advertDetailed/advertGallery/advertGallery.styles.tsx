@@ -12,7 +12,7 @@ export const GalleryImage = styled.div`
   background-color: ${$sceletonColor};
   margin-bottom: 30px;
   position: relative;
-   border: none;
+  border: none;
 `;
 export const GalleryImageImg = styled.img`
   width: 100%;

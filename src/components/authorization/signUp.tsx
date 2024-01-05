@@ -14,14 +14,13 @@ interface ISignUpFrom {
 }
 
 export const SignUp = () => {
-
   const [error, setError] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
     formState: { isDirty, errors, isSubmitting },
-    getValues
+    getValues,
   } = useForm<ISignUpFrom>();
 
   const [signUpApi, {}] = useGetAuthRegisterMutation();
@@ -86,16 +85,21 @@ export const SignUp = () => {
                   },
                 })}
               />
-              {errors.password && <ErrorMessage message={errors.password.message} />}
+              {errors.password && (
+                <ErrorMessage message={errors.password.message} />
+              )}
               <S.AuthFormPasswordSecond
                 type="password"
                 placeholder="Повторите пароль"
                 {...register('repeatPassword', {
-                  validate: (value) => value === getValues('password') || 'Пароли не совпадают',
+                  validate: (value) =>
+                    value === getValues('password') || 'Пароли не совпадают',
                   required: 'Повторите пароль',
                 })}
               />
-              {errors.repeatPassword && <ErrorMessage message={errors.repeatPassword.message} />}
+              {errors.repeatPassword && (
+                <ErrorMessage message={errors.repeatPassword.message} />
+              )}
               <S.AuthFormName
                 type="text"
                 placeholder="Имя (необязательно)"
@@ -109,7 +113,7 @@ export const SignUp = () => {
                     value: 20,
                     message: 'Максимальная длина имени 20 символов',
                   },
-                })}                
+                })}
               />
               {errors.name && <ErrorMessage message={errors.name.message} />}
               <S.AuthFormSurname
@@ -125,9 +129,11 @@ export const SignUp = () => {
                     value: 20,
                     message: 'Максимальная длина имени 20 символов',
                   },
-                })} 
+                })}
               />
-              {errors.surname && <ErrorMessage message={errors.surname.message} />}
+              {errors.surname && (
+                <ErrorMessage message={errors.surname.message} />
+              )}
               <S.AuthFormCity
                 type="text"
                 placeholder="Город (необязательно)"
@@ -144,8 +150,13 @@ export const SignUp = () => {
                 })}
               />
               {errors.city && <ErrorMessage message={errors.city.message} />}
-              {error ? <ErrorMessage message={error}/> : null}
-              <S.AuthFormBtnSignUp disabled={!isDirty || isSubmitting} type='submit'>Зарегистрироваться</S.AuthFormBtnSignUp>
+              {error ? <ErrorMessage message={error} /> : null}
+              <S.AuthFormBtnSignUp
+                disabled={!isDirty || isSubmitting}
+                type="submit"
+              >
+                Зарегистрироваться
+              </S.AuthFormBtnSignUp>
             </S.AuthForm>
           </S.AuthModalBlockSignUp>
         </S.AuthContainer>

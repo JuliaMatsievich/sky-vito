@@ -85,8 +85,7 @@ export const InfoProfileImage = styled.div`
   flex: 0 0 auto;
   position: relative;
   @media (max-width: ${$phoneWidth}) {
-    width: 20px;
-    height: 20px;
+
   }
 `;
 
@@ -128,6 +127,11 @@ export const InfoButtons = styled.div`
   display: flex;
   gap: 10px;
   margin-bottom: 34px;
+
+  @media(max-width: ${$phoneWidth}){
+  flex-direction: column;
+  width: 100%;
+  }
 `;
 export const InfoRedactAdvBtn = styled.button`
   ${buttonColor}

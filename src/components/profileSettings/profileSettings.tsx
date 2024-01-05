@@ -59,7 +59,6 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
     }
   };
 
-
   return (
     <>
       <S.SettingsContainer>

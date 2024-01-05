@@ -4,7 +4,7 @@ import * as S from './advertSettings.styles';
 import { PHONE_WIDTH } from '../../../constants/breakpoints';
 import { BackBtn } from '../../buttons/backBtn/backBtn';
 import { Footer } from '../../Footer/footer';
-import { Menu } from '../../menu/menu';
+// import { Menu } from '../../menu/menu';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import {
@@ -62,7 +62,7 @@ export const AddNewAdvert = () => {
 
   return (
     <>
-      {windowWidth !== undefined && windowWidth < PHONE_WIDTH ? <Menu /> : null}
+      {/* {windowWidth !== undefined && windowWidth < PHONE_WIDTH ? <Menu /> : null} */}
       <S.ModalBlock>
         <S.AdvSettingsContainer>
           <ModalCloseBtn />

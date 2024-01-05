@@ -38,6 +38,7 @@ export const MenuWrapper = styled.div`
     padding-bottom: 12px;
     gap: 10px;
     margin-bottom: 30px;
+    justify-content: space-between;
   }
 `;
 export const MenuLogo = styled.div``;
@@ -69,6 +70,27 @@ export const MenuBtn = styled.button`
   }
 `;
 
+export const MenuLinkBtn = styled(Link)`
+  ${link}
+  @media(max-width: ${$tabletWidth}) {
+    display: none;
+  }
+`;
+
 export const MenuLink = styled(Link)`
   ${link}
 `;
+
+export const MenuSignOut = styled.div`
+cursor: pointer;
+`
+
+export const MenuSignOutImg = styled.img`
+  display: none;
+  @media(max-width: ${$tabletWidth}) {
+    display: block;
+    width: 32px;
+    height: 32px;
+  }
+`
+

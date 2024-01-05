@@ -18,7 +18,9 @@ export const ProfilePage = () => {
     <>
       <Menu />
       <S.ProfileContainer>
-        <S.ProfileTitle>Здравствуйте, {user.name ? user.name : user.email}</S.ProfileTitle>
+        <S.ProfileTitle>
+          Здравствуйте, {user.name ? user.name : user.email}
+        </S.ProfileTitle>
         <ProfileSettings user={user} />
         <S.ProfileAdvertsTitle>Мои товары</S.ProfileAdvertsTitle>
         {adverts.length === 0 ? (

@@ -15,6 +15,9 @@ import { ModalReviews } from '../../../modal/modalReviews/modalReviews';
 import { getFirstCapitalLetter } from '../../../../helpers/getFirstCapitalLetterFunc';
 import { formatDateCreatedAdvert } from '../../../../helpers/formatDateCreatedFunc';
 import { formatDateSellsFrom } from '../../../../helpers/formatDateSellsFromFunc';
+import { useGetWindowSize } from '../../../../hooks/useGetWindowSize';
+import { PHONE_WIDTH } from '../../../../constants/breakpoints';
+import { useNavigate } from 'react-router-dom';
 
 interface IAdvertInfoProps {
   id: number;
@@ -31,6 +34,8 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
   const { data: comments } = useGetCommentsAdvertQuery({ pk: advertInfo.id });
   const [advertsUserApi, { data: advertsUser }] =
     useLazyGetAdvertsCurrentUserQuery();
+  const { windowWidth } = useGetWindowSize();
+  const navigate = useNavigate();
 
   const handleDeleteAdv = (id: number) => {
     deleteAdvertApi(id).unwrap();
@@ -51,7 +56,13 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
           {formatDateCreatedAdvert(advertInfo.created_on)}
         </S.InfoCreated>
         <S.InfoCity>{advertInfo.user.city}</S.InfoCity>
-        <S.InfoReviews onClick={() => openMod('reviews')}>
+        <S.InfoReviews
+          onClick={() => {
+            windowWidth !== undefined && windowWidth <= PHONE_WIDTH
+              ? navigate(`/reviewsAdvert/${advertInfo.id}`)
+              : openMod('reviews');
+          }}
+        >
           {comments !== undefined && comments.length > 0
             ? comments.length + ' отзыва'
             : 'Нет отзывов'}
@@ -63,7 +74,13 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
         {isAuth && advertsUser?.find(({ id }) => id === advertInfo.id) ? (
           <>
             <S.InfoButtons>
-              <S.InfoRedactAdvBtn onClick={() => openMod('redact')}>
+              <S.InfoRedactAdvBtn
+                onClick={() => {
+                  windowWidth !== undefined && windowWidth <= PHONE_WIDTH
+                    ? navigate(`/redactAdvert/${advertInfo.id}`)
+                    : openMod('redact');
+                }}
+              >
                 Редактировать
               </S.InfoRedactAdvBtn>
               <S.InfoDeleteAdvBtn

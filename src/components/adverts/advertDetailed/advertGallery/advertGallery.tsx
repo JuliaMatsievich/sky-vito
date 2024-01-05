@@ -19,7 +19,7 @@ export const AdvertGallery: FC<ImageProps> = (props) => {
           ) : (
             <S.GalleryImageImg src="/img/no-foto.png" />
           )}
-         </S.GalleryImage>
+        </S.GalleryImage>
         <S.GalleryImageBar>
           {images.map((image) => (
             <S.GalleryImageBarItem key={image.id}>

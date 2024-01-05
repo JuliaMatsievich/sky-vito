@@ -8,20 +8,23 @@ import { useState } from 'react';
 
 interface ISigninFrom {
   email: string;
-  password: string
+  password: string;
 }
 
 export const SignIn = () => {
-
   const dispatch = useAppDispatch();
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null);
 
-  const {register, handleSubmit, formState:{isDirty,errors, isSubmitting} } = useForm<ISigninFrom>()
+  const {
+    register,
+    handleSubmit,
+    formState: { isDirty, errors, isSubmitting },
+  } = useForm<ISigninFrom>();
 
   const [signInApi, {}] = useGetAuthLoginMutation();
 
   const handleClickSignIn: SubmitHandler<ISigninFrom> = async (data) => {
-    const {email, password} = data
+    const { email, password } = data;
 
     try {
       await signInApi({ email, password })
@@ -38,10 +41,10 @@ export const SignIn = () => {
         });
     } catch (error) {
       console.log('error', error);
-      setError('Возможно неправильно введен пароль или email')
+      setError('Возможно неправильно введен пароль или email');
     }
   };
-    return (
+  return (
     <>
       <S.AuthWrapper>
         <S.AuthContainer>
@@ -81,9 +84,16 @@ export const SignIn = () => {
                   },
                 })}
               />
-              {errors.password && <ErrorMessage message={errors.password.message} />}
-              {error ? <ErrorMessage message={error}/> : null}
-              <S.AuthFormBtnEnter disabled={!isDirty || isSubmitting} type="submit">Войти</S.AuthFormBtnEnter>
+              {errors.password && (
+                <ErrorMessage message={errors.password.message} />
+              )}
+              {error ? <ErrorMessage message={error} /> : null}
+              <S.AuthFormBtnEnter
+                disabled={!isDirty || isSubmitting}
+                type="submit"
+              >
+                Войти
+              </S.AuthFormBtnEnter>
             </S.AuthForm>
             <S.AuthLink to="/signup">
               <S.AuthFormBtnSignUpinSignIn>
