@@ -132,7 +132,6 @@ export const AdvertGallery: FC<ImageProps> = (props) => {
           ))}
         </S.GalleryImageBar>
 
-
         {/* <ImageGallery
           items={getStaticImages()}
           showPlayButton={false}
