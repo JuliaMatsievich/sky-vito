@@ -6,16 +6,14 @@ import { BackBtn } from '../../buttons/backBtn/backBtn';
 import { Footer } from '../../Footer/footer';
 import { FC } from 'react';
 import {
-  useAddImageInAdvertMutation,
   useChangeAdvertMutation,
-  useDeleteImageMutation,
   useGetAdvertsByIdQuery,
 } from '../../../services/advApi';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { FormItemFotoImage } from './formItemFotoImage';
-import { SERVER_URL } from '../../../constants/url';
 import { useModal } from '../../../hooks/useModal';
 import { ErrorMessage } from '../../error/errorMessage';
+import { useNavigate } from 'react-router-dom';
 interface IAdvertForm {
   title: string;
   description: string;
@@ -27,54 +25,35 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
   const { windowWidth } = useGetWindowSize();
   const { closeMod } = useModal();
   const { data: advert } = useGetAdvertsByIdQuery(advId);
+  const navigate = useNavigate();
 
   const [changeAdvApi] = useChangeAdvertMutation();
-  const [addImageInAdvert] = useAddImageInAdvertMutation();
-  const [deleteImageApi] = useDeleteImageMutation();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    control,
   } = useForm<IAdvertForm>({
     defaultValues: {
       title: advert?.title,
       description: advert?.description,
       price: advert?.price,
-      images: [],
     },
   });
 
-  const UploadImage = async (image: File | null) => {
-    if (image) {
-      try {
-        const reader = new FileReader();
-        reader.readAsDataURL(image);
-
-        await addImageInAdvert({ pk: advId, image: image }).unwrap();
-      } catch (error) {
-        console.log('error', error);
-      }
-    }
-  };
 
   const handleAddAdvert: SubmitHandler<IAdvertForm> = (data) => {
     const { title, description, price } = data;
     changeAdvApi({ title, description, price, pk: advId })
       .unwrap()
       .then(() => {
-        closeMod();
+        windowWidth !== undefined && windowWidth < PHONE_WIDTH
+          ? navigate(`/advert/${advId}`)
+          : closeMod();
       });
   };
+;
 
-  const deleteImage = (pk: number, file_url: string) => {
-    try {
-      deleteImageApi({ pk, file_url }).unwrap();
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <>
@@ -109,42 +88,11 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
                 Фотографии товара<span> не более 5 фотографий</span>
               </S.FormItemFotoName>
               <S.FormItemFotoContainer>
-                {advert != undefined && advert?.images.length > 0
-                  ? advert?.images.map((image, index) => (
-                      <>
-                        <FormItemFotoImage
-                          key={index + 10}
-                          getFile={(file) => UploadImage(file)}
-                          deleteImage={() => deleteImage(advId, image.url)}
-                          src={`${SERVER_URL}/` + image.url}
-                        />
-                      </>
-                    ))
-                  : null}
-                {[...Array(5 - (advert?.images.length || 0))].map(
-                  (_, index) => (
-                    <>
-                      {/* <FormItemFotoImage
-                    key={index + 200}
-                    getFile={(file) => UploadImage(file)}
-                    src="/img/addfile.png"
-                  /> */}
-                      <Controller
-                        key={index + 100}
-                        name={`images.${index}`}
-                        control={control}
-                        render={({ field }) => (
-                          <FormItemFotoImage
-                            key={index + 200}
-                            getFile={(file) => UploadImage(file)}
-                            src="/img/addfile.png"
-                            {...field}
-                          />
-                        )}
-                      />
-                    </>
-                  ),
-                )}
+                <FormItemFotoImage advId={advId} imageIndex={0} />
+                <FormItemFotoImage advId={advId} imageIndex={1} />
+                <FormItemFotoImage advId={advId} imageIndex={2} />
+                <FormItemFotoImage advId={advId} imageIndex={3} />
+                <FormItemFotoImage advId={advId} imageIndex={4} />
               </S.FormItemFotoContainer>
             </S.AdvSettingsFormItemFoto>
             <S.AdvSettingsFormItem>

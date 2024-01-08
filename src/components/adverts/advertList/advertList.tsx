@@ -11,7 +11,7 @@ interface IAdvertList {
 export const AdvertList: FC<IAdvertList> = (props) => {
   return (
     <>
-      {/* {isLoading && <div>Загрузка.....</div>} */}
+      
       <S.AdvertContainer>
         <S.AdvertItems>
           {props.adverts?.map((advert) => (

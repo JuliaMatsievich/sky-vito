@@ -10,15 +10,10 @@ export const MainPage = () => {
     (state) => state.adverts.filteredAdverts,
   );
 
-  if (adverts == undefined) {
-    return <div>Ошибка</div>;
-  }
-
-  console.log('filteredAdverts', filteredAdverts);
-
   return (
     <>
-      {isLoading && <div>Загрузка.....</div>}
+      {isLoading  || adverts == undefined ? <div>Загрузка.....</div> :
+      <>
       <Search adverts={adverts} />
       <S.MainContainer>
         <S.MainTitle>Объявления</S.MainTitle>
@@ -26,6 +21,7 @@ export const MainPage = () => {
           adverts={filteredAdverts.length === 0 ? adverts : filteredAdverts}
         />
       </S.MainContainer>
+      </>}
     </>
   );
 };

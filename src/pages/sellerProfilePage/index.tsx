@@ -11,14 +11,14 @@ import { useGetUsersAllQuery } from '../../services/userApi';
 export const SellerProfilePage = () => {
   const params = useParams();
   const sellerId = Number(params.id);
-  const { data: users } = useGetUsersAllQuery(null);
+  const { data: users, isLoading } = useGetUsersAllQuery(null);
   const { data: adverts } = useGetAdvertsUserQuery({
     user_id: String(sellerId),
     sorting: 'new',
   });
 
-  if (adverts == undefined || users == undefined) {
-    return <div>Ошибка</div>;
+  if (isLoading || adverts == undefined || users == undefined) {
+    return <div>Загрузка...</div>;
   }
 
   // const user = users.filter(user => user.id === sellerId)
