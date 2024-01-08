@@ -1,4 +1,4 @@
-import { FC,  useEffect,  useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import * as S from './advertSettings.styles';
 import {
   useAddImageInAdvertMutation,
@@ -9,28 +9,28 @@ import { SERVER_URL } from '../../../constants/url';
 
 interface IFormInputImage {
   advId: number;
-  imageIndex: number
+  imageIndex: number;
 }
 
 export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
-
   const { advId, imageIndex } = props;
-  const [getAdvertsApi, {data: advert}] = useLazyGetAdvertsByIdQuery();
+  const [getAdvertsApi, { data: advert }] = useLazyGetAdvertsByIdQuery();
   const [imageSrc, setImageSrc] = useState<string>();
   const [addImageInAdvert] = useAddImageInAdvertMutation();
   const [deleteImageApi] = useDeleteImageMutation();
 
   useEffect(() => {
-    getAdvertsApi(advId).unwrap()
-  },[])
+    getAdvertsApi(advId).unwrap();
+  }, []);
 
   const UploadImage = async (image: File) => {
     if (image) {
       try {
-        await addImageInAdvert({ pk: advId, image: image }).unwrap()
-        .then(() => {
-          getAdvertsApi(advId).unwrap()
-        });
+        await addImageInAdvert({ pk: advId, image: image })
+          .unwrap()
+          .then(() => {
+            getAdvertsApi(advId).unwrap();
+          });
       } catch (error) {
         console.log('error', error);
       }
@@ -65,7 +65,8 @@ export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
 
   const handleDeleteImage = () => {
     setImageSrc('');
-    if (advert?.images[imageIndex]?.url != undefined) deleteImage(advId, advert?.images[imageIndex]?.url);
+    if (advert?.images[imageIndex]?.url != undefined)
+      deleteImage(advId, advert?.images[imageIndex]?.url);
   };
 
   return (

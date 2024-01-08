@@ -11,7 +11,6 @@ interface IAdvertList {
 export const AdvertList: FC<IAdvertList> = (props) => {
   return (
     <>
-      
       <S.AdvertContainer>
         <S.AdvertItems>
           {props.adverts?.map((advert) => (

@@ -195,6 +195,7 @@ export const advApi = createApi({
 
 export const {
   useGetAdvertsQuery,
+  useLazyGetAdvertsQuery,
   useGetAdvertsByIdQuery,
   useGetAdvertsUserQuery,
   useGetAdvertsCurrentUserQuery,
