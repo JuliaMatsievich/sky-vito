@@ -13,7 +13,7 @@ import {
 import { PHONE_WIDTH } from '../../constants/breakpoints';
 import { Link } from 'react-router-dom';
 
-export const MenuWrapper = styled.div<{ $location: string}>`
+export const MenuWrapper = styled.div<{ $location: string }>`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -37,7 +37,8 @@ export const MenuWrapper = styled.div<{ $location: string}>`
     padding-top: 12px;
     padding-bottom: 12px;
     gap: 10px;
-    margin-bottom: ${props => props.$location?.startsWith('/advert/') ? '0px' : '30px'} ;
+    margin-bottom: ${(props) =>
+      props.$location?.startsWith('/advert/') ? '0px' : '30px'};
     justify-content: space-between;
   }
 `;

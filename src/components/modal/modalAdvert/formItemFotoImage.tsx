@@ -11,7 +11,6 @@ export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
   const { deleteImage, src, getFile } = props;
   const [imageSrc, setImageSrc] = useState<string>();
 
-
   const handleAddFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
@@ -24,7 +23,6 @@ export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
       const reader = new FileReader();
       reader.onload = (e) => {
         setImageSrc(e.target?.result as string);
-
       };
       reader.readAsDataURL(file);
       return;
@@ -34,7 +32,7 @@ export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
   const handleDeleteImage = () => {
     setImageSrc('');
     if (deleteImage != undefined) deleteImage();
-        getFile(null)
+    getFile(null);
   };
 
   return (
@@ -51,7 +49,7 @@ export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
           id="advfoto"
           onChange={(event) => handleAddFoto(event)}
         />
-        {imageSrc? (
+        {imageSrc ? (
           <S.FormItemFotoImg src={imageSrc} />
         ) : (
           <S.FormItemFotoImg src={src ? src : '/img/addfile.png'} />

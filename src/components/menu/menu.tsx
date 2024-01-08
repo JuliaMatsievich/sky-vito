@@ -11,7 +11,7 @@ export const Menu = () => {
   };
 
   const location = useLocation();
-  const pathname = location.pathname
+  const pathname = location.pathname;
 
   return (
     <>

@@ -25,8 +25,10 @@ export const AdvertGallery: FC<ImageProps> = (props) => {
       thumbnail: props.images[0]?.url
         ? `${SERVER_URL}/` + props.images[0]?.url
         : '/img/no-foto.png',
-      originalWidth: windowWidth !== undefined && windowWidth <= PHONE_WIDTH ? 320 : 480,
-      originalHeight:windowWidth !== undefined && windowWidth <= PHONE_WIDTH ? 320 : 480,
+      originalWidth:
+        windowWidth !== undefined && windowWidth <= PHONE_WIDTH ? 320 : 480,
+      originalHeight:
+        windowWidth !== undefined && windowWidth <= PHONE_WIDTH ? 320 : 480,
       thumbnailHeight: 88,
       thumbnailWidth: 88,
       bulletClass: 'bulletClass',
@@ -38,7 +40,8 @@ export const AdvertGallery: FC<ImageProps> = (props) => {
         thumbnail: `${SERVER_URL}/` + props.images[i]?.url,
         originalWidth:
           windowWidth !== undefined && windowWidth <= PHONE_WIDTH ? 320 : 480,
-        originalHeight: windowWidth !== undefined && windowWidth <= PHONE_WIDTH ? 320 : 480,
+        originalHeight:
+          windowWidth !== undefined && windowWidth <= PHONE_WIDTH ? 320 : 480,
         thumbnailHeight: 88,
         thumbnailWidth: 88,
         bulletClass: 'bulletClass',
