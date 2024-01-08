@@ -1,5 +1,6 @@
 import * as S from './menu.styles';
 import { useGetWindowSize } from '../../hooks/useGetWindowSize';
+import { useLocation } from 'react-router-dom';
 
 export const Menu = () => {
   const { windowWidth } = useGetWindowSize();
@@ -9,9 +10,12 @@ export const Menu = () => {
     window.location.href = '/signin';
   };
 
+  const location = useLocation();
+  const pathname = location.pathname
+
   return (
     <>
-      <S.MenuWrapper>
+      <S.MenuWrapper $location={pathname}>
         <S.MenuLink to="/">
           <S.MenuLogo>
             <S.MenuLogoImg $screenSize={windowWidth} />
