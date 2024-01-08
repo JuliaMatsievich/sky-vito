@@ -1,27 +1,16 @@
-import ImageGallery from 'react-image-gallery';
-// import stylesheet if you're not already using CSS @import
-import 'react-image-gallery/styles/css/image-gallery.css';
+// import { FC } from 'react';
+// import { IImage } from '../../interface';
 
-export const MyGallery = () => {
-  const images = [
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/',
-      originalWidth: 480,
-      originalHeight: 480,
-    },
-    {
-      original: 'https://picsum.photos/id/1015/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1015/250/150/',
-      originalWidth: 480,
-      originalHeight: 480,
-    },
-    {
-      original: 'https://picsum.photos/id/1019/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1019/250/150/',
-      originalWidth: 480,
-      originalHeight: 480,
-    },
-  ];
-  return <ImageGallery items={images} showPlayButton={false} />;
-};
+// interface IImageProps  {
+//   images: IImage[];
+// };
+
+// export const GalleryImage: FC<IImageProps> = (props) => {
+//   const {images} = props;
+
+//   return (
+//     <>
+
+//     </>
+//   )
+// } 

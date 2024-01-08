@@ -13,6 +13,8 @@ export const GalleryImage = styled.div`
   margin-bottom: 30px;
   position: relative;
   border: none;
+
+
 `;
 export const GalleryImageImg = styled.img`
   width: 100%;
@@ -22,6 +24,8 @@ export const GalleryImageImg = styled.img`
   top: 0;
   left: 0;
 `;
+
+
 export const GalleryImageBar = styled.div`
   display: flex;
   gap: 10px;

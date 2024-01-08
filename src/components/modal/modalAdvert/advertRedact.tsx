@@ -4,7 +4,6 @@ import * as S from './advertSettings.styles';
 import { PHONE_WIDTH } from '../../../constants/breakpoints';
 import { BackBtn } from '../../buttons/backBtn/backBtn';
 import { Footer } from '../../Footer/footer';
-// import { Menu } from '../../menu/menu';
 import { FC, useState } from 'react';
 import {
   useAddImageInAdvertMutation,
@@ -61,7 +60,7 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
           // UploadImage({ pk: advId, image: advfoto[i] })
         }
         closeMod();
-        location.reload()
+        location.reload();
       });
   };
 
@@ -159,7 +158,7 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
                         render={({ field: { ref } }) => (
                           <FormItemFotoImage
                             advfoto={advfoto}
-                            key={index+200}
+                            key={index + 200}
                             // setAdvfoto={onChange}
                             // onChange={() => setAdvfoto()}
                             setAdvfoto={setAdvfoto}
