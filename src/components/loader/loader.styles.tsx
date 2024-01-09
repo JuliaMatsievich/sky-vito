@@ -20,7 +20,7 @@ export const LoaderContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-`
+`;
 
 export const Loader = styled.div`
   color: #009ee4;
@@ -30,7 +30,6 @@ export const Loader = styled.div`
   font-size: 11px;
   transform: translateZ(0);
   animation-delay: -0.16s;
-
 
   &::before,
   &::after {

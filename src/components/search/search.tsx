@@ -1,20 +1,19 @@
 import * as S from './search.styles';
 import { useGetWindowSize } from '../../hooks/useGetWindowSize';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { IAdvert } from '../../interface';
 import { searchAdverts } from '../../store/advertSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 interface IAdvertsSearch {
   adverts: IAdvert[] | undefined;
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const Search = ({ adverts }: IAdvertsSearch) => {
+export const Search = ({ adverts, search, setSearch }: IAdvertsSearch) => {
   const { windowWidth } = useGetWindowSize();
-
   const dispatch = useAppDispatch();
-
-  const [search, setSearch] = useState('');
 
   const handleClickSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,6 +21,13 @@ export const Search = ({ adverts }: IAdvertsSearch) => {
       dispatch(searchAdverts({ adverts, searchValue: search }));
     }
   };
+
+  useEffect(() => {
+    if (adverts != undefined && search === '') {
+      dispatch(searchAdverts({ adverts, searchValue: search }));
+    }
+  }, [search]);
+
   return (
     <>
       <S.SearchMain>

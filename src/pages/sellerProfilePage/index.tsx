@@ -9,7 +9,6 @@ import { Menu } from '../../components/menu/menu';
 import { useGetUsersAllQuery } from '../../services/userApi';
 import { Loader } from '../../components/loader/loader';
 
-
 export const SellerProfilePage = () => {
   const params = useParams();
   const sellerId = Number(params.id);
@@ -20,7 +19,7 @@ export const SellerProfilePage = () => {
   });
 
   if (isLoading || adverts == undefined || users == undefined) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   return (

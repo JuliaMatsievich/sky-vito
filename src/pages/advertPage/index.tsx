@@ -17,7 +17,7 @@ export const AdvertPage: FC = () => {
     <>
       <Menu />
       {isLoading || advert == undefined ? (
-        <Loader/>
+        <Loader />
       ) : (
         <S.AdvertContainer>
           <S.AdvertContent>

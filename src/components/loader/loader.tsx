@@ -1,9 +1,9 @@
-import * as S from './loader.styles' 
+import * as S from './loader.styles';
 
 export const Loader = () => {
-	return (
-		<S.LoaderContainer>
-		<S.Loader></S.Loader>
-		</S.LoaderContainer>
-	)
-}
+  return (
+    <S.LoaderContainer>
+      <S.Loader></S.Loader>
+    </S.LoaderContainer>
+  );
+};
