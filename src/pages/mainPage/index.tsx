@@ -4,9 +4,9 @@ import { Search } from '../../components/search/search';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useLazyGetAdvertsQuery } from '../../services/advApi';
 import * as S from './mainPage.styles';
+import { Loader } from '../../components/loader/loader';
 
 export const MainPage = () => {
-  // const { data: adverts, isLoading } = useGetAdvertsQuery(null);
   const [getAdvertsApi, { data: adverts, isLoading }] =
     useLazyGetAdvertsQuery();
   const filteredAdverts = useAppSelector(
@@ -20,7 +20,7 @@ export const MainPage = () => {
   return (
     <>
       {isLoading || adverts == undefined ? (
-        <div>Загрузка.....</div>
+        <Loader/>
       ) : (
         <>
           <Search adverts={adverts} />

@@ -7,6 +7,8 @@ import { useGetAdvertsUserQuery } from '../../services/advApi';
 import { IUser } from '../../interface';
 import { Menu } from '../../components/menu/menu';
 import { useGetUsersAllQuery } from '../../services/userApi';
+import { Loader } from '../../components/loader/loader';
+
 
 export const SellerProfilePage = () => {
   const params = useParams();
@@ -18,10 +20,8 @@ export const SellerProfilePage = () => {
   });
 
   if (isLoading || adverts == undefined || users == undefined) {
-    return <div>Загрузка...</div>;
+    return <Loader/>;
   }
-
-  // const user = users.filter(user => user.id === sellerId)
 
   return (
     <>

@@ -4,7 +4,7 @@ import * as S from './advertSettings.styles';
 interface IAddImage {
   advfoto: File[];
   setAdvfoto: React.Dispatch<React.SetStateAction<File[]>>;
-  imageIndex: number
+  imageIndex: number;
 }
 
 export const FormImageAdd: FC<IAddImage> = (props) => {
@@ -28,7 +28,7 @@ export const FormImageAdd: FC<IAddImage> = (props) => {
     const updatedImages = [...advfoto];
     updatedImages.splice(imageIndex, 1);
     setAdvfoto(updatedImages);
-    setImageSrc('')
+    setImageSrc('');
   };
 
   return (

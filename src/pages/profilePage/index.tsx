@@ -1,4 +1,5 @@
 import { AdvertList } from '../../components/adverts/advertList/advertList';
+import { Loader } from '../../components/loader/loader';
 import { Menu } from '../../components/menu/menu';
 import { ProfileSettings } from '../../components/profileSettings/profileSettings';
 import { useGetAdvertsCurrentUserQuery } from '../../services/advApi';
@@ -11,7 +12,7 @@ export const ProfilePage = () => {
   const { data: user } = useGetCurrentUserQuery(null);
 
   if (isLoading || adverts == undefined || user == undefined) {
-    return <div>Загрузка...</div>;
+    return <Loader/>
   }
 
   return (

@@ -23,7 +23,6 @@ interface IAdvertForm {
 export const AddNewAdvert = () => {
   const { windowWidth } = useGetWindowSize();
   const { closeMod } = useModal();
-
   const [advfoto, setAdvfoto] = useState<File[]>([]);
   const [addAdvApiWithoutImg] = useAddAdvertWithoutImageMutation();
   const [addImageInAdvert] = useAddImageInAdvertMutation();
@@ -45,7 +44,7 @@ export const AddNewAdvert = () => {
           }
         }
         closeMod();
-        window.location.href=`/advert/${res.id}`
+        window.location.href = `/advert/${res.id}`;
       });
   };
 

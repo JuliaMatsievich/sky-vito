@@ -27,7 +27,7 @@ export const baseQueryWithReauth: BaseQueryFn = async (
 ) => {
   let result = await baseQuery(args, api, extraOptions);
 
-  // console.debug('Результат первого запроса', { result });
+  console.debug('Результат первого запроса', { result });
 
   if (result.error && result.error.status === 401) {
     const refreshResult = await baseQuery(
@@ -42,7 +42,7 @@ export const baseQueryWithReauth: BaseQueryFn = async (
       api,
       extraOptions,
     );
-    // console.debug('Результат второго запроса', { refreshResult });
+    console.debug('Результат второго запроса', { refreshResult });
 
     if (refreshResult.data) {
       const { access_token, refresh_token } =

@@ -40,7 +40,6 @@ export const FormItemFotoImage: FC<IFormInputImage> = (props) => {
   const deleteImage = (pk: number, file_url: string) => {
     try {
       deleteImageApi({ pk, file_url }).unwrap();
-      console.log('del', file_url);
     } catch (error) {
       console.log(error);
     }

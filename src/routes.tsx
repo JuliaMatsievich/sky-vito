@@ -10,6 +10,7 @@ import { ProtectedRoute } from './components/protected-routes';
 import { AddNewAdvertPage } from './pages/addNewAdvertPage';
 import { RedactAdvertPage } from './pages/redactAdvertPage';
 import { ReviewsAdvertPage } from './pages/reviewsPage';
+import { NotFound } from './pages/notfound';
 
 export const AppRoutes = () => {
   return (
@@ -29,7 +30,9 @@ export const AppRoutes = () => {
           <Route path="redactAdvert/:id" element={<RedactAdvertPage />} />
         </Route>
       </Route>
-      {/* <Route path="*" element={<NotFound />} /> */}
+      <Route path="/" element={<Layout />}>
+        <Route path="*" element={<NotFound />} />
+      </Route>
     </Routes>
   );
 };

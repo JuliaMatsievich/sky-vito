@@ -29,7 +29,7 @@
 	}
 }
 .image-gallery-icon:focus {
-	outline: 3px solid #009ee4;
+	outline: 4px solid #009ee4;
 }
 .image-gallery-using-mouse .image-gallery-icon:focus {
 	outline: none;
@@ -136,7 +136,7 @@
 .image-gallery-content {
 	position: relative;
 	line-height: 0;
-	top: 0;
+	top: 25%;
 }
 .image-gallery-content.fullscreen {
 	background: #000;
@@ -364,7 +364,7 @@
 .image-gallery-thumbnail.active,
 .image-gallery-thumbnail:focus {
 	outline: none;
-	border: 3px solid #009ee4;
+	border: 4px solid #009ee4;
 }
 @media (max-width: 768px) {
 	.image-gallery-thumbnail.active,
@@ -375,7 +375,7 @@
 @media (hover: hover) and (pointer: fine) {
 	.image-gallery-thumbnail:hover {
 		outline: none;
-		border: 3px solid #009ee4;
+		border: 4px solid #009ee4;
 	}
 }
 @media (hover: hover) and (pointer: fine) and (max-width: 768px) {

@@ -6,6 +6,7 @@ import * as S from './advertPage.styles';
 import { useGetAdvertsByIdQuery } from '../../services/advApi';
 import { FC } from 'react';
 import { Menu } from '../../components/menu/menu';
+import { Loader } from '../../components/loader/loader';
 
 export const AdvertPage: FC = () => {
   const params = useParams();
@@ -16,7 +17,7 @@ export const AdvertPage: FC = () => {
     <>
       <Menu />
       {isLoading || advert == undefined ? (
-        <div>Загрузка...</div>
+        <Loader/>
       ) : (
         <S.AdvertContainer>
           <S.AdvertContent>
