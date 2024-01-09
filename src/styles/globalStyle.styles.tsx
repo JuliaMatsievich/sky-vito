@@ -36,6 +36,12 @@ body {
 button {
 	cursor: pointer
 }
+
+textarea {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 14px;
+}
 `;
 
 export const Wrapper = styled.div`
