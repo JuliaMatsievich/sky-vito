@@ -14,6 +14,7 @@ import {
 } from '../../../services/advApi';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ErrorMessage } from '../../error/errorMessage';
+import { formatDateCreatedAdvert } from '../../../helpers/formatDateCreatedFunc';
 
 interface IModalComments {
   comments: IComment[] | undefined;
@@ -112,7 +113,7 @@ export const ModalReviews: FC<IModalComments> = (props) => {
                       <S.ReviewRight>
                         <S.ReviewName>
                           {comment.author.name}{' '}
-                          <span>{comment.created_on}</span>
+                          <span>{formatDateCreatedAdvert(comment.created_on)}</span>
                         </S.ReviewName>
                         <S.ReviewTitle>Комментарий</S.ReviewTitle>
                         <S.ReviewText>{comment.text}</S.ReviewText>

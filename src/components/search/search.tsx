@@ -8,7 +8,7 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 interface IAdvertsSearch {
   adverts: IAdvert[] | undefined;
   search: string;
-  setSearch: React.Dispatch<React.SetStateAction<string>>
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const Search = ({ adverts, search, setSearch }: IAdvertsSearch) => {
@@ -23,10 +23,10 @@ export const Search = ({ adverts, search, setSearch }: IAdvertsSearch) => {
   };
 
   useEffect(() => {
-    if(adverts != undefined && search === '') {
-      dispatch(searchAdverts({ adverts, searchValue: search }))
+    if (adverts != undefined && search === '') {
+      dispatch(searchAdverts({ adverts, searchValue: search }));
     }
-  },[search])
+  }, [search]);
 
   return (
     <>
