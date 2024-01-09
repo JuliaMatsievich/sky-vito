@@ -41,7 +41,6 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
     },
   });
 
-
   const handleAddAdvert: SubmitHandler<IAdvertForm> = (data) => {
     const { title, description, price } = data;
     changeAdvApi({ title, description, price, pk: advId })
@@ -52,9 +51,6 @@ export const AdvertRedact: FC<{ advId: number }> = ({ advId }) => {
           : closeMod();
       });
   };
-;
-
-
   return (
     <>
       <S.ModalBlock>

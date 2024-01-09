@@ -7,11 +7,11 @@ import { useGetCurrentUserQuery } from '../../services/userApi';
 import * as S from './profilePage.styles';
 
 export const ProfilePage = () => {
-  const { data: adverts } = useGetAdvertsCurrentUserQuery(null);
+  const { data: adverts, isLoading } = useGetAdvertsCurrentUserQuery(null);
   const { data: user } = useGetCurrentUserQuery(null);
 
-  if (adverts == undefined || user == undefined) {
-    return <div>Ошибка</div>;
+  if (isLoading || adverts == undefined || user == undefined) {
+    return <div>Загрузка...</div>;
   }
 
   return (

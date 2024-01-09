@@ -9,7 +9,6 @@ import {
   useAddAdvertWithoutImageMutation,
   useAddImageInAdvertMutation,
 } from '../../../services/advApi';
-import { useNavigate } from 'react-router-dom';
 import { FormImageAdd } from './imageAdd';
 import { useState } from 'react';
 import { ErrorMessage } from '../../error/errorMessage';
@@ -23,11 +22,9 @@ interface IAdvertForm {
 
 export const AddNewAdvert = () => {
   const { windowWidth } = useGetWindowSize();
-  const navigate = useNavigate();
   const { closeMod } = useModal();
 
   const [advfoto, setAdvfoto] = useState<File[]>([]);
-  // const [imageSrc, setImageSrc] = useState<string[]>([]);
   const [addAdvApiWithoutImg] = useAddAdvertWithoutImageMutation();
   const [addImageInAdvert] = useAddImageInAdvertMutation();
 
@@ -48,27 +45,9 @@ export const AddNewAdvert = () => {
           }
         }
         closeMod();
-        navigate(`/advert/${res.id}`);
+        window.location.href=`/advert/${res.id}`
       });
   };
-
-  // const handleAddFoto = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = event.target.files ? event.target.files[0] : null;
-  //   if (file) {
-  //     setAdvfoto([...advfoto, file]);
-  //     if (file.type && !file.type.startsWith('image/')) {
-  //       console.log('File is not an image.');
-  //       return;
-  //     }
-
-  //     const reader = new FileReader();
-  //     reader.onload = (e) => {
-  //       setImageSrc([...imageSrc, e.target?.result as string]);
-  //     };
-  //     reader.readAsDataURL(file);
-  //     return;
-  //   }
-  // };
 
   return (
     <>
@@ -103,67 +82,31 @@ export const AddNewAdvert = () => {
                 Фотографии товара<span> не более 5 фотографий</span>
               </S.FormItemFotoName>
               <S.FormItemFotoContainer>
-                <FormImageAdd advfoto={advfoto} setAdvfoto={setAdvfoto} />
-                <FormImageAdd advfoto={advfoto} setAdvfoto={setAdvfoto} />
-                <FormImageAdd advfoto={advfoto} setAdvfoto={setAdvfoto} />
-                <FormImageAdd advfoto={advfoto} setAdvfoto={setAdvfoto} />
-                <FormImageAdd advfoto={advfoto} setAdvfoto={setAdvfoto} />
-                {/* <S.FormItemFotoImage> */}
-
-                {/* 
-                  <S.FormItemFotoInput
-                    type="file"
-                    id="advfoto"
-                    onChange={(event) => handleAddFoto(event)}
-                  />
-                  <S.FormItemFotoImg
-                    src={imageSrc.length > 0 ? imageSrc[0] : '/img/addfile.png'}
-                  />
-                </S.FormItemFotoImage>
-
-                <S.FormItemFotoImage>
-                  <S.FormItemFotoInput
-                    type="file"
-                    id="advfoto"
-                    onChange={(event) => handleAddFoto(event)}
-                  />
-                  <S.FormItemFotoImg
-                    src={imageSrc.length > 1 ? imageSrc[1] : '/img/addfile.png'}
-                  />
-                </S.FormItemFotoImage>
-
-                <S.FormItemFotoImage>
-                  <S.FormItemFotoInput
-                    type="file"
-                    id="advfoto"
-                    onChange={(event) => handleAddFoto(event)}
-                  />
-                  <S.FormItemFotoImg
-                    src={imageSrc.length > 2 ? imageSrc[2] : '/img/addfile.png'}
-                  />
-                </S.FormItemFotoImage>
-
-                <S.FormItemFotoImage>
-                  <S.FormItemFotoInput
-                    type="file"
-                    id="advfoto"
-                    onChange={(event) => handleAddFoto(event)}
-                  />
-                  <S.FormItemFotoImg
-                    src={imageSrc.length > 3 ? imageSrc[3] : '/img/addfile.png'}
-                  />
-                </S.FormItemFotoImage>
-
-                <S.FormItemFotoImage>
-                  <S.FormItemFotoInput
-                    type="file"
-                    id="advfoto"
-                    onChange={(event) => handleAddFoto(event)}
-                  />
-                  <S.FormItemFotoImg
-                    src={imageSrc.length > 4 ? imageSrc[4] : '/img/addfile.png'}
-                  /> */}
-                {/* </S.FormItemFotoImage> */}
+                <FormImageAdd
+                  advfoto={advfoto}
+                  setAdvfoto={setAdvfoto}
+                  imageIndex={0}
+                />
+                <FormImageAdd
+                  advfoto={advfoto}
+                  setAdvfoto={setAdvfoto}
+                  imageIndex={1}
+                />
+                <FormImageAdd
+                  advfoto={advfoto}
+                  setAdvfoto={setAdvfoto}
+                  imageIndex={2}
+                />
+                <FormImageAdd
+                  advfoto={advfoto}
+                  setAdvfoto={setAdvfoto}
+                  imageIndex={3}
+                />
+                <FormImageAdd
+                  advfoto={advfoto}
+                  setAdvfoto={setAdvfoto}
+                  imageIndex={4}
+                />
               </S.FormItemFotoContainer>
             </S.AdvSettingsFormItemFoto>
             <S.AdvSettingsFormItem>

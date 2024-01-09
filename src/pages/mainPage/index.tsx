@@ -7,14 +7,15 @@ import * as S from './mainPage.styles';
 
 export const MainPage = () => {
   // const { data: adverts, isLoading } = useGetAdvertsQuery(null);
-  const [getAdvertsApi, {data: adverts, isLoading}] = useLazyGetAdvertsQuery()
+  const [getAdvertsApi, { data: adverts, isLoading }] =
+    useLazyGetAdvertsQuery();
   const filteredAdverts = useAppSelector(
     (state) => state.adverts.filteredAdverts,
   );
 
   useEffect(() => {
-    getAdvertsApi(null).unwrap()
-  },[])
+    getAdvertsApi(null).unwrap();
+  }, []);
 
   return (
     <>
