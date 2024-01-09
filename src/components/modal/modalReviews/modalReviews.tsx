@@ -113,7 +113,9 @@ export const ModalReviews: FC<IModalComments> = (props) => {
                       <S.ReviewRight>
                         <S.ReviewName>
                           {comment.author.name}{' '}
-                          <span>{formatDateCreatedAdvert(comment.created_on)}</span>
+                          <span>
+                            {formatDateCreatedAdvert(comment.created_on)}
+                          </span>
                         </S.ReviewName>
                         <S.ReviewTitle>Комментарий</S.ReviewTitle>
                         <S.ReviewText>{comment.text}</S.ReviewText>
