@@ -1,46 +1,74 @@
-# Getting Started with Create React App
+# Проект Skyvito
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Учебный проект на курсе 'Веб-разработчик' в школе Skypro
 
-## Available Scripts
+## Описание проекта
 
-In the project directory, you can run:
+Сайт онлайн объявлений, аналогичный "Авито". 
 
-### `npm start`
+На сайте можно зарегистрироваться и получить доступ в личный кабинет.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Для незарегистрированного пользователя доступны страницы:
+1. Просмотр объявлений
+2. Просмотр профиля продавца
+3. Просмотр отзывов о товаре
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Для зарегистрированного пользователя, дополнительно доступно следующее:
+1. Добавить объявление(название, описание, фото, цена)
+2. Редактировать уже добавленное объявление
+3. Доступ в личный кбинет с возможностью корректировать данные о себе (имя, фамилия, город, телефон, аватар)
+4. Возможность оставлять комменатарии
 
-### `npm test`
+## Использованные технологии
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
++ Typescript
++ React
++ Styled Components
++ RTK Query
++ React Router
++ React-Hook-Form
++ Redux Toolkit
 
-### `npm run build`
+## Библиотеки
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
++ React Image Gallery
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Как запустить проект 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Проект состоит из двух частей: фронтенд и бэкенд. 
 
-### `npm run eject`
+### Фронтенд
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Клонировать репозиторий
+```
+git clone https://github.com/JuliaMatsievich/sky-vito
+```
+2.Установить необходимые зависимости
+```
+npm install
+```
+3. Запустить приложение с помощью следующей команды
+```
+npm run start
+```
+Проект запустится по адресу: http://localhost:3000
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Бэкенд
+Бэкенд часть находится в папке `backend` данного проекта
+1. Для запуска бэкенда вам потребуется установить Docker.
+2. Скачайте версию для своей операционной системы и запустите.
+3. Далее следуйте инструкциям установщика.
+4. После установки перезагрузите компьютер.
+5. Запустите Docker с помощью ярлыка.
+6. Через терминал перейдите в скачанную папку `backend`.
+7. Запустите в терминале команду:
+```
+docker-compose -f docker-compose-backend.yaml up -d
+```
+9. После первого выполнения команды все образы подтянуться, но могут не запуститься, в этом случае повторно выполните команду:
+```
+docker-compose -f docker-compose-backend.yaml up -d
+```
+11. После этого бэкенд и Swagger будут доступны по адресу http://localhost:8090/
+12. Чтобы остановить работу бэкенда выполните:docker-compose down
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
