@@ -12,7 +12,7 @@ export const ProfilePage = () => {
   const { data: user } = useGetCurrentUserQuery(null);
 
   if (isLoading || adverts == undefined || user == undefined) {
-    return <Loader/>
+    return <Loader />;
   }
 
   return (

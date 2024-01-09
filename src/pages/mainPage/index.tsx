@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { AdvertList } from '../../components/adverts/advertList/advertList';
 import { Search } from '../../components/search/search';
 import { useAppSelector } from '../../hooks/useAppSelector';
@@ -17,18 +17,26 @@ export const MainPage = () => {
     getAdvertsApi(null).unwrap();
   }, []);
 
+  const [search, setSearch] = useState<string>('');
+
   return (
     <>
       {isLoading || adverts == undefined ? (
-        <Loader/>
+        <Loader />
       ) : (
         <>
-          <Search adverts={adverts} />
+          <Search adverts={adverts} search={search} setSearch={setSearch} />
           <S.MainContainer>
             <S.MainTitle>Объявления</S.MainTitle>
-            <AdvertList
-              adverts={filteredAdverts.length === 0 ? adverts : filteredAdverts}
-            />
+            {search && filteredAdverts.length === 0 ? (
+              <div>Ничего не найдено...</div>
+            ) : (
+              <AdvertList
+                adverts={
+                  filteredAdverts.length === 0 ? adverts : filteredAdverts
+                }
+              />
+            )}
           </S.MainContainer>
         </>
       )}
