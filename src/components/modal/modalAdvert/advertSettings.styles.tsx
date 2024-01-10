@@ -99,8 +99,8 @@ export const FormItemInput = styled.input`
     border: 1px solid ${$buttonColorHover};
   }
 
-  &:focus ~ label,  /* фокус на input */
-	&:not(:placeholder-shown) ~ label  /* в input есть значение */ {
+  &:focus ~ label,  
+	&:not(:placeholder-shown) ~ label   {
     color: ${$buttonColorHover};
   }
   @media (max-width: ${$phoneWidth}) {
@@ -158,8 +158,8 @@ export const FormItemTextarea = styled.textarea`
     border: 1px solid ${$buttonColorHover};
   }
 
-  &:focus ~ label,  /* фокус на input */
-	&:not(:placeholder-shown) ~ label  /* в input есть значение */ {
+  &:focus ~ label,  
+	&:not(:placeholder-shown) ~ label   {
     color: ${$buttonColorHover};
   }
   @media (max-width: ${$phoneWidth}) {

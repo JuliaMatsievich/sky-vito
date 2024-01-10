@@ -3,9 +3,6 @@ import { IImage } from '../../../../interface';
 import { FC } from 'react';
 import { SERVER_URL } from '../../../../constants/url';
 import ImageGallery, { ReactImageGalleryItem } from 'react-image-gallery';
-
-// import stylesheet if you're not already using CSS @import
-// import 'react-image-gallery/styles/css/image-gallery.css';
 import './gallery.css';
 import { useGetWindowSize } from '../../../../hooks/useGetWindowSize';
 import { PHONE_WIDTH } from '../../../../constants/breakpoints';
@@ -56,21 +53,7 @@ export const AdvertGallery: FC<ImageProps> = (props) => {
   return (
     <>
       <S.AdvertGalleryContainer>
-        {/* <S.GalleryImage>
-          {images[0]?.url !== undefined ? (
-            <S.GalleryImageImg src={`${SERVER_URL}/` + images[0]?.url} />
-          ) : (
-            <S.GalleryImageImg src="/img/no-foto.png" />
-          )}
-        </S.GalleryImage>
-        <S.GalleryImageBar>
-          {images.map((image) => (
-            <S.GalleryImageBarItem key={image.id}>
-              <S.GalleryImageBarImg src={`${SERVER_URL}/` + image.url} />
-            </S.GalleryImageBarItem>
-          ))}
-        </S.GalleryImageBar> */}
-        <BackBtn />
+         <BackBtn />
         <ImageGallery
           items={getStaticImages()}
           showPlayButton={false}

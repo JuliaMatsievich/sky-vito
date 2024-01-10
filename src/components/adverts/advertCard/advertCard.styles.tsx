@@ -95,19 +95,19 @@ export const Tooltip = styled.span`
   box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.1);
   position: absolute;
   z-index: 1;
-  bottom: 125%; /* Расположение подсказки относительно основного текста */
+  bottom: 125%; 
   left: 50%;
-  margin-left: -60px; /* Центрирование подсказки */
+  margin-left: -60px; 
 
-  opacity: 0; /* Начальная прозрачность */
-  transition: opacity 0.3s; /* Плавное появление */
+  opacity: 0; 
+  transition: opacity 0.3s; 
 `;
 
 export const AdvertPrice = styled.div`
   font-size: 22px;
   font-style: normal;
   font-weight: 500;
-  line-height: 150%; /* 33px */
+  line-height: 150%;
   margin-bottom: 10px;
 
   @media (max-width: ${$tabletWidth}) {
@@ -124,7 +124,7 @@ export const AdvertCity = styled.div`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 130%; /* 20.8px */
+  line-height: 130%; 
   margin-bottom: 4px;
 
   @media (max-width: ${$tabletWidth}) {

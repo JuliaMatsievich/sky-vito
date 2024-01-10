@@ -18,6 +18,7 @@ import { formatDateSellsFrom } from '../../../../helpers/formatDateSellsFromFunc
 import { useGetWindowSize } from '../../../../hooks/useGetWindowSize';
 import { PHONE_WIDTH } from '../../../../constants/breakpoints';
 import { useNavigate } from 'react-router-dom';
+import { getCorrectReviewWritining } from '../../../../helpers/correctReviewWritiningFunc';
 
 interface IAdvertInfoProps {
   id: number;
@@ -64,7 +65,7 @@ export const AdvertInfo: FC<IAdvertInfoProps> = (advertInfo) => {
           }}
         >
           {comments !== undefined && comments.length > 0
-            ? comments.length + ' отзыва'
+            ? comments.length + ' ' + getCorrectReviewWritining(comments.length)
             : 'Нет отзывов'}
         </S.InfoReviews>
         {isShowModal && modalName === 'reviews' ? (

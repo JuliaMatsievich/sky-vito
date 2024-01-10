@@ -139,8 +139,8 @@ export const SettingsInput = styled.input`
     border: 1px solid ${$buttonColorHover};
   }
 
-  &:focus ~ label,  /* фокус на input */
-	&:not(:placeholder-shown) ~ label  /* в input есть значение */ {
+  &:focus ~ label,  
+	&:not(:placeholder-shown) ~ label  {
     color: ${$buttonColorHover};
   }
 `;

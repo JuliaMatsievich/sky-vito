@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-import { centralContainer } from '../../../styles/commonStyles.styles';
 import { $mediumWidth, $phoneWidth } from '../../../styles/variables';
 
 export const AdvertContainer = styled.div`
-  /* ${centralContainer}; */
-  margin-bottom: 30px;
+   margin-bottom: 30px;
 `;
 export const AdvertItems = styled.div`
   display: grid;

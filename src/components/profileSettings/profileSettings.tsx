@@ -74,8 +74,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
           <S.SettingsForm onSubmit={handleSubmit(handleChangeInfo)}>
             <S.SettingsLeft>
               <S.SettingsFoto>
-                {user.avatar != null ? (
-                  // <S.SettingsFotoImg src={`${SERVER_URL}/` + user.avatar} />
+                {user.avatar != null ? (                 
                   <S.SettingsFotoImg src={preview} />
                 ) : (
                   <S.SettingsFotoImg src="/img/no-foto.png" />
@@ -87,7 +86,6 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
                   type="file"
                   id="avatar"
                   accept="image/*"
-                  // onChange={handleChangeFoto}
                   {...register('avatar', {
                     onChange: (event) => handleChangeFoto(event),
                   })}
