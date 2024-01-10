@@ -95,12 +95,12 @@ export const Tooltip = styled.span`
   box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.1);
   position: absolute;
   z-index: 1;
-  bottom: 125%; 
+  bottom: 125%;
   left: 50%;
-  margin-left: -60px; 
+  margin-left: -60px;
 
-  opacity: 0; 
-  transition: opacity 0.3s; 
+  opacity: 0;
+  transition: opacity 0.3s;
 `;
 
 export const AdvertPrice = styled.div`
@@ -124,7 +124,7 @@ export const AdvertCity = styled.div`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 130%; 
+  line-height: 130%;
   margin-bottom: 4px;
 
   @media (max-width: ${$tabletWidth}) {

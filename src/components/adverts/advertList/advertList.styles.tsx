@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { $mediumWidth, $phoneWidth } from '../../../styles/variables';
 
 export const AdvertContainer = styled.div`
-   margin-bottom: 30px;
+  margin-bottom: 30px;
 `;
 export const AdvertItems = styled.div`
   display: grid;

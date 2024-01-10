@@ -74,7 +74,7 @@ export const ProfileSettings = ({ user }: ProfileUser) => {
           <S.SettingsForm onSubmit={handleSubmit(handleChangeInfo)}>
             <S.SettingsLeft>
               <S.SettingsFoto>
-                {user.avatar != null ? (                 
+                {user.avatar != null ? (
                   <S.SettingsFotoImg src={preview} />
                 ) : (
                   <S.SettingsFotoImg src="/img/no-foto.png" />

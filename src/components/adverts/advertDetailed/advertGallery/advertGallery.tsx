@@ -53,7 +53,7 @@ export const AdvertGallery: FC<ImageProps> = (props) => {
   return (
     <>
       <S.AdvertGalleryContainer>
-         <BackBtn />
+        <BackBtn />
         <ImageGallery
           items={getStaticImages()}
           showPlayButton={false}
