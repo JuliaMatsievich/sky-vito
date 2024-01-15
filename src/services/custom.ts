@@ -53,7 +53,7 @@ export const baseQueryWithReauth: BaseQueryFn = async (
       result = await baseQuery(args, api, extraOptions);
     } else {
       api.dispatch(setLogout());
-      window.location.href = '/signin';
+      // window.location.href = '/signin';
     }
   }
   return result;
